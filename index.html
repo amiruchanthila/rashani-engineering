@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rashani Electrical & Engineering (PVT) LTD</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#F29111',
+                            blue: '#1E40AF',
+                            dark: '#0F172A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased" 
+      x-data="{ 
+        mobileMenu: false, 
+        serviceTab: 'electrical', 
+        projectFilter: 'All',
+        projects: [
+            { id: 1, title: 'Kalawewa Gate Controlling System', category: 'Electrical', location: 'Anuradhapura District', desc: 'Automation, PLC layouts, and main electrical panel overrides.', imgs: ['images/project-1a.jpg', 'images/project-1b.jpg'], currentImg: 0 },[cite: 1]
+            { id: 2, title: 'Daduruoya Infrastructure Development', category: 'Civil', location: 'Kurunegala District', desc: 'Heavy structural foundations and reinforced structural safety.', imgs: ['images/project-2a.jpg', 'images/project-2b.jpg'], currentImg: 0 },[cite: 1]
+            { id: 3, title: 'Siemens Gamesa Plant Maintenance', category: 'Electrical', location: 'Jafna Peninsular', desc: 'Continuous 20MW electrical lifecycle handling across 8 Wind Turbines.', imgs: ['images/project-3a.jpg'], currentImg: 0 },[cite: 1]
+            { id: 4, title: 'Naladanavi Pvt Ltd Wind Grid', category: 'Electrical', location: 'Puttalam', desc: 'Substation monitoring, transformer configurations and troubleshooting.', imgs: ['images/project-4a.jpg'], currentImg: 0 },[cite: 1]
+            { id: 5, title: 'NMK Pvt Ltd Oil Refinery Plant', category: 'Mechanical', location: 'Puttalam Hub', desc: 'Heavy plant machinery positioning and high-grade GI duct work.', imgs: ['images/project-5a.jpg'], currentImg: 0 },[cite: 1]
+            { id: 6, title: 'Hambantota Solar Farms Integration', category: 'Electrical', location: 'Hambantota', desc: 'Solar industrial inverter load optimizations and array diagnostic checks.', imgs: ['images/project-6a.jpg'], currentImg: 0 },[cite: 1]
+            { id: 7, title: 'Industrial Boiler Assembly & Rigging', category: 'Mechanical', location: 'Colombo Industrial Zone', desc: 'Heavy boiler installation and steam pipeline network fabrication.', imgs: ['images/project-7a.jpg'], currentImg: 0 },
+            { id: 8, title: 'Commercial Factory RCC Flooring', category: 'Civil', location: 'Gampaha', desc: 'High-load bearing reinforced concrete flooring for heavy machinery.', imgs: ['images/project-8a.jpg'], currentImg: 0 },
+            { id: 9, title: '33kV Overhead Transmission Line', category: 'Electrical', location: 'Kegalle District', desc: 'Grid extension, pole planting, and high voltage distribution setup.', imgs: ['images/project-9a.jpg'], currentImg: 0 }
+        ]
+      }">
+
+    <!-- 1. NAVBAR -->
+    <nav class="bg-white/95 backdrop-blur shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black tracking-wider text-brand-blue">RE<span class="text-brand-orange">.</span></span>
+                    <div class="ml-3 hidden sm:block">
+                        <div class="text-xs font-bold leading-tight text-brand-dark">RASHANI ELECTRICAL & ENGINEERING</div>
+                        <div class="text-[10px] tracking-widest text-gray-400 uppercase font-semibold">Engineering Solutions</div>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                    <a href="#home" class="text-brand-dark hover:text-brand-orange transition">Home</a>
+                    <a href="#about" class="text-brand-dark hover:text-brand-orange transition">About Us</a>
+                    <a href="#services" class="text-brand-dark hover:text-brand-orange transition">Services</a>
+                    <a href="#projects" class="text-brand-dark hover:text-brand-orange transition">Projects</a>
+                    <a href="#contact" class="bg-brand-blue text-white px-5 py-2.5 rounded-md hover:bg-brand-orange transition shadow-sm">Get a Quote</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button @click="mobileMenu = !mobileMenu" class="text-gray-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path x-show="!mobileMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                            <path x-show="mobileMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <section id="home" class="relative pt-20 h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/hero-bg.jpg" alt="Industrial Engineering Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 to-slate-900/80 mix-blend-multiply"></div>
+        </div>
+        <div class="relative max-w-5xl mx-auto px-4 text-center z-10">
+            <span class="inline-block px-4 py-1.5 bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold tracking-widest uppercase rounded-full mb-6">Established Since 2017</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
+                Comprehensive Solutions For Technical & <span class="text-brand-orange">Engineering</span> Requirements[cite: 1]
+            </h1>
+            <p class="mt-6 text-lg text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+                Core expertise in high-end Electrical, Mechanical, Civil maintenance, and Sustainable Solar energy integrations designed for commercial operations across Sri Lanka.[cite: 1]
+            </p>
+            <div class="mt-10">
+                <a href="#services" class="px-8 py-4 bg-brand-orange text-white font-bold rounded-lg shadow-lg hover:bg-white hover:text-brand-dark transition duration-300">Explore Our Expertise</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MARQUEE -->
+    <div class="bg-white py-8 border-y border-gray-100 overflow-hidden">
+        <div class="relative w-full">
+            <div class="animate-marquee items-center gap-12 font-bold text-gray-400 text-xs md:text-sm tracking-widest uppercase">
+                <span>SIEMENS GAMESA</span>[cite: 1] <span>SIRIO LTD</span>[cite: 1] <span>LTL PROJECTS</span>[cite: 1] <span>NALADANAVI</span>[cite: 1] <span>COATS THREAD EXPORTS</span>[cite: 1] <span>ORIENT CONSTRUCTION</span>[cite: 1] <span>NMK HOLDINGS</span>[cite: 1] <span>WASSER KRAFT TECH LANKA</span>[cite: 1]
+                <span>SIEMENS GAMESA</span>[cite: 1] <span>SIRIO LTD</span>[cite: 1] <span>LTL PROJECTS</span>[cite: 1] <span>NALADANAVI</span>[cite: 1] <span>COATS THREAD EXPORTS</span>[cite: 1] <span>ORIENT CONSTRUCTION</span>[cite: 1] <span>NMK HOLDINGS</span>[cite: 1] <span>WASSER KRAFT TECH LANKA</span>[cite: 1]
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. ABOUT US SECTION -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+                <div class="lg:col-span-1">
+                    <h2 class="text-3xl font-black text-brand-dark tracking-tight md:text-4xl">Corporate <span class="text-brand-orange">Profile</span></h2>
+                    <div class="mt-6 space-y-4 text-sm bg-slate-50 p-6 rounded-xl border border-slate-100">
+                        <div><span class="text-gray-400 font-medium block">REGISTRATION NO</span> <p class="font-bold text-brand-dark text-base">5/5/002919</p></div>[cite: 1]
+                        <div><span class="text-gray-400 font-medium block">OFFICIAL BANKER</span> <p class="font-bold text-brand-dark text-base">Sampath Bank PLC</p></div>[cite: 1]
+                        <div><span class="text-gray-400 font-medium block">OPERATIONAL HUB</span> <p class="font-bold text-brand-dark text-base">Kegalle, Sri Lanka</p></div>[cite: 1]
+                    </div>
+                </div>
+                <div class="lg:col-span-2 space-y-8">
+                    <p class="text-lg text-gray-600 leading-relaxed font-light">
+                        Serving the Sri Lankan engineering arena since 2017, Rashani Electrical & Engineering stands out through core competency standards, reliable workflow processes, and exceptional industrial safety execution benchmarks.[cite: 1]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SERVICES SECTION -->
+    <section id="services" class="py-24 bg-slate-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-brand-dark md:text-4xl">Divisional <span class="text-brand-orange">Engineering</span> Services</h2>[cite: 1]
+            </div>
+            <div class="flex flex-wrap justify-center border-b border-gray-200 max-w-2xl mx-auto mb-12">
+                <button @click="serviceTab = 'electrical'" :class="serviceTab === 'electrical' ? 'border-brand-orange text-brand-orange font-bold' : 'border-transparent text-gray-400'" class="flex-1 text-center py-4 px-2 border-b-2 font-medium text-sm transition-all">Electrical</button>
+                <button @click="serviceTab = 'mechanical'" :class="serviceTab === 'mechanical' ? 'border-brand-orange text-brand-orange font-bold' : 'border-transparent text-gray-400'" class="flex-1 text-center py-4 px-2 border-b-2 font-medium text-sm transition-all">Mechanical</button>
+                <button @click="serviceTab = 'civil'" :class="serviceTab === 'civil' ? 'border-brand-orange text-brand-orange font-bold' : 'border-transparent text-gray-400'" class="flex-1 text-center py-4 px-2 border-b-2 font-medium text-sm transition-all">Civil & Solar</button>
+            </div>
+            <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div x-show="serviceTab === 'electrical'" class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-8 space-y-4">
+                        <h4 class="text-xl font-bold text-brand-dark">Heavy Electrical Installations</h4>[cite: 1]
+                        <p class="text-sm text-gray-600">HT & LT Power Transmission Lines up to 33kV, industrial panel and wiring engineering.</p>[cite: 1]
+                    </div>
+                    <div class="h-64 lg:h-auto min-h-[250px]">
+                        <img src="images/service-electrical.jpg" alt="Electrical Work" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div x-show="serviceTab === 'mechanical'" class="grid grid-cols-1 lg:grid-cols-2" style="display: none;">
+                    <div class="p-8 space-y-4">
+                        <h4 class="text-xl font-bold text-brand-dark">Mechanical Fabrications</h4>[cite: 1]
+                        <p class="text-sm text-gray-600">Structural steel buildings, heavy roofings, mezzanine floors and gantry setups.</p>[cite: 1]
+                    </div>
+                    <div class="h-64 lg:h-auto min-h-[250px]">
+                        <img src="images/service-mechanical.jpg" alt="Mechanical Work" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div x-show="serviceTab === 'civil'" class="grid grid-cols-1 lg:grid-cols-2" style="display: none;">
+                    <div class="p-8 space-y-4">
+                        <h4 class="text-xl font-bold text-brand-dark">Civil & Solar Solutions</h4>[cite: 1]
+                        <p class="text-sm text-gray-600">RCC factory concrete floorings, retaining walls and grid-tied industrial solar power systems.</p>[cite: 1]
+                    </div>
+                    <div class="h-64 lg:h-auto min-h-[250px]">
+                        <img src="images/service-civil.jpg" alt="Civil Work" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PROJECTS GALLERY WITH IMAGE SLIDER (CAROUSEL) -->
+    <section id="projects" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-brand-dark md:text-4xl">Proven Operations <span class="text-brand-orange">Track Record</span></h2>[cite: 1]
+                <p class="mt-3 text-gray-500 max-w-xl mx-auto text-sm">Use arrows to browse multiple images per project.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-12">
+                <template x-for="category in ['All', 'Electrical', 'Mechanical', 'Civil']">
+                    <button @click="projectFilter = category" 
+                            :class="projectFilter === category ? 'bg-brand-blue text-white shadow' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'" 
+                            class="px-5 py-2 rounded-md font-semibold text-xs uppercase tracking-wider transition" x-text="category"></button>
+                </template>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <template x-for="(project, index) in projects" :key="project.id">
+                    <div x-show="projectFilter === 'All' || projectFilter === project.category" 
+                         class="bg-slate-50 border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <!-- Multi-Image Slider Container -->
+                            <div class="h-52 w-full bg-slate-200 relative group overflow-hidden">
+                                <!-- Image Display -->
+                                <img :src="project.imgs[project.currentImg]" :alt="project.title" class="w-full h-full object-cover transition-all duration-300">
+                                
+                                <!-- Slider Controls (Only show if project has more than 1 image) -->
+                                <template x-if="project.imgs.length > 1">
+                                    <div>
+                                        <!-- Left Arrow -->
+                                        <button @click="project.currentImg = (project.currentImg === 0) ? project.imgs.length - 1 : project.currentImg - 1" 
+                                                class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition focus:outline-none text-xs">
+                                            ❮
+                                        </button>
+                                        <!-- Right Arrow -->
+                                        <button @click="project.currentImg = (project.currentImg === project.imgs.length - 1) ? 0 : project.currentImg + 1" 
+                                                class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition focus:outline-none text-xs">
+                                            ❯
+                                        </button>
+                                        <!-- Image Dots Indicator -->
+                                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 bg-black/30 px-2 py-1 rounded-full">
+                                            <template x-for="(img, idx) in project.imgs">
+                                                <span :class="project.currentImg === idx ? 'bg-brand-orange' : 'bg-white/50'" class="w-1.5 h-1.5 rounded-full transition-all"></span>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <div class="p-6">
+                                <span :class="{
+                                    'text-amber-600 bg-amber-50 border-amber-200/60': project.category === 'Electrical',
+                                    'text-blue-600 bg-blue-50 border-blue-200/60': project.category === 'Mechanical',
+                                    'text-emerald-600 bg-emerald-50 border-emerald-200/60': project.category === 'Civil'
+                                }" class="text-[10px] font-bold border px-2 py-0.5 rounded-full uppercase tracking-widest" x-text="project.category"></span>
+                                
+                                <h3 class="text-lg font-black text-brand-dark mt-3" x-text="project.title"></h3>
+                                <p class="text-xs text-gray-500 mt-2 leading-relaxed" x-text="project.desc"></p>
+                            </div>
+                        </div>
+                        <div class="text-[11px] text-gray-400 font-semibold p-6 pt-0 flex justify-between items-center">
+                            <span x-text="'📍 ' + project.location"></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-black tracking-tight sm:text-4xl">Let's Discuss <span class="text-brand-orange">Your Project</span></h2>
+                <p class="mt-4 text-sm text-slate-400 font-light">Hotlines: 074-414058 / 074-414059</p>[cite: 1]
+                <p class="text-sm text-slate-400 font-light">Email: reengineering2020@gmail.com</p>[cite: 1]
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
