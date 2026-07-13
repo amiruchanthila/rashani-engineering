@@ -321,14 +321,24 @@
             border-color: var(--accent);
         }
 
+        /* Image Modification (Ensures responsive, modern layout fitting the exact card shape) */
         .project-img-placeholder {
             height: 180px;
-            background: linear-gradient(45deg, #1e293b, #0f172a);
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            font-size: 3rem;
+        }
+
+        .project-img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img-placeholder img {
+            transform: scale(1.08);
         }
 
         .project-info {
@@ -568,28 +578,36 @@
             <h2 class="section-title">Major <span>Projects</span></h2>
             <div class="projects-grid">
                 <div class="project-card reveal">
-                    <div class="project-img-placeholder"><i class="fa-solid fa-wind"></i></div>
+                    <div class="project-img-placeholder">
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" alt="Siemens Gamesa Wind Power Plant">
+                    </div>
                     <div class="project-info">
                         <h4>Siemens Gamesa</h4>
                         <p>20MW Wind Power Plant (8 Turbines) Maintenance Work – Jaffna</p>
                     </div>
                 </div>
                 <div class="project-card reveal">
-                    <div class="project-img-placeholder"><i class="fa-solid fa-solar-panel"></i></div>
+                    <div class="project-img-placeholder">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" alt="Hambantota Solar Plant">
+                    </div>
                     <div class="project-info">
                         <h4>Hambantota Solar Plant</h4>
                         <p>Ground Surface Maintenance and Technical Work</p>
                     </div>
                 </div>
                 <div class="project-card reveal">
-                    <div class="project-img-placeholder"><i class="fa-solid fa-water"></i></div>
+                    <div class="project-img-placeholder">
+                        <img src="https://images.unsplash.com/photo-1615811195256-bdc084e6dbdf?auto=format&fit=crop&w=600&q=80" alt="Water Gates Automation">
+                    </div>
                     <div class="project-info">
                         <h4>Water Gates Controlling</h4>
                         <p>Key automation projects carried out at Kalawewa and Daduruoya</p>
                     </div>
                 </div>
                 <div class="project-card reveal">
-                    <div class="project-img-placeholder"><i class="fa-solid fa-industry"></i></div>
+                    <div class="project-img-placeholder">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Industrial Plant Maintenance">
+                    </div>
                     <div class="project-info">
                         <h4>Industrial Plants</h4>
                         <p>Maintenance Operations at NMK Pvt Ltd & Naladanavi Pvt Ltd</p>
