@@ -1,442 +1,318 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rashani Electrical & Engineering</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brandDark: '#0B111E',
-                        brandCard: '#131C2E',
-                        brandOrange: '#FF6B00',
-                        brandTextGray: '#94A3B8'
-                    },
-                    animation: {
-                        'spin-slow': 'spin 12s linear infinite',
-                        'spin-reverse': 'spin-back 8s linear infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        'spin-back': {
-                            'from': { transform: 'rotate(360deg)' },
-                            'to': { transform: 'rotate(0deg)' }
-                        },
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom Glowing Grid Effect */
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 107, 0, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 107, 0, 0.03) 1px, transparent 1px);
-        }
+import React, { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { 
+  Zap, Settings, Home, Sun, Shield, 
+  Phone, Mail, MapPin, CheckCircle, ArrowRight 
+} from 'lucide-react';
 
-        /* --- ADVANCED SCROLL ANIMATIONS STYLES --- */
-        /* Initial state of elements before they enter viewport */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+// Reusable animated section container to solve the refresh/scroll bug safely
+const AnimatedSection = ({ children, className = "" }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
 
-        /* Active state when element is visible in viewport */
-        .reveal.active,
-        .reveal-left.active,
-        .reveal-right.active {
-            opacity: 1;
-            transform: translateY(0) translateX(0);
-        }
+  return (
+    <motion.div
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={{
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+        hidden: { opacity: 0, y: 40 }
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
-        /* Staggered delay for card structures */
-        .delay-100 { transition-delay: 100ms; }
-        .delay-200 { transition-delay: 200ms; }
-        .delay-300 { transition-delay: 300ms; }
-    </style>
-</head>
-<body class="bg-brandDark text-white font-sans antialiased bg-grid-pattern overflow-x-hidden">
+export default function CorporatePortfolio() {
+  return (
+    <div className="bg-slate-900 text-white font-sans antialiased selection:bg-orange-500 selection:text-white">
+      
+      {/* 1. HERO SECTION */}
+      <header className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent opacity-70" />
+        <div className="max-w-7xl mx-auto px-6 py-24 text-center relative z-10">
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-full text-orange-400 text-sm mb-6"
+          >
+            <Zap size={16} /> Reg No: කෑ/ග/ 002919
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-orange-400"
+          >
+            RASHANI ELECTRICAL <br/>& ENGINEERING[cite: 3]
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mt-6 text-lg md:text-xl text-slate-400 max-w-3xl mx-auto"
+          >
+            Optimizing every stage of your technical & engineering requirements since 2017[cite: 3]. High-end Electrical, Mechanical, Civil, and Solar integrations across Sri Lanka[cite: 3].
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-10 flex flex-wrap justify-center gap-4"
+          >
+            <a href="#services" className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white px-8 py-4 rounded-xl font-medium transition-all transform hover:-translate-y-0.5 shadow-lg shadow-orange-500/20 flex items-center gap-2">
+              Explore Our Services <ArrowRight size={18} />
+            </a>
+            <a href="#contact" className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white px-8 py-4 rounded-xl font-medium transition-all">
+              Contact Infrastructure Experts
+            </a>
+          </motion.div>
+        </div>
+      </header>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="fixed w-full top-0 z-50 bg-brandDark/90 backdrop-blur-md border-b border-gray-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-brandOrange text-brandDark p-2 rounded-lg font-black text-xl flex items-center justify-center w-10 h-10 shadow-lg shadow-orange-600/20">
-                    <i class="fa-solid fa-gear animate-spin-slow"></i>
-                </div>
+      {/* 2. CORPORATE IDENTITY & VISION */}
+      <section id="about" className="py-24 bg-slate-950 border-t border-slate-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <AnimatedSection>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-orange-500">Corporate Information</h2>
+              <h3 className="text-3xl md:text-4xl font-bold mt-2">Empowering Industrial & Commercial Lifecycles[cite: 3]</h3>
+              <p className="mt-6 text-slate-400 leading-relaxed">
+                By integrating reliable Civil maintenance and general support structures alongside sustainable Solar energy integrations, we streamline your entire engineering workflow safely and dynamically[cite: 3].
+              </p>
+              <div className="mt-8 border-l-4 border-blue-500 pl-6 italic text-slate-300">
+                "To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions."[cite: 3]
+              </div>
+            </AnimatedSection>
+            
+            <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                <div className="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center text-orange-500 mb-6"><CheckCircle /></div>
+                <h4 className="font-bold text-lg">Our Mission</h4>
+                <p className="text-slate-400 text-sm mt-2">Maintain long-term valuation relationships by offering exceptional outputs powered by latest engineering technology[cite: 3].</p>
+              </div>
+              <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 mb-6"><Shield /></div>
+                <h4 className="font-bold text-lg">Safety Standards</h4>
+                <p className="text-slate-400 text-sm mt-2">Targeting absolute zero-hazard safety and high precision standards on complex multi-disciplinary setups[cite: 3].</p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. MULTI-DISCIPLINARY SERVICES */}
+      <section id="services" className="py-24 bg-slate-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-orange-500">Core Services</h2>
+            <p className="text-3xl md:text-4xl font-bold mt-2">Result-Oriented Engineering Capabilities[cite: 3]</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Electrical */}
+            <AnimatedSection className="bg-slate-950 p-8 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all group">
+              <div className="w-12 h-12 bg-orange-500/10 group-hover:bg-orange-500 group-hover:text-white rounded-xl flex items-center justify-center text-orange-500 transition-all mb-6">
+                <Zap />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Electrical Engineering[cite: 3]</h3>
+              <ul className="text-slate-400 text-sm space-y-2">
+                <li>• Industrial & Domestic Wire Layouts[cite: 3]</li>
+                <li>• HV/LV Panel Assembly[cite: 3]</li>
+                <li>• Transmission Lines (Up to 33kV)[cite: 3]</li>
+                <li>• Switchgears & Insulation Evaluation[cite: 3]</li>
+                <li>• Industrial Generator Sync[cite: 3]</li>
+              </ul>
+            </AnimatedSection>
+
+            {/* Mechanical */}
+            <AnimatedSection className="bg-slate-950 p-8 rounded-2xl border border-slate-800 hover:border-blue-500/30 transition-all group">
+              <div className="w-12 h-12 bg-blue-500/10 group-hover:bg-blue-500 group-hover:text-white rounded-xl flex items-center justify-center text-blue-500 transition-all mb-6">
+                <Settings />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Mechanical Engineering[cite: 3]</h3>
+              <ul className="text-slate-400 text-sm space-y-2">
+                <li>• Industrial Steel Warehouses[cite: 3]</li>
+                <li>• Steel & Aluminium Cladding[cite: 3]</li>
+                <li>• Mezzanine Floor Construction[cite: 3]</li>
+                <li>• Heavy Machinery Relocation[cite: 3]</li>
+                <li>• GI/Pre-installed Duct Works[cite: 3]</li>
+              </ul>
+            </AnimatedSection>
+
+            {/* Civil */}
+            <AnimatedSection className="bg-slate-950 p-8 rounded-2xl border border-slate-800 hover:border-emerald-500/30 transition-all group">
+              <div className="w-12 h-12 bg-emerald-500/10 group-hover:bg-emerald-500 group-hover:text-white rounded-xl flex items-center justify-center text-emerald-500 transition-all mb-6">
+                <Home />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Civil Engineering[cite: 3]</h3>
+              <ul className="text-slate-400 text-sm space-y-2">
+                <li>• Processing Plants Construction[cite: 3]</li>
+                <li>• Modern RCC Structure Setups[cite: 3]</li>
+                <li>• Infrastructure & Road Culverts[cite: 3]</li>
+                <li>• Rubble Retaining Walls[cite: 3]</li>
+                <li>• Premium Floor Tiling[cite: 3]</li>
+              </ul>
+            </AnimatedSection>
+
+            {/* Solar & Systems */}
+            <AnimatedSection className="bg-slate-950 p-8 rounded-2xl border border-slate-800 hover:border-amber-500/30 transition-all group">
+              <div className="w-12 h-12 bg-amber-500/10 group-hover:bg-amber-500 group-hover:text-white rounded-xl flex items-center justify-center text-amber-500 transition-all mb-6">
+                <Sun />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Solar & Digital Systems[cite: 3]</h3>
+              <ul className="text-slate-400 text-sm space-y-2">
+                <li>• On-Grid/Off-Grid Net Metering[cite: 3]</li>
+                <li>• HD CCTV Surveillance Networks[cite: 3]</li>
+                <li>• Structured Wi-Fi/LAN Frameworks[cite: 3]</li>
+                <li>• Corporate Intercom Frameworks[cite: 3]</li>
+              </ul>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. PROJECTS SHOWCASE */}
+      <section id="projects" className="py-24 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-orange-500">Track Record</h2>
+              <p className="text-3xl md:text-4xl font-bold mt-2">Projects Successfully Executed[cite: 3]</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "Kalawewa Gate Controlling System", desc: "Complex industrial automation and synchronized heavy machinery configuration[cite: 3].", category: "Mechanical/Electrical", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" },
+              { title: "Daduruoya Project", desc: "Large-scale infrastructure engineering and mechanical automation deployments[cite: 3].", category: "Civil & Heavy Mechanical", img: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80" },
+              { title: "Siemens Gamesa Wind Power Plant", desc: "20MW Wind facility layout consisting of 8 generation turbines maintenance setups in Jaffna[cite: 3].", category: "Renewable Energy", img: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" },
+              { title: "Hambantota Ground Surface Solar Plant", desc: "Expansive solar array ground platform deployments and inverter syncing maintenance[cite: 3].", category: "Solar Integration", img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" },
+              { title: "Naladanavi Wind Power Maintenance", desc: "High-voltage switchgear evaluations and turbine array support processing in Puttlam[cite: 3].", category: "High Voltage Electrical", img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=600&q=80" },
+              { title: "NMK Oil Refinery Infrastructure", desc: "Comprehensive engineering management and mechanical process optimization infrastructure setups in Puttlam[cite: 3].", category: "Industrial Plant Maintenance", img: "https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?auto=format&fit=crop&w=600&q=80" }
+            ].map((project, idx) => (
+              <AnimatedSection key={idx} className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all group flex flex-col justify-between">
                 <div>
-                    <span class="text-xl font-bold tracking-wider text-brandOrange block">RASHANI</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-400 block -mt-1">Electrical & Mechanical</span>
+                  <div className="relative h-56 overflow-hidden bg-slate-950">
+                    <img 
+                      src={project.img} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100" 
+                    />
+                    <span className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md text-orange-400 font-medium text-xs px-3 py-1.5 rounded-full border border-slate-700">
+                      {project.category}
+                    </span>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-bold text-xl group-hover:text-orange-400 transition-colors">{project.title}</h3>
+                    <p className="text-slate-400 text-sm mt-3 leading-relaxed">{project.desc}</p>
+                  </div>
                 </div>
-            </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-                <a href="#home" class="hover:text-brandOrange transition">Home</a>
-                <a href="#about" class="hover:text-brandOrange transition">About</a>
-                <a href="#services" class="hover:text-brandOrange transition">Services</a>
-                <a href="#projects" class="hover:text-brandOrange transition">Projects</a>
-                <a href="#contact" class="hover:text-brandOrange transition">Contact</a>
-            </nav>
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none">
-                    <i class="fa-solid fa-bars text-2xl"></i>
-                </button>
-            </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brandDark border-b border-gray-800 px-4 pt-2 pb-4 space-y-3">
-            <a href="#home" class="block text-base font-medium hover:text-brandOrange">Home</a>
-            <a href="#about" class="block text-base font-medium hover:text-brandOrange">About</a>
-            <a href="#services" class="block text-base font-medium hover:text-brandOrange">Services</a>
-            <a href="#projects" class="block text-base font-medium hover:text-brandOrange">Projects</a>
-            <a href="#contact" class="block text-base font-medium hover:text-brandOrange">Contact</a>
+      </section>
+
+      {/* 5. CLIENT TRUST LOGO CLOUD */}
+      <section className="py-20 bg-slate-900/50 border-t border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-10">Trusted By Industry Heavyweights[cite: 3]</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-60">
+            {[
+              "SIEMENS GAMESA", "ADMJEE & LUKMANJEE", "SIRIO LTD", "VARIO SYSTEMS", 
+              "NMK HOLDINGS", "WASSER KRAFT", "COATS THREAD", "LTL PROJECTS", "NALADANAVI"
+            ].map((client, idx) => (
+              <span key={idx} className="text-lg font-bold tracking-wider text-slate-300 font-mono bg-slate-950/40 px-4 py-2 rounded border border-slate-800/40">
+                {client}
+              </span>
+            ))}
+          </div>
         </div>
-    </header>
+      </section>
 
-    <!-- HERO SECTION (ON-LOAD REVEALS) -->
-    <section id="home" class="pt-32 pb-20 lg:pt-44 lg:pb-32 px-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Slide in from left on load -->
-        <div class="lg:col-span-6 space-y-6 reveal-left active">
-            <div class="inline-flex items-center space-x-2 bg-brandOrange/10 border border-brandOrange/20 px-3 py-1 rounded-full text-xs font-semibold text-brandOrange tracking-wide">
-                <span class="w-2 h-2 rounded-full bg-brandOrange animate-ping"></span>
-                <span>Engineering Excellence Since 2017</span>
-            </div>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-                Innovative <span class="text-brandOrange">Engineering</span> <br>Infrastructure Outputs
-            </h1>
-            <p class="text-brandTextGray text-lg max-w-xl leading-relaxed">
-                Serving the Sri Lankan engineering sector with high-precision Electrical, Mechanical, and Civil engineering layouts with total efficiency.
-            </p>
-            <div class="pt-4">
-                <a href="#about" class="inline-flex items-center justify-center px-6 h-12 font-semibold tracking-wide text-white bg-brandOrange hover:bg-orange-600 rounded-lg transition shadow-lg shadow-orange-600/20">
-                    Explore Our Scope <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Slide in from right on load -->
-        <div class="lg:col-span-6 flex justify-center lg:justify-end reveal-right active">
-            <div class="relative w-full max-w-[440px] aspect-square bg-brandCard/40 border border-gray-800/80 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl p-6 group">
-                <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
-                
-                <div class="relative w-72 h-72 rounded-full border border-dashed border-gray-700 flex items-center justify-center animate-spin-slow">
-                    <div class="absolute w-60 h-60 rounded-full border border-brandOrange/20 flex items-center justify-center"></div>
-                    <i class="fa-solid fa-gear text-gray-800 text-[180px] opacity-20 absolute"></i>
-                    <div class="absolute -top-3 w-6 h-6 rounded-full bg-brandOrange flex items-center justify-center text-[10px] text-brandDark font-bold shadow-lg shadow-brandOrange/50">⚡</div>
-                    <div class="absolute -bottom-3 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-[10px] text-white font-bold shadow-lg shadow-blue-500/50">🏗️</div>
-                </div>
-
-                <div class="absolute top-12 right-12 w-32 h-32 rounded-full border border-dotted border-gray-600 flex items-center justify-center animate-spin-reverse">
-                    <i class="fa-solid fa-gear text-brandOrange/10 text-8xl absolute"></i>
-                </div>
-
-                <div class="absolute bg-brandCard border border-gray-700/60 p-5 rounded-xl shadow-2xl text-center w-52 animate-float">
-                    <div class="w-10 h-10 bg-brandOrange/10 text-brandOrange rounded-lg flex items-center justify-center text-lg mx-auto mb-3">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-md font-bold tracking-wider text-white">RASHANI</h3>
-                    <p class="text-[10px] uppercase text-brandOrange font-semibold tracking-widest mt-0.5">Live Layout Matrix</p>
-                    <div class="mt-3 pt-2 border-t border-gray-800 flex justify-between text-[11px] text-brandTextGray">
-                        <span>EFFICIENCY</span>
-                        <span class="text-green-400 font-mono">100%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT SECTION (SCROLL TRIGGER) -->
-    <section id="about" class="py-20 bg-brandCard/20 border-y border-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <!-- Reveal from Left -->
-                <div class="lg:col-span-7 space-y-6 reveal-left">
-                    <div>
-                        <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Who We Are</h2>
-                        <h3 class="text-3xl font-extrabold mt-2">Introduction</h3>
-                    </div>
-                    <p class="text-brandTextGray leading-relaxed text-justify">
-                        <strong class="text-white">Rashani Electrical & Engineering (Reg No: 5/5/002919)</strong>, after serving the Sri Lankan engineering sector with unique and efficient services since 2017, introduces you to a comprehensive solutions framework designed to optimize every stage of your technical & engineering requirements.
-                    </p>
-                    <p class="text-brandTextGray leading-relaxed text-justify">
-                        Our core expertise in high-end Electrical and Mechanical solutions ensures that operations run with absolute precision. By integrating reliable Civil maintenance and sustainable Solar energy integrations, we streamline your entire engineering lifecycle.
-                    </p>
-                    
-                    <div class="p-4 bg-brandCard rounded-xl border border-gray-800/60 flex items-start space-x-4">
-                        <div class="p-3 bg-orange-600/10 text-brandOrange rounded-lg mt-1"><i class="fa-solid fa-users-gear text-xl"></i></div>
-                        <div>
-                            <h4 class="font-bold text-white mb-1">Staff and Experience</h4>
-                            <p class="text-sm text-brandTextGray leading-relaxed">
-                                Our professional team represents a wide range of expertise and handles projects dynamically from concept to final commissioning.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Reveal from Right -->
-                <div class="lg:col-span-5 relative h-80 flex flex-col justify-center space-y-4 reveal-right">
-                    <div class="bg-brandCard p-5 rounded-xl border border-gray-800 flex items-center space-x-4 transform hover:-translate-y-1 transition duration-300">
-                        <div class="text-3xl font-black text-brandOrange font-mono w-16">2017</div>
-                        <div class="text-sm tracking-wide text-gray-300">Established Year & Market Entry</div>
-                    </div>
-                    <div class="bg-brandCard p-5 rounded-xl border border-gray-800 flex items-center space-x-4 transform hover:-translate-y-1 transition duration-300">
-                        <div class="text-3xl font-black text-brandOrange font-mono w-16">05+</div>
-                        <div class="text-sm tracking-wide text-gray-300">Years of Trusted Operational Excellence</div>
-                    </div>
-                    <div class="bg-brandCard p-5 rounded-xl border border-gray-800 flex items-center space-x-4 transform hover:-translate-y-1 transition duration-300">
-                        <div class="text-3xl font-black text-brandOrange w-16 text-center"><i class="fa-solid fa-building-columns"></i></div>
-                        <div class="text-sm tracking-wide text-gray-300">Official Banker: Sampath Bank PLC</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Staggered Upward Reveal -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-                <div class="bg-brandCard p-6 rounded-xl border border-gray-800/80 flex flex-col justify-between group hover:border-brandOrange/30 transition reveal delay-100">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-lg mb-4"><i class="fa-solid fa-eye"></i></div>
-                        <h4 class="text-lg font-bold mb-2">Our Vision</h4>
-                        <p class="text-xs text-brandTextGray leading-relaxed">
-                            "To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions."
-                        </p>
-                    </div>
-                </div>
-                <div class="bg-brandCard p-6 rounded-xl border border-gray-800/80 flex flex-col justify-between group hover:border-brandOrange/30 transition reveal delay-200">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-lg mb-4"><i class="fa-solid fa-bullseye"></i></div>
-                        <h4 class="text-lg font-bold mb-2">Our Mission</h4>
-                        <p class="text-xs text-brandTextGray leading-relaxed">
-                            "To maintain long-term relationships of value with our clients and partners by offering exceptional outputs in Electrical and Mechanical engineering."
-                        </p>
-                    </div>
-                </div>
-                <div class="bg-brandCard p-6 rounded-xl border border-gray-800/80 flex flex-col justify-between group hover:border-brandOrange/30 transition reveal delay-300">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-lg mb-4"><i class="fa-solid fa-crosshairs"></i></div>
-                        <h4 class="text-lg font-bold mb-2">Our Objectives</h4>
-                        <p class="text-xs text-brandTextGray leading-relaxed">
-                            Targets to provide the highest possible standard of quality and safety across all multi-disciplinary projects, ensuring total technical efficiency.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES SECTION (SCROLL TRIGGER STAGGERED) -->
-    <section id="services" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-            <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">What We Excel In</h2>
-            <h3 class="text-3xl font-extrabold mt-2">Core Services</h3>
-            <div class="w-12 h-1 bg-brandOrange mx-auto mt-4 rounded"></div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Electrical (Card 1) -->
-            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-amber-500/30 transition group reveal delay-100">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="w-12 h-12 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-2xl relative">
-                        <i class="fa-solid fa-bolt"></i>
-                        <span class="absolute inset-0 rounded-xl bg-amber-500/20 animate-ping opacity-20"></span>
-                    </div>
-                    <h4 class="text-xl font-bold">Electrical Scope</h4>
-                </div>
-                <ul class="space-y-3 text-sm text-brandTextGray">
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Industrial & Domestic Installations</li>
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> HV / LV Panel Boards Installation</li>
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Transmission Lines (Up to 33kV)</li>
-                </ul>
-            </div>
-
-            <!-- Mechanical (Card 2) -->
-            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-brandOrange/30 transition group reveal delay-200">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="w-12 h-12 bg-orange-600/10 text-brandOrange rounded-xl flex items-center justify-center text-2xl">
-                        <i class="fa-solid fa-screwdriver-wrench group-hover:rotate-45 transition duration-300"></i>
-                    </div>
-                    <h4 class="text-xl font-bold">Mechanical Scope</h4>
-                </div>
-                <ul class="space-y-3 text-sm text-brandTextGray">
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Industrial Steel Buildings & Sheds</li>
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Steel & Aluminum Cladding Sheets</li>
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Heavy Machinery Moving & Leveling</li>
-                </ul>
-            </div>
-
-            <!-- Civil (Card 3) -->
-            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-blue-500/30 transition group reveal delay-300">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center text-2xl">
-                        <i class="fa-solid fa-trowel-bricks"></i>
-                    </div>
-                    <h4 class="text-xl font-bold">Civil & Support</h4>
-                </div>
-                <ul class="space-y-3 text-sm text-brandTextGray">
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Industrial Factory Construction</li>
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Concrete Structures (RCC Tanks)</li>
-                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Roads & Infrastructure Drainage</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- MAJOR PROJECTS SECTION (SCROLL TRIGGER CARDS) -->
-    <section id="projects" class="py-20 bg-brandCard/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Our Track Record</h2>
-                <h3 class="text-3xl font-extrabold mt-2">Major Projects Carried Out</h3>
-                <div class="w-12 h-1 bg-brandOrange mx-auto mt-4 rounded"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between reveal delay-100">
-                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
-                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
-                        <i class="fa-solid fa-industry text-brandOrange/20 text-6xl group-hover:scale-110 group-hover:text-brandOrange/30 transition duration-500"></i>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[10px] text-brandOrange uppercase tracking-widest font-bold">Automation System</span>
-                        <h4 class="text-lg font-bold text-white mt-1">Kalawewa Gate System</h4>
-                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">Complete execution and technical alignment handling of advanced gate controlling layouts.</p>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between reveal delay-200">
-                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
-                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
-                        <i class="fa-solid fa-water-ladder text-blue-500/20 text-6xl group-hover:scale-110 group-hover:text-blue-500/30 transition duration-500"></i>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[10px] text-blue-400 uppercase tracking-widest font-bold">Civil / Hydraulics</span>
-                        <h4 class="text-lg font-bold text-white mt-1">Daduruoya Project</h4>
-                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">Infrastructure development layout and complex multi-disciplinary engineering field operations.</p>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between reveal delay-300">
-                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
-                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
-                        <div class="animate-spin-slow text-teal-500/10"><i class="fa-solid fa-fan text-7xl"></i></div>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[10px] text-teal-400 uppercase tracking-widest font-bold">Wind Infrastructure</span>
-                        <h4 class="text-lg font-bold text-white mt-1">Siemens Gamesa</h4>
-                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">20MW Wind Power Plant structural maintenance & electrical work execution in Jaffna.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="py-20 bg-brandCard/20 border-t border-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <!-- Form Text (Reveal Left) -->
-            <div class="lg:col-span-6 space-y-6 reveal-left">
-                <div>
-                    <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Contact Us</h2>
-                    <h3 class="text-3xl font-extrabold mt-2">Get In Touch</h3>
-                    <div class="w-12 h-1 bg-brandOrange mt-3 rounded"></div>
-                </div>
-                <p class="text-brandTextGray text-sm leading-relaxed">
-                    For industrial layout estimates, safety technical engineering schedules, or structural panel operations, please connect via our direct corporate details.
+      {/* 6. CONTACT SECTION */}
+      <section id="contact" className="py-24 bg-gradient-to-t from-slate-950 to-slate-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="bg-slate-900 rounded-3xl p-8 md:p-16 border border-slate-800 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold">Initiate Your Technical Enterprise[cite: 3]</h2>
+                <p className="text-slate-400 mt-4 leading-relaxed">
+                  Connect with our technical staff to deploy custom design, seamless installation, commissioning, or warranty maintenance standards across Sri Lanka[cite: 3].
                 </p>
-                <div class="space-y-4 pt-2">
-                    <div class="flex items-center space-x-4 bg-brandCard p-4 rounded-xl border border-gray-800/80">
-                        <div class="text-brandOrange text-lg w-10 h-10 bg-brandOrange/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
-                        <div>
-                            <span class="block text-[10px] uppercase tracking-wider text-gray-400">Hotlines</span>
-                            <span class="text-xs sm:text-sm font-semibold text-white">074-414058 / 074-414059</span>
-                        </div>
+                
+                <div className="mt-8 space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center text-orange-500"><Phone size={20} /></div>
+                    <div>
+                      <p className="text-xs text-slate-500 uppercase tracking-wider">Hotlines[cite: 3]</p>
+                      <p className="font-medium text-slate-200">074-414058 / 074-414059 / 074-414060[cite: 3]</p>
                     </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500"><Mail size={20} /></div>
+                    <div>
+                      <p className="text-xs text-slate-500 uppercase tracking-wider">Corporate Email[cite: 3]</p>
+                      <p className="font-medium text-slate-200">reengineering2020@gmail.com[cite: 3]</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500"><MapPin size={20} /></div>
+                    <div>
+                      <p className="text-xs text-slate-500 uppercase tracking-wider">Headquarters[cite: 3]</p>
+                      <p className="font-medium text-slate-200 text-sm">Alugoda Road, Kandegedra, Dewalegama, Kegalle[cite: 3]</p>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
 
-            <!-- Form Box (Reveal Right) -->
-            <div class="lg:col-span-6 flex flex-col justify-center reveal-right">
-                <div class="bg-brandCard border border-gray-800 p-8 rounded-2xl space-y-6 relative overflow-hidden">
-                    <h4 class="text-xl font-bold tracking-tight">Send a Quick Message</h4>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-[10px] text-gray-400 uppercase tracking-wider mb-1">Your Name</label>
-                            <input type="text" class="w-full bg-brandDark border border-gray-800 rounded-lg h-10 px-3 text-sm focus:outline-none focus:border-brandOrange text-white">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] text-gray-400 uppercase tracking-wider mb-1">Message</label>
-                            <textarea rows="3" class="w-full bg-brandDark border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-brandOrange text-white resize-none"></textarea>
-                        </div>
-                        <button class="w-full h-11 bg-brandOrange hover:bg-orange-600 text-white font-semibold rounded-lg text-sm transition">Submit Inquiry</button>
-                    </div>
+              <form onSubmit={(e) => e.preventDefault()} className="space-y-4 bg-slate-950/50 p-6 md:p-8 rounded-2xl border border-slate-800">
+                <div>
+                  <label className="text-xs text-slate-400 font-medium block mb-2">Company / Full Name</label>
+                  <input type="text" className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="John Doe" />
                 </div>
+                <div>
+                  <label className="text-xs text-slate-400 font-medium block mb-2">Scope of Interest</label>
+                  <select className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-400 focus:outline-none focus:border-orange-500 transition-colors">
+                    <option>Electrical Infrastructure Deployment[cite: 3]</option>
+                    <option>Mechanical Steel Warehousing[cite: 3]</option>
+                    <option>Civil Structural Works[cite: 3]</option>
+                    <option>Solar Energy Integration[cite: 3]</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-400 font-medium block mb-2">Project Brief</label>
+                  <textarea rows={4} className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Outline your industry requirements..."></textarea>
+                </div>
+                <button className="w-full bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-medium py-3 rounded-xl transition-all shadow-lg shadow-orange-500/10">
+                  Submit Project Details
+                </button>
+              </form>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-brandDark border-t border-gray-900 py-6 text-center text-xs text-gray-500 tracking-wide">
-        <p>&copy; 2026 Rashani Electrical & Engineering. All Rights Reserved.</p>
-    </footer>
-
-    <!-- INTERACTIVE SCRIPTS -->
-    <script>
-        // Mobile Menu Functionality
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-        // --- SCROLL ANIMATION JAVASCRIPT ENGINE ---
-        // Setup the Intersection Observer Configuration
-        const observerOptions = {
-            root: null, // Watch the entire browser window viewport
-            rootMargin: '0px',
-            threshold: 0.15 // Triggers animation when 15% of the element is visible
-        };
-
-        const scrollObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Add the 'active' class to start CSS animation transitions
-                    entry.target.classList.add('active');
-                    // Unobserve if you want it to animate only ONCE. 
-                    // If you want it to re-animate every single time you scroll up/down, comment the line below:
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, observerOptions);
-
-        // Bind elements to the observer engine
-        window.addEventListener('DOMContentLoaded', () => {
-            const elementsToReveal = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-            elementsToReveal.forEach(el => scrollObserver.observe(el));
-        });
-    </script>
-</body>
-</html>
+      <footer className="py-8 bg-slate-950 border-t border-slate-900 text-center text-xs text-slate-600">
+        © {new Date().getFullYear()} Rashani Electrical & Engineering. All Rights Reserved[cite: 3].
+      </footer>
+    </div>
+  );
+}
