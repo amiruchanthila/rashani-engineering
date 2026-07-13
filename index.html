@@ -192,6 +192,50 @@
             pointer-events: none;
         }
 
+        /* --- Industrial Visual Showcase (Fixes the Empty Feeling) --- */
+        .hero-showcase {
+            padding: 2rem 0 4rem 0;
+            background: var(--bg-primary);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .showcase-item {
+            height: 220px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .showcase-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 15, 29, 0.95));
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            font-weight: 600;
+            text-align: center;
+        }
+
         /* --- About & Stats --- */
         .about-section {
             padding: 5rem 0;
@@ -305,7 +349,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -464,6 +508,9 @@
             }
             header h1 { font-size: 2.5rem; }
             .nav-links { display: none; } /* Kept simple for raw HTML structure */
+            .showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -494,6 +541,30 @@
         </div>
         <i class="fa-solid fa-gear bg-gear"></i>
     </header>
+
+    <!-- NEW INDUSTRIAL IMAGE SHOWCASE BLOCK -->
+    <section class="hero-showcase">
+        <div class="container">
+            <div class="showcase-grid reveal">
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=400&q=80" alt="Electrical Operations">
+                    <div class="showcase-overlay">Electrical Automation</div>
+                </div>
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80" alt="Heavy Machinery">
+                    <div class="showcase-overlay">Mechanical Operations</div>
+                </div>
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=400&q=80" alt="Plant Infrastructure">
+                    <div class="showcase-overlay">Industrial Layouts</div>
+                </div>
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=400&q=80" alt="Civil Concrete Structures">
+                    <div class="showcase-overlay">Civil Infrastructure</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ABOUT SECTION -->
     <section class="about-section" id="about">
@@ -617,6 +688,26 @@
                         <p>Maintenance Operations at NMK Pvt Ltd & Naladanavi Pvt Ltd</p>
                     </div>
                 </div>
+                <!-- Project 5 (New added from PDF) -->
+                <div class="project-card reveal">
+                    <div class="project-img-placeholder">
+                        <img src="https://images.unsplash.com/photo-1473876615951-636121c6e0a3?auto=format&fit=crop&w=600&q=80" alt="Naladanavi Wind Power">
+                    </div>
+                    <div class="project-info">
+                        <h4>Naladanavi Pvt Ltd</h4>
+                        <p>Wind Power Plant Maintenance Work Operations – Puttalam</p>
+                    </div>
+                </div>
+                <!-- Project 6 (New added from PDF) -->
+                <div class="project-card reveal">
+                    <div class="project-img-placeholder">
+                        <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80" alt="NMK Oil Refinery">
+                    </div>
+                    <div class="project-info">
+                        <h4>NMK Pvt Ltd</h4>
+                        <p>Oil Refinery Industrial Plant Infrastructure Maintenance Work – Puttalam</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -626,15 +717,20 @@
         <div class="container">
             <h2 class="section-title">Trusted <span>Clients</span></h2>
             <div class="client-tags reveal">
-                <div class="client-tag">Siemens Gamesa</div>
-                <div class="client-tag">Adamjee & Lukmanjee</div>
+                <div class="client-tag">Siemens Gamesa (Pvt) Ltd</div>
+                <div class="client-tag">Adamjee & Lukmanjee (Pvt) Ltd</div>
                 <div class="client-tag">Sirio Ltd</div>
-                <div class="client-tag">Vario Systems</div>
-                <div class="client-tag">NMK Holdings</div>
-                <div class="client-tag">Lily Aqua</div>
-                <div class="client-tag">Wasser Kraft Tech</div>
-                <div class="client-tag">LTL Projects</div>
-                <div class="client-tag">Coats Thread Exports</div>
+                <div class="client-tag">Vario Systems (Sub Contractor)</div>
+                <div class="client-tag">NMK Holdings (Pvt) Ltd</div>
+                <div class="client-tag">Lily Aqua (Private) Limited</div>
+                <div class="client-tag">Wasser Kraft Tech Lanka (Pvt) Ltd</div>
+                <div class="client-tag">Coats Thread Exports (Pvt) Ltd</div>
+                <div class="client-tag">Orient Construction (Pvt) Ltd (Sub Contractor)</div>
+                <div class="client-tag">LTL Projects (Pvt) Ltd</div>
+                <div class="client-tag">Naladanavi (Pvt) Ltd</div>
+                <div class="client-tag">Mirachel Hospital</div>
+                <div class="client-tag">Total Dental Care Hospital</div>
+                <div class="client-tag">Coco Land (Pvt) Ltd</div>
             </div>
         </div>
     </section>
@@ -649,7 +745,7 @@
                         <i class="fa-solid fa-phone"></i>
                         <div>
                             <h5>Hotlines</h5>
-                            <p>074-414058 / 074-414059</p>
+                            <p>074-414058 / 074-414059 / 074-414060</p>
                         </div>
                     </div>
                     <div class="contact-card">
