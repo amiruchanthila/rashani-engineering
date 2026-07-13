@@ -1,314 +1,713 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rashani Electrical & Engineering (PVT) LTD</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            orange: '#F29111',
-                            blue: '#1E40AF',
-                            dark: '#0F172A',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Alpine.js CDN -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>Rashani Electrical & Engineering</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
+        /* --- Core Reset & Variables --- */
+        :root {
+            --bg-primary: #0a0f1d;
+            --bg-secondary: #111827;
+            --accent: #f97316;
+            --accent-glow: rgba(249, 115, 22, 0.2);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #1f2937;
         }
-        .animate-marquee {
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* --- Reusable Components --- */
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background: rgba(10, 15, 29, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
             display: flex;
-            width: max-content;
-            animation: marquee 30s linear infinite;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
         }
-        /* Safe Smooth Scroll Reveal CSS */
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .logo i {
+            animation: spin 8s linear infinite;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* --- Hero Section --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle at cubic-bezier, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        header h1 span {
+            color: var(--accent);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--accent);
+        }
+
+        /* Background Animated Gear */
+        .bg-gear {
+            position: absolute;
+            right: -10%;
+            top: 20%;
+            font-size: 35rem;
+            color: rgba(31, 41, 55, 0.15);
+            z-index: 1;
+            animation: spin 40s linear infinite;
+            pointer-events: none;
+        }
+
+        /* --- About & Stats --- */
+        .about-section {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+        }
+
+        .stat-card h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Services --- */
+        .services-section {
+            padding: 5rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .service-card ul li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-card ul li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* --- Projects --- */
+        .projects-section {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-primary);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+        }
+
+        .project-img-placeholder {
+            height: 180px;
+            background: linear-gradient(45deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 3rem;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Clients Showcase --- */
+        .clients-section {
+            padding: 5rem 0;
+        }
+
+        .client-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .client-tag {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .client-tag:hover {
+            background: var(--accent);
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* --- Contact --- */
+        .contact-section {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        .contact-info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-card i {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .contact-card h5 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--bg-primary);
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Keyframe Animations --- */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- Scroll Reveal Effects --- */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Responsive Layouts */
+        @media (max-width: 768px) {
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            header h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Kept simple for raw HTML structure */
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased" 
-      x-data="{ 
-        mobileMenu: false, 
-        serviceTab: 'electrical', 
-        projectFilter: 'All',
-        projects: [
-            { id: 1, title: 'Kalawewa Gate Controlling System', category: 'Electrical', location: 'Anuradhapura District', desc: 'Automation, PLC layouts, and main electrical panel overrides.', imgs: ['https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80', 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=600&q=80'], currentImg: 0 },
-            { id: 2, title: 'Daduruoya Infrastructure Development', category: 'Civil', location: 'Kurunegala District', desc: 'Heavy structural foundations and reinforced structural safety.', imgs: ['https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80', 'https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=600&q=80'], currentImg: 0 },
-            { id: 3, title: 'Siemens Gamesa Plant Maintenance', category: 'Electrical', location: 'Jafna Peninsular', desc: 'Continuous 20MW electrical lifecycle handling across 8 Wind Turbines.', imgs: ['https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80'], currentImg: 0 },
-            { id: 4, title: 'Naladanavi Pvt Ltd Wind Grid', category: 'Electrical', location: 'Puttalam', desc: 'Substation monitoring, transformer configurations and troubleshooting.', imgs: ['https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=600&q=80'], currentImg: 0 },
-            { id: 5, title: 'NMK Pvt Ltd Oil Refinery Plant', category: 'Mechanical', location: 'Puttalam Hub', desc: 'Heavy plant machinery positioning and high-grade GI duct work.', imgs: ['https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?auto=format&fit=crop&w=600&q=80'], currentImg: 0 },
-            { id: 6, title: 'Hambantota Solar Farms Integration', category: 'Electrical', location: 'Hambantota', desc: 'Solar industrial inverter load optimizations and array diagnostic checks.', imgs: ['https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80'], currentImg: 0 },
-            { id: 7, title: 'Industrial Boiler Assembly & Rigging', category: 'Mechanical', location: 'Colombo Industrial Zone', desc: 'Heavy boiler installation and steam pipeline network fabrication.', imgs: ['https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80'], currentImg: 0 },
-            { id: 8, title: 'Commercial Factory RCC Flooring', category: 'Civil', location: 'Gampaha', desc: 'High-load bearing reinforced concrete flooring for heavy machinery.', imgs: ['https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=600&q=80'], currentImg: 0 },
-            { id: 9, title: '33kV Overhead Transmission Line', category: 'Electrical', location: 'Kegalle District', desc: 'Grid extension, pole planting, and high voltage distribution setup.', imgs: ['https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=600&q=80'] }
-        ]
-      }">
+<body>
 
-    <!-- 1. NAVBAR -->
-    <nav class="bg-white/95 backdrop-blur shadow-sm fixed w-full z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center group cursor-pointer">
-                    <span class="text-2xl font-black tracking-wider text-brand-blue transition-transform duration-300 group-hover:scale-105">RE<span class="text-brand-orange">.</span></span>
-                    <div class="ml-3 hidden sm:block">
-                        <div class="text-xs font-bold leading-tight text-brand-dark group-hover:text-brand-orange transition-colors">RASHANI ELECTRICAL & ENGINEERING</div>
-                        <div class="text-[10px] tracking-widest text-gray-400 uppercase font-semibold">Engineering Solutions</div>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
-                    <a href="#home" class="text-brand-dark hover:text-brand-orange transition-all duration-200 hover:-translate-y-0.5 transform">Home</a>
-                    <a href="#about" class="text-brand-dark hover:text-brand-orange transition-all duration-200 hover:-translate-y-0.5 transform">About Us</a>
-                    <a href="#services" class="text-brand-dark hover:text-brand-orange transition-all duration-200 hover:-translate-y-0.5 transform">Services</a>
-                    <a href="#projects" class="text-brand-dark hover:text-brand-orange transition-all duration-200 hover:-translate-y-0.5 transform">Projects</a>
-                    <a href="#contact" class="bg-brand-blue text-white px-5 py-2.5 rounded-md hover:bg-brand-orange hover:scale-105 transition-all duration-300 shadow-sm">Get a Quote</a>
-                </div>
-                <div class="flex items-center md:hidden">
-                    <button @click="mobileMenu = !mobileMenu" class="text-gray-600 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path x-show="!mobileMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                            <path x-show="mobileMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                </div>
+    <!-- NAV BAR -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-gear"></i> RE <span>Engineering</span>
             </div>
-        </div>
-        <div x-show="mobileMenu" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-4" class="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-4 space-y-2 shadow-lg">
-            <a href="#home" @click="mobileMenu = false" class="block px-3 py-2 text-base font-medium text-brand-dark hover:bg-slate-50 rounded-md">Home</a>
-            <a href="#about" @click="mobileMenu = false" class="block px-3 py-2 text-base font-medium text-brand-dark hover:bg-slate-50 rounded-md">About Us</a>
-            <a href="#services" @click="mobileMenu = false" class="block px-3 py-2 text-base font-medium text-brand-dark hover:bg-slate-50 rounded-md">Services</a>
-            <a href="#projects" @click="mobileMenu = false" class="block px-3 py-2 text-base font-medium text-brand-dark hover:bg-slate-50 rounded-md">Projects</a>
-            <a href="#contact" @click="mobileMenu = false" class="block w-full text-center bg-brand-blue text-white px-4 py-2.5 rounded-md">Get a Quote</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- 2. HERO SECTION -->
-    <section id="home" class="relative pt-20 h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 scale-105 animate-[pulse_6s_ease-in-out_infinite]">
-            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1920&q=80" alt="Industrial Engineering Background" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/95 to-slate-900/80 mix-blend-multiply"></div>
+    <!-- HERO SECTION -->
+    <header id="home">
+        <div class="container hero-content">
+            <h1>Innovative <span>Engineering</span> Solutions For Sri Lanka</h1>
+            <p>Serving the Sri Lankan engineering sector since 2017. Delivering premier Electrical, Mechanical, and Civil engineering solutions with technical efficiency and client satisfaction.</p>
+            <a href="#services" class="btn">Explore Our Services</a>
         </div>
-        <div class="relative max-w-5xl mx-auto px-4 text-center z-10 space-y-6">
-            <span class="inline-block px-4 py-1.5 bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold tracking-widest uppercase rounded-full opacity-0 animate-[fadeInDown_0.8s_ease-out_0.2s_forwards]">Established Since 2017</span>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight opacity-0 animate-[fadeInUp_0.8s_cubic-bezier(0.16,1,0.3,1)_0.4s_forwards]">
-                Comprehensive Solutions For Technical & <span class="text-brand-orange">Engineering</span> Requirements
-            </h1>
-            <p class="text-lg text-slate-300 max-w-3xl mx-auto font-light leading-relaxed opacity-0 animate-[fadeInUp_0.8s_ease-out_0.6s_forwards]">
-                Core expertise in high-end Electrical, Mechanical, Civil maintenance, and Sustainable Solar energy integrations designed for commercial operations across Sri Lanka.
-            </p>
-            <div class="pt-4 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.8s_forwards]">
-                <a href="#services" class="inline-block px-8 py-4 bg-brand-orange text-white font-bold rounded-lg shadow-lg hover:bg-white hover:text-brand-dark hover:scale-105 hover:-translate-y-1 transform transition-all duration-300">Explore Our Expertise</a>
-            </div>
-        </div>
-    </section>
+        <i class="fa-solid fa-gear bg-gear"></i>
+    </header>
 
-    <!-- 3. MARQUEE -->
-    <div class="bg-white py-8 border-y border-gray-100 overflow-hidden">
-        <div class="relative w-full">
-            <div class="animate-marquee items-center gap-12 font-bold text-gray-400 text-xs md:text-sm tracking-widest uppercase">
-                <span>SIEMENS GAMESA</span> <span>SIRIO LTD</span> <span>LTL PROJECTS</span> <span>NALADANAVI</span> <span>COATS THREAD EXPORTS</span> <span>ORIENT CONSTRUCTION</span> <span>NMK HOLDINGS</span> <span>WASSER KRAFT TECH LANKA</span>
-                <span>SIEMENS GAMESA</span> <span>SIRIO LTD</span> <span>LTL PROJECTS</span> <span>NALADANAVI</span> <span>COATS THREAD EXPORTS</span> <span>ORIENT CONSTRUCTION</span> <span>NMK HOLDINGS</span> <span>WASSER KRAFT TECH LANKA</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. ABOUT US SECTION (Fixed Reveal) -->
-    <section id="about" class="py-24 bg-white reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-                <div class="lg:col-span-1">
-                    <h2 class="text-3xl font-black text-brand-dark tracking-tight md:text-4xl">Corporate <span class="text-brand-orange">Profile</span></h2>
-                    <div class="mt-6 space-y-4 text-sm bg-slate-50 p-6 rounded-xl border border-slate-100 hover:shadow-md transition-shadow duration-300">
-                        <div><span class="text-gray-400 font-medium block">REGISTRATION NO</span> <p class="font-bold text-brand-dark text-base">5/5/002919</p></div>
-                        <div><span class="text-gray-400 font-medium block">OFFICIAL BANKER</span> <p class="font-bold text-brand-dark text-base">Sampath Bank PLC</p></div>
-                        <div><span class="text-gray-400 font-medium block">OPERATIONAL HUB</span> <p class="font-bold text-brand-dark text-base">Kegalle, Sri Lanka</p></div>
-                    </div>
+    <!-- ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <h3>Who We Are</h3>
+                    <p><strong>Rashani Electrical & Engineering (Reg: කෑ/ග/ 002919)</strong> provides exceptional multi-disciplinary engineering infrastructure outputs across the country.</p>
+                    <p><strong>Our Vision:</strong> To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions.</p>
                 </div>
-                <div class="lg:col-span-2 space-y-8 lg:pt-4">
-                    <p class="text-lg text-gray-600 leading-relaxed font-light border-l-4 border-brand-orange pl-6 italic">
-                        Serving the Sri Lankan engineering arena since 2017, Rashani Electrical & Engineering stands out through core competency standards, reliable workflow processes, and exceptional industrial safety execution benchmarks.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. SERVICES SECTION (Fixed Reveal) -->
-    <section id="services" class="py-24 bg-slate-50 border-t border-gray-100 reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-black text-brand-dark md:text-4xl">Divisional <span class="text-brand-orange">Engineering</span> Services</h2>
-            </div>
-            <div class="flex flex-wrap justify-center border-b border-gray-200 max-w-2xl mx-auto mb-12">
-                <button @click="serviceTab = 'electrical'" :class="serviceTab === 'electrical' ? 'border-brand-orange text-brand-orange font-bold scale-105' : 'border-transparent text-gray-400'" class="flex-1 text-center py-4 px-2 border-b-2 font-medium text-sm transition-all duration-300 transform">Electrical</button>
-                <button @click="serviceTab = 'mechanical'" :class="serviceTab === 'mechanical' ? 'border-brand-orange text-brand-orange font-bold scale-105' : 'border-transparent text-gray-400'" class="flex-1 text-center py-4 px-2 border-b-2 font-medium text-sm transition-all duration-300 transform">Mechanical</button>
-                <button @click="serviceTab = 'civil'" :class="serviceTab === 'civil' ? 'border-brand-orange text-brand-orange font-bold scale-105' : 'border-transparent text-gray-400'" class="flex-1 text-center py-4 px-2 border-b-2 font-medium text-sm transition-all duration-300 transform">Civil & Solar</button>
-            </div>
-            <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300">
-                
-                <!-- Electrical Tab -->
-                <div x-show="serviceTab === 'electrical'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-x-8" x-transition:enter-end="opacity-100 translate-x-0" class="grid grid-cols-1 lg:grid-cols-2">
-                    <div class="p-8 lg:p-12 space-y-4 flex flex-col justify-center">
-                        <h4 class="text-xl font-bold text-brand-dark flex items-center gap-2"><span class="w-2 h-2 bg-brand-orange rounded-full"></span> Heavy Electrical Installations</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed">HT & LT Power Transmission Lines up to 33kV, industrial panel boards, automatic switchgears, and robust factory wiring systems engineered for extreme productivity.</p>
+                <div class="stats-box reveal">
+                    <div class="stat-card">
+                        <h2 class="counter" data-target="2017">0</h2>
+                        <p>Established Year</p>
                     </div>
-                    <div class="h-64 lg:h-auto min-h-[300px] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80" alt="Electrical Work" class="w-full h-full object-cover hover:scale-110 transition duration-700">
-                    </div>
-                </div>
-
-                <!-- Mechanical Tab -->
-                <div x-show="serviceTab === 'mechanical'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-x-8" x-transition:enter-end="opacity-100 translate-x-0" class="grid grid-cols-1 lg:grid-cols-2" style="display: none;">
-                    <div class="p-8 lg:p-12 space-y-4 flex flex-col justify-center">
-                        <h4 class="text-xl font-bold text-brand-dark flex items-center gap-2"><span class="w-2 h-2 bg-brand-orange rounded-full"></span> Mechanical Fabrications</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed">Heavy-duty structural steel complexes, expansive warehouse roofings, mezzanine platform extensions, and precision-aligned gantry crane infrastructures.</p>
-                    </div>
-                    <div class="h-64 lg:h-auto min-h-[300px] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Mechanical Work" class="w-full h-full object-cover hover:scale-110 transition duration-700">
-                    </div>
-                </div>
-
-                <!-- Civil Tab -->
-                <div x-show="serviceTab === 'civil'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-x-8" x-transition:enter-end="opacity-100 translate-x-0" class="grid grid-cols-1 lg:grid-cols-2" style="display: none;">
-                    <div class="p-8 lg:p-12 space-y-4 flex flex-col justify-center">
-                        <h4 class="text-xl font-bold text-brand-dark flex items-center gap-2"><span class="w-2 h-2 bg-brand-orange rounded-full"></span> Civil & Solar Solutions</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed">High-grade RCC commercial flooring ready for manufacturing stress, retaining structures, and massive grid-tied industrial solar fields for carbon footprint drops.</p>
-                    </div>
-                    <div class="h-64 lg:h-auto min-h-[300px] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" alt="Civil Work" class="w-full h-full object-cover hover:scale-110 transition duration-700">
+                    <div class="stat-card">
+                        <h2>Many</h2>
+                        <p>Years Experience Staff</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. PROJECTS GALLERY (Fixed Reveal) -->
-    <section id="projects" class="py-24 bg-white reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-black text-brand-dark md:text-4xl">Proven Operations <span class="text-brand-orange">Track Record</span></h2>
-                <p class="mt-3 text-gray-500 max-w-xl mx-auto text-sm">Use arrows to browse multiple images per project.</p>
-            </div>
+    <!-- SERVICES SECTION -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">Core <span>Services</span></h2>
+            
+            <div class="services-grid">
+                <!-- Electrical Card -->
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3>Electrical Engineering</h3>
+                    <ul>
+                        <li>Industrial & Domestic Installations</li>
+                        <li>HV / LV Panel Boards Installation</li>
+                        <li>Transmission Lines (Up to 33kV)</li>
+                        <li>Solar On-Grid & Off-Grid Integrations</li>
+                        <li>CCTV & Network Systems</li>
+                    </ul>
+                </div>
 
-            <div class="flex flex-wrap justify-center gap-2 mb-12">
-                <template x-for="category in ['All', 'Electrical', 'Mechanical', 'Civil']">
-                    <button @click="projectFilter = category" 
-                            :class="projectFilter === category ? 'bg-brand-blue text-white shadow scale-105' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'" 
-                            class="px-5 py-2 rounded-md font-semibold text-xs uppercase tracking-wider transition-all duration-200 transform" x-text="category"></button>
-                </template>
-            </div>
+                <!-- Mechanical Card -->
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <h3>Mechanical Engineering</h3>
+                    <ul>
+                        <li>Industrial Steel Buildings</li>
+                        <li>Steel & Aluminum Cladding</li>
+                        <li>Heavy Machinery Moving & Installation</li>
+                        <li>Conveyor Belt Systems Setup</li>
+                        <li>GI Duct Work Fabrication</li>
+                    </ul>
+                </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <template x-for="(project, index) in projects" :key="project.id">
-                    <div x-show="projectFilter === 'All' || projectFilter === project.category"
-                         x-transition:enter="transition ease-out duration-400 transform"
-                         x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-                         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                         class="bg-slate-50 border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                <!-- Civil Card -->
+                <div class="service-card reveal">
+                    <i class="fa-solid fa-trowel-bricks"></i>
+                    <h3>Civil Engineering</h3>
+                    <ul>
+                        <li>Industrial & Residential Construction</li>
+                        <li>Concrete Structures (RCC Mezzanine/Tanks)</li>
+                        <li>Roads & Infrastructure Drainage</li>
+                        <li>Retaining Walls & Earth Works</li>
+                        <li>Interior Finishing Works</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Major <span>Projects</span></h2>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-img-placeholder"><i class="fa-solid fa-wind"></i></div>
+                    <div class="project-info">
+                        <h4>Siemens Gamesa</h4>
+                        <p>20MW Wind Power Plant (8 Turbines) Maintenance Work – Jaffna</p>
+                    </div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-img-placeholder"><i class="fa-solid fa-solar-panel"></i></div>
+                    <div class="project-info">
+                        <h4>Hambantota Solar Plant</h4>
+                        <p>Ground Surface Maintenance and Technical Work</p>
+                    </div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-img-placeholder"><i class="fa-solid fa-water"></i></div>
+                    <div class="project-info">
+                        <h4>Water Gates Controlling</h4>
+                        <p>Key automation projects carried out at Kalawewa and Daduruoya</p>
+                    </div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-img-placeholder"><i class="fa-solid fa-industry"></i></div>
+                    <div class="project-info">
+                        <h4>Industrial Plants</h4>
+                        <p>Maintenance Operations at NMK Pvt Ltd & Naladanavi Pvt Ltd</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTS SECTION -->
+    <section class="clients-section">
+        <div class="container">
+            <h2 class="section-title">Trusted <span>Clients</span></h2>
+            <div class="client-tags reveal">
+                <div class="client-tag">Siemens Gamesa</div>
+                <div class="client-tag">Adamjee & Lukmanjee</div>
+                <div class="client-tag">Sirio Ltd</div>
+                <div class="client-tag">Vario Systems</div>
+                <div class="client-tag">NMK Holdings</div>
+                <div class="client-tag">Lily Aqua</div>
+                <div class="client-tag">Wasser Kraft Tech</div>
+                <div class="client-tag">LTL Projects</div>
+                <div class="client-tag">Coats Thread Exports</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In <span>Touch</span></h2>
+            <div class="contact-grid">
+                <div class="contact-info-cards reveal">
+                    <div class="contact-card">
+                        <i class="fa-solid fa-phone"></i>
                         <div>
-                            <div class="h-52 w-full bg-slate-200 relative overflow-hidden">
-                                <img :src="project.imgs[project.currentImg]" :alt="project.title" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                
-                                <template x-if="project.imgs.length > 1">
-                                    <div>
-                                        <button @click="project.currentImg = (project.currentImg === 0) ? project.imgs.length - 1 : project.currentImg - 1" 
-                                                class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition duration-200 hover:bg-brand-orange focus:outline-none text-xs z-10">
-                                            ❮
-                                        </button>
-                                        <button @click="project.currentImg = (project.currentImg === project.imgs.length - 1) ? 0 : project.currentImg + 1" 
-                                                class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition duration-200 hover:bg-brand-orange focus:outline-none text-xs z-10">
-                                            ❯
-                                        </button>
-                                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 bg-black/30 px-2 py-1 rounded-full">
-                                            <template x-for="(img, idx) in project.imgs">
-                                                <span :class="project.currentImg === idx ? 'bg-brand-orange w-3' : 'bg-white/50 w-1.5'" class="h-1.5 rounded-full transition-all duration-300"></span>
-                                            </template>
-                                        </div>
-                                    </div>
-                                </template>
-                            </div>
-
-                            <div class="p-6">
-                                <span :class="{
-                                    'text-amber-600 bg-amber-50 border-amber-200/60': project.category === 'Electrical',
-                                    'text-blue-600 bg-blue-50 border-blue-200/60': project.category === 'Mechanical',
-                                    'text-emerald-600 bg-emerald-50 border-emerald-200/60': project.category === 'Civil'
-                                }" class="text-[10px] font-bold border px-2 py-0.5 rounded-full uppercase tracking-widest transition-colors duration-300" x-text="project.category"></span>
-                                
-                                <h3 class="text-lg font-black text-brand-dark mt-3 group-hover:text-brand-orange transition-colors duration-300" x-text="project.title"></h3>
-                                <p class="text-xs text-gray-500 mt-2 leading-relaxed" x-text="project.desc"></p>
-                            </div>
-                        </div>
-                        <div class="text-[11px] text-gray-400 font-semibold p-6 pt-0 flex justify-between items-center">
-                            <span class="group-hover:text-gray-600 transition-colors" x-text="'📍 ' + project.location"></span>
+                            <h5>Hotlines</h5>
+                            <p>074-414058 / 074-414059</p>
                         </div>
                     </div>
-                </template>
+                    <div class="contact-card">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h5>Email Address</h5>
+                            <p>reengineering2020@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h5>Office Address</h5>
+                            <p>Alugoda Road, Kandegedra, Dewalegama, Kegalle</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <div>
+                            <h5>Bank Details</h5>
+                            <p>Sampath Bank PLC</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Simple Clean HTML Form Structure -->
+                <div class="contact-info-cards reveal" style="justify-content: center; text-align: center;">
+                    <p style="color: var(--text-muted); line-height: 2;">For inquiries, safety technical operations, or industrial layout estimates, please dial our direct operational lines or reach us via email.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. CONTACT SECTION -->
-    <section id="contact" class="py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-16 -top-16 w-64 h-64 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none"></div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center max-w-2xl mx-auto space-y-4">
-            <h2 class="text-3xl font-black tracking-tight sm:text-4xl">Let's Discuss <span class="text-brand-orange animate-pulse">Your Project</span></h2>
-            <div class="pt-4 space-y-2 text-base text-slate-300 font-light">
-                <p class="hover:text-brand-orange transition-colors">Hotlines: <span class="font-semibold text-white">074-414058 / 074-414059</span></p>
-                <p class="hover:text-brand-orange transition-colors">Email: <span class="font-semibold text-white">reengineering2020@gmail.com</span></p>
-            </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Rashani Electrical & Engineering. All Rights Reserved.</p>
         </div>
-    </section>
+    </footer>
 
-    <!-- Utility Styles for Hero Animations -->
-    <style>
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-
-    <!-- SAFE AND CLEAN JAVASCRIPT FOR SCROLL REVEAL -->
+    <!-- INTERACTION & ANIMATION JAVASCRIPT -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { 
-                threshold: 0.05,
-                rootMargin: '0px 0px -50px 0px'
-            });
+        // Scroll Reveal Logic
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            for (let i = 0; i < revealElements.length; i++) {
+                let windowHeight = window.innerHeight;
+                let elementTop = revealElements[i].getBoundingClientRect().top;
+                let elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    revealElements[i].classList.add('active');
+                }
+            }
+        };
 
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll); // Initial check on load
+
+        // Number Counter Logic
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const speed = 100;
+            
+            const updateCount = () => {
+                const initial = +counter.innerText;
+                const inc = target / speed;
+                
+                if (initial < target) {
+                    counter.innerText = Math.ceil(initial + inc);
+                    setTimeout(updateCount, 25);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            
+            // Trigger animation when about section comes in view
+            let observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    updateCount();
+                    observer.disconnect();
+                }
             });
+            observer.observe(counter);
         });
     </script>
 </body>
