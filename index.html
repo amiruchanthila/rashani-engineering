@@ -130,13 +130,14 @@
             color: var(--accent);
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section with Background Image --- */
         header {
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
-            background: radial-gradient(circle at cubic-bezier, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            background: linear-gradient(rgba(10, 15, 29, 0.85), rgba(10, 15, 29, 0.95)), 
+                        url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             padding-top: 80px;
         }
 
@@ -186,13 +187,13 @@
             right: -10%;
             top: 20%;
             font-size: 35rem;
-            color: rgba(31, 41, 55, 0.15);
+            color: rgba(249, 115, 22, 0.04);
             z-index: 1;
             animation: spin 40s linear infinite;
             pointer-events: none;
         }
 
-        /* --- Industrial Visual Showcase (Fixes the Empty Feeling) --- */
+        /* --- Industrial Visual Showcase --- */
         .hero-showcase {
             padding: 2rem 0 4rem 0;
             background: var(--bg-primary);
@@ -349,7 +350,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
@@ -365,15 +366,16 @@
             border-color: var(--accent);
         }
 
-        /* Image Modification (Ensures responsive, modern layout fitting the exact card shape) */
         .project-img-placeholder {
-            height: 180px;
+            height: 200px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
+        /* Support layout for multiple images inside one card grid if needed */
         .project-img-placeholder img {
             width: 100%;
             height: 100%;
@@ -392,12 +394,13 @@
         .project-info h4 {
             color: var(--accent);
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .project-info p {
             font-size: 0.9rem;
             color: var(--text-muted);
+            line-height: 1.5;
         }
 
         /* --- Clients Showcase --- */
@@ -507,7 +510,7 @@
                 gap: 2rem;
             }
             header h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Kept simple for raw HTML structure */
+            .nav-links { display: none; }
             .showcase-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -532,7 +535,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION WITH BACKGROUND IMAGE -->
     <header id="home">
         <div class="container hero-content">
             <h1>Innovative <span>Engineering</span> Solutions For Sri Lanka</h1>
@@ -542,7 +545,7 @@
         <i class="fa-solid fa-gear bg-gear"></i>
     </header>
 
-    <!-- NEW INDUSTRIAL IMAGE SHOWCASE BLOCK -->
+    <!-- INDUSTRIAL IMAGE SHOWCASE BLOCK -->
     <section class="hero-showcase">
         <div class="container">
             <div class="showcase-grid reveal">
@@ -579,7 +582,7 @@
                     <p>To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions.</p>
                     
                     <h3 style="margin-top: 1.5rem;">Our Mission</h3>
-                    <p>To deliver safe, reliable, and sustainable industrial infrastructures by deploying skilled engineering personnel, utilizing advanced methodologies, and upholding unmatched industrial compliance standards.</p>
+                    <p>To maintain long-term relationships of value with our clients and partners by offering exceptional outputs in Electrical and Mechanical engineering. We are committed to employing excellent resources and latest technology, safely integrated with reliable Civil infrastructure support and general Solar solutions.</p>
                 </div>
                 <div class="stats-box reveal">
                     <div class="stat-card">
@@ -609,8 +612,10 @@
                         <li>Industrial & Domestic Installations</li>
                         <li>HV / LV Panel Boards Installation</li>
                         <li>Transmission Lines (Up to 33kV)</li>
+                        <li>Switchgears & Insulation Testing</li>
+                        <li>Industrial Generator Setup</li>
                         <li>Solar On-Grid & Off-Grid Integrations</li>
-                        <li>CCTV & Network Systems</li>
+                        <li>CCTV, Intercom & Network Systems</li>
                     </ul>
                 </div>
 
@@ -619,11 +624,12 @@
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     <h3>Mechanical Engineering</h3>
                     <ul>
-                        <li>Industrial Steel Buildings</li>
+                        <li>Industrial Steel Buildings & Mezzanine Floors</li>
                         <li>Steel & Aluminum Cladding</li>
+                        <li>Aluminum Partitioning Works</li>
                         <li>Heavy Machinery Moving & Installation</li>
                         <li>Conveyor Belt Systems Setup</li>
-                        <li>GI Duct Work Fabrication</li>
+                        <li>GI Duct Work Fabrication & Installing</li>
                     </ul>
                 </div>
 
@@ -632,82 +638,90 @@
                     <i class="fa-solid fa-trowel-bricks"></i>
                     <h3>Civil Engineering</h3>
                     <ul>
-                        <li>Industrial & Residential Construction</li>
-                        <li>Concrete Structures (RCC Mezzanine/Tanks)</li>
+                        <li>Industrial Buildings & Processing Plants</li>
+                        <li>Residential Construction</li>
+                        <li>Concrete Structures (RCC Tanks & Floors)</li>
                         <li>Roads & Infrastructure Drainage</li>
                         <li>Retaining Walls & Earth Works</li>
-                        <li>Interior Finishing Works</li>
+                        <li>Floor Tiling & Interior Finishing Works</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS SECTION -->
+    <!-- PROJECTS SECTION (ALL UPDATED FROM THE PROFILE PDF) -->
     <section class="projects-section" id="projects">
         <div class="container">
             <h2 class="section-title">Major <span>Projects</span></h2>
             <div class="projects-grid">
-                <!-- Project 1 -->
+                
+                <!-- Project 1: Kalawewa -->
+                <div class="project-card reveal">
+                    <div class="project-img-placeholder">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80" alt="Kalawewa Gate Controlling System">
+                    </div>
+                    <div class="project-info">
+                        <h4>Kalawewa Project</h4>
+                        <p>Modern automated gate controlling system installation and infrastructure engineering layout.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2: Daduruoya -->
+                <div class="project-card reveal">
+                    <div class="project-img-placeholder">
+                        <img src="https://images.unsplash.com/photo-1615811195256-bdc084e6dbdf?auto=format&fit=crop&w=600&q=80" alt="Daduruoya Automation">
+                    </div>
+                    <div class="project-info">
+                        <h4>Daduruoya Project</h4>
+                        <p>Water gate controlling automation layout systems designed for synchronized regional water resource distribution management.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3: Siemens Gamesa -->
                 <div class="project-card reveal">
                     <div class="project-img-placeholder">
                         <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" alt="Siemens Gamesa Wind Power Plant">
                     </div>
                     <div class="project-info">
                         <h4>Siemens Gamesa</h4>
-                        <p>20MW Wind Power Plant (8 Turbines) Maintenance Work – Jaffna</p>
+                        <p>20MW Wind Power Plant (8 Turbines) heavy industrial structural maintenance work operations carried out at Jaffna.</p>
                     </div>
                 </div>
-                <!-- Project 2 -->
+                
+                <!-- Project 4: Hambantota Solar Plant -->
                 <div class="project-card reveal">
                     <div class="project-img-placeholder">
                         <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" alt="Hambantota Solar Plant">
                     </div>
                     <div class="project-info">
                         <h4>Hambantota Solar Plant</h4>
-                        <p>Ground Surface Maintenance and Technical Work</p>
+                        <p>Ground Surface framework maintenance, electrical grid optimization and alignment infrastructure setups.</p>
                     </div>
                 </div>
-                <!-- Project 3 -->
-                <div class="project-card reveal">
-                    <div class="project-img-placeholder">
-                        <img src="https://images.unsplash.com/photo-1615811195256-bdc084e6dbdf?auto=format&fit=crop&w=600&q=80" alt="Water Gates Automation">
-                    </div>
-                    <div class="project-info">
-                        <h4>Water Gates Controlling</h4>
-                        <p>Key automation projects carried out at Kalawewa and Daduruoya</p>
-                    </div>
-                </div>
-                <!-- Project 4 -->
-                <div class="project-card reveal">
-                    <div class="project-img-placeholder">
-                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Industrial Plant Maintenance">
-                    </div>
-                    <div class="project-info">
-                        <h4>Industrial Plants</h4>
-                        <p>Maintenance Operations at NMK Pvt Ltd & Naladanavi Pvt Ltd</p>
-                    </div>
-                </div>
-                <!-- Project 5 (New added from PDF) -->
+
+                <!-- Project 5: Naladanavi Pvt Ltd -->
                 <div class="project-card reveal">
                     <div class="project-img-placeholder">
                         <img src="https://images.unsplash.com/photo-1473876615951-636121c6e0a3?auto=format&fit=crop&w=600&q=80" alt="Naladanavi Wind Power">
                     </div>
                     <div class="project-info">
                         <h4>Naladanavi Pvt Ltd</h4>
-                        <p>Wind Power Plant Maintenance Work Operations – Puttalam</p>
+                        <p>Wind Power Plant advanced technical maintenance work and alignment synchronization operations – Puttalam.</p>
                     </div>
                 </div>
-                <!-- Project 6 (New added from PDF) -->
+
+                <!-- Project 6: NMK Pvt Ltd -->
                 <div class="project-card reveal">
                     <div class="project-img-placeholder">
                         <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80" alt="NMK Oil Refinery">
                     </div>
                     <div class="project-info">
                         <h4>NMK Pvt Ltd</h4>
-                        <p>Oil Refinery Industrial Plant Infrastructure Maintenance Work – Puttalam</p>
+                        <p>Oil Refinery industrial plant infrastructure modifications, processing unit layouts and pipeline maintenance work – Puttalam.</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -771,7 +785,6 @@
                     </div>
                 </div>
                 
-                <!-- Simple Clean HTML Form Structure -->
                 <div class="contact-info-cards reveal" style="justify-content: center; text-align: center;">
                     <p style="color: var(--text-muted); line-height: 2;">For inquiries, safety technical operations, or industrial layout estimates, please dial our direct operational lines or reach us via email.</p>
                 </div>
@@ -788,7 +801,7 @@
 
     <!-- INTERACTION & ANIMATION JAVASCRIPT -->
     <script>
-        // Dual-Direction Scroll Reveal Logic using Intersection Observer (Runs EVERY time element enters viewport)
+        // Dual-Direction Scroll Reveal Logic using Intersection Observer
         const revealElements = document.querySelectorAll('.reveal');
         
         const revealObserver = new IntersectionObserver((entries) => {
@@ -796,12 +809,11 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 } else {
-                    // Removes class when scrolling out of view to trigger animation again next time
                     entry.target.classList.remove('active');
                 }
             });
         }, {
-            threshold: 0.1, // Triggers when 10% of the element is visible
+            threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
         });
 
@@ -827,7 +839,6 @@
                 }
             };
             
-            // Trigger animation when about section comes in view
             let observer = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting) {
                     updateCount();
