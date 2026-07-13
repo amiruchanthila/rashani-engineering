@@ -77,9 +77,9 @@
             border-radius: 2px;
         }
 
-        /* --- Navigation --- */
+        /* --- Navigation & Brand Logo --- */
         nav {
-            background: rgba(10, 15, 29, 0.85);
+            background: rgba(10, 15, 29, 0.9);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
@@ -92,25 +92,64 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 0.8rem 0;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-main);
+        /* Modern Logo Badge Styling */
+        .brand-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .logo span {
+        .logo-icon {
+            background: linear-gradient(135deg, var(--accent), #ea580c);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px var(--accent-glow);
+            position: relative;
+        }
+
+        .logo-icon i.fa-gear {
+            font-size: 1.5rem;
+            color: #000;
+            animation: spin 6s linear infinite;
+        }
+
+        .logo-icon i.fa-bolt {
+            font-size: 0.9rem;
+            color: #000;
+            position: absolute;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+
+        .logo-title span {
             color: var(--accent);
         }
 
-        .logo i {
-            animation: spin 8s linear infinite;
-            color: var(--accent);
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 2px;
         }
 
         .nav-links {
@@ -136,12 +175,18 @@
             display: flex;
             align-items: center;
             position: relative;
-            background: radial-gradient(circle at cubic-bezier, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-            padding-top: 80px;
+            background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding-top: 100px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: center;
         }
 
         .hero-content {
-            max-width: 700px;
             position: relative;
             z-index: 2;
         }
@@ -161,6 +206,50 @@
             font-size: 1.1rem;
             margin-bottom: 2rem;
             line-height: 1.6;
+        }
+
+        .hero-logo-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Large Animated Logo on Hero Right side */
+        .large-hero-logo {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 2px solid var(--border);
+            width: 280px;
+            height: 280px;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .large-hero-logo i.main-gear {
+            font-size: 6rem;
+            color: var(--accent);
+            animation: spin 25s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        .large-hero-logo h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .large-hero-logo p {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--text-muted);
         }
 
         .btn {
@@ -186,9 +275,9 @@
             right: -10%;
             top: 20%;
             font-size: 35rem;
-            color: rgba(31, 41, 55, 0.15);
+            color: rgba(31, 41, 55, 0.08);
             z-index: 1;
-            animation: spin 40s linear infinite;
+            animation: spin 50s linear infinite;
             pointer-events: none;
         }
 
@@ -297,7 +386,7 @@
             font-weight: bold;
         }
 
-        /* --- Projects --- */
+        /* --- Projects Section --- */
         .projects-section {
             padding: 5rem 0;
             background: var(--bg-secondary);
@@ -305,45 +394,74 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
 
         .project-card {
             background: var(--bg-primary);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border);
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
         .project-card:hover {
             border-color: var(--accent);
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
 
-        .project-img-placeholder {
-            height: 180px;
-            background: linear-gradient(45deg, #1e293b, #0f172a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 3rem;
+        .project-img-wrapper {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #1e293b;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+            opacity: 0.85;
+        }
+
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.75);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--accent);
+            backdrop-filter: blur(5px);
         }
 
         .project-info {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
 
         .project-info h4 {
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 0.7rem;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
 
         .project-info p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
+            line-height: 1.6;
         }
 
         /* --- Clients Showcase --- */
@@ -383,7 +501,7 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
+            grid-template-columns: 1fr 1fr;
             gap: 4rem;
         }
 
@@ -434,6 +552,12 @@
             to { transform: rotate(360deg); }
         }
 
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
         /* --- Scroll Reveal Effects --- */
         .reveal {
             opacity: 0;
@@ -447,24 +571,29 @@
         }
 
         /* Responsive Layouts */
-        @media (max-width: 768px) {
-            .about-grid, .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            header h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Kept simple for raw HTML structure */
+        @media (max-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem;}
+            .hero-logo-display { order: -1; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem;}
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV BAR -->
+    <!-- NAV BAR WITH CUSTOM LOGO -->
     <nav>
         <div class="container nav-container">
-            <div class="logo">
-                <i class="fa-solid fa-gear"></i> RE <span>Engineering</span>
-            </div>
+            <a href="#home" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-gear"></i>
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="logo-text">
+                    <div class="logo-title">RASHANI <span>ENGINEERING</span></div>
+                    <div class="logo-subtitle">Electrical & Mechanical</div>
+                </div>
+            </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -475,12 +604,21 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION WITH LOGO DISPLAY -->
     <header id="home">
-        <div class="container hero-content">
-            <h1>Innovative <span>Engineering</span> Solutions For Sri Lanka</h1>
-            <p>Serving the Sri Lankan engineering sector since 2017. Delivering premier Electrical, Mechanical, and Civil engineering solutions with technical efficiency and client satisfaction.</p>
-            <a href="#services" class="btn">Explore Our Services</a>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Innovative <span>Engineering</span> Infrastructure Outputs</h1>
+                <p>Serving the Sri Lankan engineering sector since 2017. Delivering high-precision Electrical, Mechanical, and Civil engineering layouts with total efficiency[cite: 1].</p>
+                <a href="#services" class="btn">Explore Our Scope</a>
+            </div>
+            <div class="hero-logo-display">
+                <div class="large-hero-logo">
+                    <i class="fa-solid fa-gear main-gear"></i>
+                    <h2>RASHANI</h2>
+                    <p>ESTD 2017[cite: 1]</p>
+                </div>
+            </div>
         </div>
         <i class="fa-solid fa-gear bg-gear"></i>
     </header>
@@ -491,17 +629,17 @@
             <div class="about-grid">
                 <div class="about-text reveal">
                     <h3>Who We Are</h3>
-                    <p><strong>Rashani Electrical & Engineering (Reg: කෑ/ග/ 002919)</strong> provides exceptional multi-disciplinary engineering infrastructure outputs across the country.</p>
-                    <p><strong>Our Vision:</strong> To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions.</p>
+                    <p><strong>Rashani Electrical & Engineering (Reg No: කෑ/ග/ 002919)</strong> handles premium grid setups and automated system tasks across the country[cite: 1].</p>
+                    <p><strong>Our Vision:</strong> To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions[cite: 1].</p>
                 </div>
                 <div class="stats-box reveal">
                     <div class="stat-card">
                         <h2 class="counter" data-target="2017">0</h2>
-                        <p>Established Year</p>
+                        <p>Established Year[cite: 1]</p>
                     </div>
                     <div class="stat-card">
                         <h2>Many</h2>
-                        <p>Years Experience Staff</p>
+                        <p>Years Experienced Experts[cite: 1]</p>
                     </div>
                 </div>
             </div>
@@ -519,11 +657,11 @@
                     <i class="fa-solid fa-bolt"></i>
                     <h3>Electrical Engineering</h3>
                     <ul>
-                        <li>Industrial & Domestic Installations</li>
-                        <li>HV / LV Panel Boards Installation</li>
-                        <li>Transmission Lines (Up to 33kV)</li>
-                        <li>Solar On-Grid & Off-Grid Integrations</li>
-                        <li>CCTV & Network Systems</li>
+                        <li>Industrial & Domestic Installations[cite: 1]</li>
+                        <li>HV / LV Panel Boards Installation[cite: 1]</li>
+                        <li>Transmission Lines (Up to 33kV)[cite: 1]</li>
+                        <li>Solar On-Grid & Off-Grid Setup[cite: 1]</li>
+                        <li>CCTV & Server Rack Cabling[cite: 1]</li>
                     </ul>
                 </div>
 
@@ -532,11 +670,11 @@
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     <h3>Mechanical Engineering</h3>
                     <ul>
-                        <li>Industrial Steel Buildings</li>
-                        <li>Steel & Aluminum Cladding</li>
-                        <li>Heavy Machinery Moving & Installation</li>
-                        <li>Conveyor Belt Systems Setup</li>
-                        <li>GI Duct Work Fabrication</li>
+                        <li>Industrial Steel Buildings[cite: 1]</li>
+                        <li>Steel & Aluminum Cladding[cite: 1]</li>
+                        <li>Heavy Machinery Moving & Leveling[cite: 1]</li>
+                        <li>Conveyor Belt Systems Repairing[cite: 1]</li>
+                        <li>GI Duct Work Fabrication[cite: 1]</li>
                     </ul>
                 </div>
 
@@ -545,50 +683,95 @@
                     <i class="fa-solid fa-trowel-bricks"></i>
                     <h3>Civil Engineering</h3>
                     <ul>
-                        <li>Industrial & Residential Construction</li>
-                        <li>Concrete Structures (RCC Mezzanine/Tanks)</li>
-                        <li>Roads & Infrastructure Drainage</li>
-                        <li>Retaining Walls & Earth Works</li>
-                        <li>Interior Finishing Works</li>
+                        <li>Industrial & Residential Construction[cite: 1]</li>
+                        <li>Concrete Structures (RCC Tanks)[cite: 1]</li>
+                        <li>Roads & Infrastructure Drainage[cite: 1]</li>
+                        <li>Retaining Walls & Earth Works[cite: 1]</li>
+                        <li>Floor Tiling & Interior Finishing[cite: 1]</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS SECTION -->
+    <!-- PROJECTS SECTION WITH ALL PDF DATA & IMAGES -->
     <section class="projects-section" id="projects">
         <div class="container">
-            <h2 class="section-title">Major <span>Projects</span></h2>
+            <h2 class="section-title">Major <span>Projects Carried Out</span></h2>
             <div class="projects-grid">
+                
+                <!-- Project 1 -->
                 <div class="project-card reveal">
-                    <div class="project-img-placeholder"><i class="fa-solid fa-wind"></i></div>
+                    <div class="project-img-wrapper">
+                        <span class="project-badge">Automation</span>
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Kalawewa Project">
+                    </div>
                     <div class="project-info">
-                        <h4>Siemens Gamesa</h4>
-                        <p>20MW Wind Power Plant (8 Turbines) Maintenance Work – Jaffna</p>
+                        <h4>Kalawewa Gate System[cite: 1]</h4>
+                        <p>Complete execution and handling of the advanced gate controlling system operations[cite: 1].</p>
                     </div>
                 </div>
+
+                <!-- Project 2 -->
                 <div class="project-card reveal">
-                    <div class="project-img-placeholder"><i class="fa-solid fa-solar-panel"></i></div>
+                    <div class="project-img-wrapper">
+                        <span class="project-badge">Hydraulics / Civil</span>
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Daduruoya Project">
+                    </div>
                     <div class="project-info">
-                        <h4>Hambantota Solar Plant</h4>
-                        <p>Ground Surface Maintenance and Technical Work</p>
+                        <h4>Daduruoya Project[cite: 1]</h4>
+                        <p>Infrastructure development layout and multi-disciplinary engineering operations[cite: 1].</p>
                     </div>
                 </div>
+
+                <!-- Project 3 -->
                 <div class="project-card reveal">
-                    <div class="project-img-placeholder"><i class="fa-solid fa-water"></i></div>
+                    <div class="project-img-wrapper">
+                        <span class="project-badge">Wind Power</span>
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" alt="Siemens Gamesa">
+                    </div>
                     <div class="project-info">
-                        <h4>Water Gates Controlling</h4>
-                        <p>Key automation projects carried out at Kalawewa and Daduruoya</p>
+                        <h4>Siemens Gamesa[cite: 1]</h4>
+                        <p>20MW Wind Power Plant (8 Turbines) heavy electrical and structural maintenance work in Jaffna[cite: 1].</p>
                     </div>
                 </div>
+
+                <!-- Project 4 -->
                 <div class="project-card reveal">
-                    <div class="project-img-placeholder"><i class="fa-solid fa-industry"></i></div>
+                    <div class="project-img-wrapper">
+                        <span class="project-badge">Solar Systems</span>
+                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80" alt="Solar Power Plant">
+                    </div>
                     <div class="project-info">
-                        <h4>Industrial Plants</h4>
-                        <p>Maintenance Operations at NMK Pvt Ltd & Naladanavi Pvt Ltd</p>
+                        <h4>Solar Power Plant[cite: 1]</h4>
+                        <p>Ground surface structural deployments and specialized commercial grid maintenance in Hambantota[cite: 1].</p>
                     </div>
                 </div>
+
+                <!-- Project 5 -->
+                <div class="project-card reveal">
+                    <div class="project-img-wrapper">
+                        <span class="project-badge">Industrial Electrical</span>
+                        <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=600&q=80" alt="Naladanavi Wind Plant">
+                    </div>
+                    <div class="project-info">
+                        <h4>Naladanavi Pvt Ltd[cite: 1]</h4>
+                        <p>Wind power plant electrical layouts and periodic complex technical component maintenance in Puttlam[cite: 1].</p>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card reveal">
+                    <div class="project-img-wrapper">
+                        <span class="project-badge">Mechanical Maintenance</span>
+                        <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=600&q=80" alt="NMK Refinery">
+                    </div>
+                    <div class="project-info">
+                        <h4>NMK Pvt Ltd[cite: 1]</h4>
+                        <p>Heavy machinery moving, setup, and precision industrial Oil Refinery Plant operations in Puttlam[cite: 1].</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -596,17 +779,22 @@
     <!-- CLIENTS SECTION -->
     <section class="clients-section">
         <div class="container">
-            <h2 class="section-title">Trusted <span>Clients</span></h2>
+            <h2 class="section-title">Trusted <span>Clients Base</span></h2>
             <div class="client-tags reveal">
-                <div class="client-tag">Siemens Gamesa</div>
-                <div class="client-tag">Adamjee & Lukmanjee</div>
-                <div class="client-tag">Sirio Ltd</div>
-                <div class="client-tag">Vario Systems</div>
-                <div class="client-tag">NMK Holdings</div>
-                <div class="client-tag">Lily Aqua</div>
-                <div class="client-tag">Wasser Kraft Tech</div>
-                <div class="client-tag">LTL Projects</div>
-                <div class="client-tag">Coats Thread Exports</div>
+                <div class="client-tag">Siemens Gamesa[cite: 1]</div>
+                <div class="client-tag">Adamjee & Lukmanjee[cite: 1]</div>
+                <div class="client-tag">Sirio Ltd[cite: 1]</div>
+                <div class="client-tag">Vario Systems[cite: 1]</div>
+                <div class="client-tag">NMK Holdings[cite: 1]</div>
+                <div class="client-tag">Lily Aqua[cite: 1]</div>
+                <div class="client-tag">Wasser Kraft Tech[cite: 1]</div>
+                <div class="client-tag">LTL Projects[cite: 1]</div>
+                <div class="client-tag">Coats Thread Exports[cite: 1]</div>
+                <div class="client-tag">Orient Construction[cite: 1]</div>
+                <div class="client-tag">Naladanavi (Pvt) Ltd[cite: 1]</div>
+                <div class="client-tag">Mirachel Hospital[cite: 1]</div>
+                <div class="client-tag">Total Dental Care[cite: 1]</div>
+                <div class="client-tag">Coco Land[cite: 1]</div>
             </div>
         </div>
     </section>
@@ -620,36 +808,35 @@
                     <div class="contact-card">
                         <i class="fa-solid fa-phone"></i>
                         <div>
-                            <h5>Hotlines</h5>
-                            <p>074-414058 / 074-414059</p>
+                            <h5>Hotlines[cite: 1]</h5>
+                            <p>074-414058 / 074-414059 / 074-414060[cite: 1]</p>
                         </div>
                     </div>
                     <div class="contact-card">
                         <i class="fa-solid fa-envelope"></i>
                         <div>
-                            <h5>Email Address</h5>
-                            <p>reengineering2020@gmail.com</p>
+                            <h5>Email Address[cite: 1]</h5>
+                            <p>reengineering2020@gmail.com[cite: 1]</p>
                         </div>
                     </div>
                     <div class="contact-card">
                         <i class="fa-solid fa-location-dot"></i>
                         <div>
-                            <h5>Office Address</h5>
-                            <p>Alugoda Road, Kandegedra, Dewalegama, Kegalle</p>
+                            <h5>Office Address[cite: 1]</h5>
+                            <p>Alugoda Road, Kandegedra, Dewalegama, Kegalle[cite: 1]</p>
                         </div>
                     </div>
                     <div class="contact-card">
                         <i class="fa-solid fa-building-columns"></i>
                         <div>
-                            <h5>Bank Details</h5>
-                            <p>Sampath Bank PLC</p>
+                            <h5>Bank & Registration[cite: 1]</h5>
+                            <p>Sampath Bank PLC | Reg: කෑ/ග/ 002919[cite: 1]</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Simple Clean HTML Form Structure -->
                 <div class="contact-info-cards reveal" style="justify-content: center; text-align: center;">
-                    <p style="color: var(--text-muted); line-height: 2;">For inquiries, safety technical operations, or industrial layout estimates, please dial our direct operational lines or reach us via email.</p>
+                    <p style="color: var(--text-muted); line-height: 2;">For industrial layout estimates, safety technical engineering schedules, or structural panel operations, please connect via our direct corporate details[cite: 1].</p>
                 </div>
             </div>
         </div>
@@ -662,16 +849,15 @@
         </div>
     </footer>
 
-    <!-- INTERACTION & ANIMATION JAVASCRIPT -->
+    <!-- JAVASCRIPT FOR SCROLL REVEAL & COUNTERS -->
     <script>
-        // Scroll Reveal Logic
         const revealElements = document.querySelectorAll('.reveal');
         
         const revealOnScroll = () => {
             for (let i = 0; i < revealElements.length; i++) {
                 let windowHeight = window.innerHeight;
                 let elementTop = revealElements[i].getBoundingClientRect().top;
-                let elementVisible = 150;
+                let elementVisible = 120;
                 
                 if (elementTop < windowHeight - elementVisible) {
                     revealElements[i].classList.add('active');
@@ -680,9 +866,9 @@
         };
 
         window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll); // Initial check on load
+        window.addEventListener('load', revealOnScroll);
 
-        // Number Counter Logic
+        // Counter Animation
         const counters = document.querySelectorAll('.counter');
         counters.forEach(counter => {
             const target = +counter.getAttribute('data-target');
@@ -700,7 +886,6 @@
                 }
             };
             
-            // Trigger animation when about section comes in view
             let observer = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting) {
                     updateCount();
