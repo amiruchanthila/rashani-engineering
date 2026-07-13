@@ -1,245 +1,489 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rashani Electrical & Engineering | RE Engineering</title>
+    <title>Rashani Electrical & Engineering</title>
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome for Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#0B111E',
+                        brandCard: '#131C2E',
+                        brandOrange: '#FF6B00',
+                        brandTextGray: '#94A3B8'
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'spin-reverse': 'spin-back 8s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'dash': 'dash 2s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        'spin-back': {
+                            'from': { transform: 'rotate(360deg)' },
+                            'to': { transform: 'rotate(0deg)' }
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Glowing Grid Effect */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 107, 0, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 107, 0, 0.03) 1px, transparent 1px);
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-brandDark text-white font-sans antialiased bg-grid-pattern">
 
-    <!-- Top Bar -->
-    <div class="bg-slate-900 text-gray-300 text-xs py-2 px-4 sm:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 border-b border-slate-800">
-        <div class="flex items-center gap-4">
-            <span><i class="fa-solid fa-file-signature text-amber-500 mr-1"></i> Reg No: කෑ/ග/ 002919</span>
-            <span><i class="fa-solid fa-building-columns text-amber-500 mr-1"></i> Banker: Sampath Bank</span>
-        </div>
-        <div>
-            <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i> Serving Proudly Since 2017</span>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md sticky top-0 z-50 px-4 sm:px-8 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="bg-amber-500 text-slate-900 font-black px-3 py-1.5 rounded text-xl tracking-wider shadow">RE</div>
-            <div>
-                <span class="block font-bold text-lg text-slate-950 leading-none tracking-wide">RASHANI ELECTRICAL</span>
-                <span class="text-xs font-semibold text-slate-500 tracking-widest uppercase">& Engineering</span>
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed w-full top-0 z-50 bg-brandDark/90 backdrop-blur-md border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brandOrange text-brandDark p-2 rounded-lg font-black text-xl flex items-center justify-center w-10 h-10 shadow-lg shadow-orange-600/20">
+                    <i class="fa-solid fa-gear animate-spin-slow"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-wider text-brandOrange block">RASHANI</span>
+                    <span class="text-xs uppercase tracking-widest text-gray-400 block -mt-1">Electrical & Mechanical</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                <a href="#home" class="hover:text-brandOrange transition">Home</a>
+                <a href="#about" class="hover:text-brandOrange transition">About</a>
+                <a href="#services" class="hover:text-brandOrange transition">Services</a>
+                <a href="#projects" class="hover:text-brandOrange transition">Projects</a>
+                <a href="#contact" class="hover:text-brandOrange transition">Contact</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
             </div>
         </div>
-        <div class="hidden md:flex items-center gap-6 font-medium text-sm text-slate-600">
-            <a href="#about" class="hover:text-amber-600 transition">About</a>
-            <a href="#services" class="hover:text-amber-600 transition">Services</a>
-            <a href="#projects" class="hover:text-amber-600 transition">Projects</a>
-            <a href="#contact" class="bg-slate-900 text-white px-4 py-2 rounded-md hover:bg-amber-500 hover:text-slate-900 transition shadow">Contact Us</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="relative bg-slate-950 text-white py-24 px-4 sm:px-8 overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-5xl mx-auto relative z-10 text-center">
-            <span class="text-amber-500 uppercase font-bold tracking-widest text-xs bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Engineering Excellence</span>
-            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mt-4 mb-6 leading-tight">
-                Complete Engineering Solutions <br class="hidden sm:inline"><span class="text-amber-500">For Industrial & Domestic Demands</span>
-            </h1>
-            <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-                Integrating High-End Electrical, Mechanical, Civil Infrastructures, and Cutting-Edge Solar Energy Frameworks under one trusted brand.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#services" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded shadow hover:bg-amber-400 transition">Our Services</a>
-                <a href="#contact" class="border border-gray-600 text-gray-300 font-bold px-6 py-3 rounded hover:bg-white/5 transition">Get In Touch</a>
-            </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brandDark border-b border-gray-800 px-4 pt-2 pb-4 space-y-3">
+            <a href="#home" class="block text-base font-medium hover:text-brandOrange">Home</a>
+            <a href="#about" class="block text-base font-medium hover:text-brandOrange">About</a>
+            <a href="#services" class="block text-base font-medium hover:text-brandOrange">Services</a>
+            <a href="#projects" class="block text-base font-medium hover:text-brandOrange">Projects</a>
+            <a href="#contact" class="block text-base font-medium hover:text-brandOrange">Contact</a>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-3 gap-8 items-stretch">
-            <div class="md:col-span-1 bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-2xl shadow-xl flex flex-col justify-center border border-slate-700/50">
-                <h3 class="text-amber-500 uppercase tracking-widest font-bold text-xs mb-2">Our Vision</h3>
-                <p class="text-gray-300 italic text-sm leading-relaxed">
-                    "To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions."
-                </p>
+    <!-- HERO SECTION WITH ANIMATED INTERACTIVE GRAPHIC -->
+    <section id="home" class="pt-32 pb-20 lg:pt-44 lg:pb-32 px-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center space-x-2 bg-brandOrange/10 border border-brandOrange/20 px-3 py-1 rounded-full text-xs font-semibold text-brandOrange tracking-wide">
+                <span class="w-2 h-2 rounded-full bg-brandOrange animate-ping"></span>
+                <span>Engineering Excellence Since 2017</span>
             </div>
-            <div class="md:col-span-2 bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-slate-900 font-bold text-2xl mb-4 flex items-center gap-2">
-                        <span class="w-2 h-6 bg-amber-500 rounded-full"></span> Corporate Mission & Objective
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                        To maintain long-term relationships of value with our clients and partners by offering exceptional outputs in Electrical and Mechanical engineering. We are committed to employing excellent resources and latest technology, safely integrated with reliable Civil infrastructure support and general Solar solutions, achieving to be a trusted industry leader in the near future.
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                Innovative <span class="text-brandOrange">Engineering</span> <br>Infrastructure Outputs
+            </h1>
+            <p class="text-brandTextGray text-lg max-w-xl leading-relaxed">
+                Serving the Sri Lankan engineering sector with high-precision Electrical, Mechanical, and Civil engineering layouts with total efficiency.
+            </p>
+            <div class="pt-4">
+                <a href="#about" class="inline-flex items-center justify-center px-6 h-12 font-semibold tracking-wide text-white bg-brandOrange hover:bg-orange-600 rounded-lg transition shadow-lg shadow-orange-600/20">
+                    Explore Our Scope <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Animated Engineering Blueprint Vector Graphic -->
+        <div class="lg:col-span-6 flex justify-center lg:justify-end">
+            <div class="relative w-full max-w-[440px] aspect-square bg-brandCard/40 border border-gray-800/80 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl p-6 group">
+                <!-- Decorative tech grid inside graphic -->
+                <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+                
+                <!-- Rotating Main Gear Vector Frame -->
+                <div class="relative w-72 h-72 rounded-full border border-dashed border-gray-700 flex items-center justify-center animate-spin-slow">
+                    <div class="absolute w-60 h-60 rounded-full border border-brandOrange/20 flex items-center justify-center"></div>
+                    <i class="fa-solid fa-gear text-gray-800 text-[180px] opacity-20 absolute"></i>
+                    <!-- Orbiting Nodes -->
+                    <div class="absolute -top-3 w-6 h-6 rounded-full bg-brandOrange flex items-center justify-center text-[10px] text-brandDark font-bold shadow-lg shadow-brandOrange/50">⚡</div>
+                    <div class="absolute -bottom-3 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-[10px] text-white font-bold shadow-lg shadow-blue-500/50">🏗️</div>
+                </div>
+
+                <!-- Secondary Counter-Rotating Gear -->
+                <div class="absolute top-12 right-12 w-32 h-32 rounded-full border border-dotted border-gray-600 flex items-center justify-center animate-spin-reverse">
+                    <i class="fa-solid fa-gear text-brandOrange/10 text-8xl absolute"></i>
+                </div>
+
+                <!-- Central Floating Core Dashboard -->
+                <div class="absolute bg-brandCard border border-gray-700/60 p-5 rounded-xl shadow-2xl text-center w-52 animate-float">
+                    <div class="w-10 h-10 bg-brandOrange/10 text-brandOrange rounded-lg flex items-center justify-center text-lg mx-auto mb-3 animate-pulse">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-md font-bold tracking-wider text-white">RASHANI</h3>
+                    <p class="text-[10px] uppercase text-brandOrange font-semibold tracking-widest mt-0.5">Live Layout Matrix</p>
+                    <div class="mt-3 pt-2 border-t border-gray-800 flex justify-between text-[11px] text-brandTextGray">
+                        <span>EFFICIENCY</span>
+                        <span class="text-green-400 font-mono">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / WHO WE ARE SECTION -->
+    <section id="about" class="py-20 bg-brandCard/20 border-y border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Who We Are</h2>
+                        <h3 class="text-3xl font-extrabold mt-2">Introduction</h3>
+                    </div>
+                    <p class="text-brandTextGray leading-relaxed text-justify">
+                        <strong class="text-white">Rashani Electrical & Engineering (Reg No: 5/5/002919)</strong>, after serving the Sri Lankan engineering sector with unique and efficient services since 2017, introduces you to a comprehensive solutions framework designed to optimize every stage of your technical & engineering requirements.
                     </p>
+                    <p class="text-brandTextGray leading-relaxed text-justify">
+                        Our core expertise in high-end Electrical and Mechanical solutions ensures that operations run with absolute precision. By integrating reliable Civil maintenance and sustainable Solar energy integrations, we streamline your entire engineering lifecycle.
+                    </p>
+                    
+                    <div class="p-4 bg-brandCard rounded-xl border border-gray-800/60 flex items-start space-x-4">
+                        <div class="p-3 bg-orange-600/10 text-brandOrange rounded-lg mt-1"><i class="fa-solid fa-users-gear text-xl"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Staff and Experience</h4>
+                            <p class="text-sm text-brandTextGray leading-relaxed">
+                                Our professional team represents a wide range of expertise and handles projects dynamically from concept to final commissioning.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="border-t border-gray-100 pt-4 text-xs font-semibold text-slate-500 flex items-center gap-2">
-                    <i class="fa-solid fa-circle-check text-emerald-500 text-base"></i>
-                    Objective: Achieve total technical efficiency, strict safety compliance, and absolute client satisfaction.
+                
+                <!-- Stats with Interactive Floating Cards -->
+                <div class="lg:col-span-5 relative h-80 flex flex-col justify-center space-y-4">
+                    <div class="bg-brandCard p-5 rounded-xl border border-gray-800 flex items-center space-x-4 transform hover:-translate-y-1 transition duration-300">
+                        <div class="text-3xl font-black text-brandOrange font-mono w-16">2017</div>
+                        <div class="text-sm tracking-wide text-gray-300">Established Year & Market Entry</div>
+                    </div>
+                    <div class="bg-brandCard p-5 rounded-xl border border-gray-800 flex items-center space-x-4 transform hover:-translate-y-1 transition duration-300">
+                        <div class="text-3xl font-black text-brandOrange font-mono w-16">05+</div>
+                        <div class="text-sm tracking-wide text-gray-300">Years of Trusted Operational Excellence</div>
+                    </div>
+                    <div class="bg-brandCard p-5 rounded-xl border border-gray-800 flex items-center space-x-4 transform hover:-translate-y-1 transition duration-300">
+                        <div class="text-3xl font-black text-brandOrange w-16 text-center"><i class="fa-solid fa-building-columns"></i></div>
+                        <div class="text-sm tracking-wide text-gray-300">Official Banker: Sampath Bank PLC</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision, Mission & Objectives Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <div class="bg-brandCard p-6 rounded-xl border border-gray-800/80 flex flex-col justify-between group hover:border-brandOrange/30 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-lg mb-4 animate-pulse"><i class="fa-solid fa-eye"></i></div>
+                        <h4 class="text-lg font-bold mb-2">Our Vision</h4>
+                        <p class="text-xs text-brandTextGray leading-relaxed">
+                            "To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions."
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-brandCard p-6 rounded-xl border border-gray-800/80 flex flex-col justify-between group hover:border-brandOrange/30 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-lg mb-4 animate-pulse"><i class="fa-solid fa-bullseye"></i></div>
+                        <h4 class="text-lg font-bold mb-2">Our Mission</h4>
+                        <p class="text-xs text-brandTextGray leading-relaxed">
+                            "To maintain long-term relationships of value with our clients and partners by offering exceptional outputs in Electrical and Mechanical engineering."
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-brandCard p-6 rounded-xl border border-gray-800/80 flex flex-col justify-between group hover:border-brandOrange/30 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-lg mb-4 animate-pulse"><i class="fa-solid fa-crosshairs"></i></div>
+                        <h4 class="text-lg font-bold mb-2">Our Objectives</h4>
+                        <p class="text-xs text-brandTextGray leading-relaxed">
+                            Targets to provide the highest possible standard of quality and safety across all multi-disciplinary projects, ensuring total technical efficiency.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="bg-slate-100 py-20 px-4 sm:px-8">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-black text-slate-950 tracking-tight">Core Services & Engineering Scopes</h2>
-                <p class="text-gray-500 text-sm mt-2">Professional multidisciplinary capabilities handled by certified specialists</p>
+    <!-- SERVICES SECTION WITH TECH GRAPHIC ICONS -->
+    <section id="services" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">What We Excel In</h2>
+            <h3 class="text-3xl font-extrabold mt-2">Core Services</h3>
+            <div class="w-12 h-1 bg-brandOrange mx-auto mt-4 rounded"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Electrical -->
+            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-amber-500/30 transition group">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-2xl relative">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span class="absolute inset-0 rounded-xl bg-amber-500/20 animate-ping opacity-20"></span>
+                    </div>
+                    <h4 class="text-xl font-bold">Electrical Scope</h4>
+                </div>
+                <ul class="space-y-3 text-sm text-brandTextGray">
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Industrial & Domestic Installations</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> HV / LV Panel Boards Installation</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Transmission Lines (Up to 33kV)</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Switchgears & Insulation Testing</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Industrial Generator Service</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Solar On-Grid & Off-Grid Setup</li>
+                </ul>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Electrical -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/60 overflow-hidden group hover:shadow-md transition">
-                    <div class="p-6 bg-slate-900 text-white flex items-center justify-between">
-                        <h3 class="font-bold text-lg tracking-wide">Electrical Engineering</h3>
-                        <i class="fa-solid fa-bolt text-amber-500 text-2xl animate-pulse"></i>
+            <!-- Mechanical -->
+            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-brandOrange/30 transition group">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-orange-600/10 text-brandOrange rounded-xl flex items-center justify-center text-2xl relative">
+                        <i class="fa-solid fa-screwdriver-wrench animate-pulse"></i>
                     </div>
-                    <ul class="p-6 space-y-3 text-xs text-gray-600 font-medium">
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Industrial & Domestic Installations</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> HV & LV Panel Boards Assembly & Testing</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Transmission Lines (Overhead/Underground up to 33kV)</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Switchgears & Insulation Breakdown Testing</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Industrial Generators & Synchronizing Backups</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Solar Solutions (On-Grid/Off-Grid Setup)</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> HD CCTV, Intercom & Structured Server Network Wiring</li>
-                    </ul>
+                    <h4 class="text-xl font-bold">Mechanical Scope</h4>
+                </div>
+                <ul class="space-y-3 text-sm text-brandTextGray">
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Industrial Steel Buildings & Sheds</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Steel & Aluminum Cladding Sheets</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Heavy Machinery Moving & Leveling</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Conveyor Belt Systems Repairing</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> GI Duct Work Fabrication</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Aluminum and Glass Partitioning</li>
+                </ul>
+            </div>
+
+            <!-- Civil -->
+            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 hover:border-blue-500/30 transition group">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-trowel-bricks"></i>
+                    </div>
+                    <h4 class="text-xl font-bold">Civil & Support</h4>
+                </div>
+                <ul class="space-y-3 text-sm text-brandTextGray">
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Industrial Factory Construction</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Concrete Structures (RCC Tanks)</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Roads & Infrastructure Drainage</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Retaining Walls & Earth Works</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Block Paving & Land Leveling</li>
+                    <li class="flex items-start"><i class="fa-solid fa-circle-check text-brandOrange mt-1 mr-3 text-xs"></i> Floor Tiling & Interior Finishing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAJOR PROJECTS SECTION WITH ANNOTATED INDUSTRIAL DIAGRAM PLACEHOLDERS -->
+    <section id="projects" class="py-20 bg-brandCard/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Our Track Record</h2>
+                <h3 class="text-3xl font-extrabold mt-2">Major Projects Carried Out</h3>
+                <div class="w-12 h-1 bg-brandOrange mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between">
+                    <!-- Animated Blueprint Image Slot -->
+                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
+                        <i class="fa-solid fa-industry text-brandOrange/20 text-6xl group-hover:scale-110 group-hover:text-brandOrange/30 transition duration-500"></i>
+                        <!-- Live Animation Scanline -->
+                        <div class="absolute w-full h-[2px] bg-brandOrange/40 top-0 left-0 animate-bounce"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[10px] text-brandOrange uppercase tracking-widest font-bold">Automation System</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Kalawewa Gate System</h4>
+                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">Complete execution and technical alignment handling of advanced gate controlling layouts.</p>
+                    </div>
                 </div>
 
-                <!-- Mechanical -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/60 overflow-hidden group hover:shadow-md transition">
-                    <div class="p-6 bg-slate-900 text-white flex items-center justify-between">
-                        <h3 class="font-bold text-lg tracking-wide">Mechanical Engineering</h3>
-                        <i class="fa-solid fa-gears text-amber-500 text-2xl"></i>
+                <!-- Project 2 -->
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between">
+                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
+                        <i class="fa-solid fa-water-ladder text-blue-500/20 text-6xl group-hover:scale-110 group-hover:text-blue-500/30 transition duration-500"></i>
+                        <div class="absolute w-1.5 h-1.5 bg-blue-500 rounded-full top-10 left-20 animate-ping"></div>
                     </div>
-                    <ul class="p-6 space-y-3 text-xs text-gray-600 font-medium">
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Industrial Steel Buildings & Factories</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Steel & Aluminum Cladding works</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Heavy Steel Mezzanine Floor Structures</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Office Aluminum & Glass Partitioning</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Heavy Machinery Shifting, Leveling & Relocation</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Conveyor Maintenance & GI Duct Fabrications</li>
-                    </ul>
+                    <div class="p-6">
+                        <span class="text-[10px] text-blue-400 uppercase tracking-widest font-bold">Civil / Hydraulics</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Daduruoya Project</h4>
+                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">Infrastructure development layout and complex multi-disciplinary engineering field operations.</p>
+                    </div>
                 </div>
 
-                <!-- Civil -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/60 overflow-hidden group hover:shadow-md transition">
-                    <div class="p-6 bg-slate-900 text-white flex items-center justify-between">
-                        <h3 class="font-bold text-lg tracking-wide">Civil Engineering</h3>
-                        <i class="fa-solid fa-helmet-safety text-amber-500 text-2xl"></i>
+                <!-- Project 3 -->
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between">
+                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
+                        <div class="animate-spin-slow text-teal-500/10"><i class="fa-solid fa-fan text-7xl"></i></div>
+                        <i class="fa-solid fa-wind text-teal-500/30 text-3xl absolute"></i>
                     </div>
-                    <ul class="p-6 space-y-3 text-xs text-gray-600 font-medium">
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Industrial Plants, Warehouses & Houses</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> RCC Concrete Water Tanks & Concrete Platforms</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Infrastructure Roads, Drainage Networks & Culverts</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Interlock Block Paving & Total Earth Moving Works</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> Rubble & RCC Engineered Retaining Walls</li>
-                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-chevron-right text-amber-500 mt-0.5"></i> High-End Building Finishing & Tiling Layouts</li>
-                    </ul>
+                    <div class="p-6">
+                        <span class="text-[10px] text-teal-400 uppercase tracking-widest font-bold">Wind Infrastructure</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Siemens Gamesa</h4>
+                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">20MW Wind Power Plant structural maintenance & electrical work execution in Jaffna.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between">
+                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
+                        <i class="fa-solid fa-solar-panel text-amber-500/20 text-6xl group-hover:scale-110 transition duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[10px] text-amber-400 uppercase tracking-widest font-bold">Solar Integration</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Solar Power Plant</h4>
+                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">Ground surface structural deployment, grid-tied operational testing in Hambantota.</p>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between">
+                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
+                        <i class="fa-solid fa-bolt-lightning text-orange-500/20 text-6xl group-hover:translate-y-[-4px] transition duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[10px] text-orange-400 uppercase tracking-widest font-bold">Power Grid</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Naladanavi Pvt Ltd</h4>
+                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">Wind power plant distribution networks maintenance tasks management in Puttlam.</p>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800/80 group flex flex-col justify-between">
+                    <div class="h-44 bg-slate-950 flex items-center justify-center relative overflow-hidden border-b border-gray-900">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:10px_10px] opacity-30"></div>
+                        <i class="fa-solid fa-oil-well text-gray-700 text-6xl animate-pulse"></i>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Heavy Mechanical</span>
+                        <h4 class="text-lg font-bold text-white mt-1">NMK Pvt Ltd</h4>
+                        <p class="text-xs text-brandTextGray mt-2 leading-relaxed">Industrial Oil Refinery Plant precision engineering leveling and alignment setups.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects & Clients Section -->
-    <section id="projects" class="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-12">
-            <!-- Strategic Implementations -->
-            <div>
-                <h3 class="text-2xl font-extrabold text-slate-950 mb-6 flex items-center gap-2">
-                    <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span> Notable Major Implementations
-                </h3>
-                <div class="space-y-4">
-                    <div class="p-4 bg-white border border-gray-100 rounded-xl shadow-sm flex items-start gap-4">
-                        <div class="bg-amber-100 text-amber-700 p-2 rounded-lg text-sm font-bold shrink-0">01</div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-900">Jaffna Wind Power Plant (20MW - 8 Turbines)</h4>
-                            <p class="text-xs text-gray-500 mt-0.5">Executed under specialized maintenance workflow for Siemens Gamesa.</p>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-white border border-gray-100 rounded-xl shadow-sm flex items-start gap-4">
-                        <div class="bg-amber-100 text-amber-700 p-2 rounded-lg text-sm font-bold shrink-0">02</div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-900">Naladanavi & Hambantota Plant Frameworks</h4>
-                            <p class="text-xs text-gray-500 mt-0.5">Wind power maintenance in Puttalam & ground surface solar farm optimizations in Hambantota.</p>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-white border border-gray-100 rounded-xl shadow-sm flex items-start gap-4">
-                        <div class="bg-amber-100 text-amber-700 p-2 rounded-lg text-sm font-bold shrink-0">03</div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-900">National Irrigation Gate & Refinery Assets</h4>
-                            <p class="text-xs text-gray-500 mt-0.5">Kalawewa gate controlling systems, Daduruoya infrastructure & NMK Puttalam Oil Refinery setups.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Client Portfolio -->
-            <div>
-                <h3 class="text-2xl font-extrabold text-slate-950 mb-6 flex items-center gap-2">
-                    <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span> Valued Corporate Clients
-                </h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Siemens Gamesa (Pvt) Ltd</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Adamjee & Lukmanjee (Pvt) Ltd</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Sirio Ltd</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Vario Systems</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">NMK Holdings (Pvt) Ltd</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Lily Aqua (Private) Limited</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Wasser Kraft Tech Lanka (Pvt) Ltd</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Coats Thread Exports (Pvt) Ltd</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Orient Construction (Pvt) Ltd</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">LTL Projects (Pvt) Ltd</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Mirachel Hospital</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Total Dental Care Hospital</span>
-                    <span class="bg-slate-900 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-800">Coco Land (Pvt) Ltd</span>
-                </div>
-            </div>
+    <!-- TRUSTED CLIENTS BASE -->
+    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h3 class="text-2xl font-bold">Trusted <span class="text-brandOrange">Clients</span> Base</h3>
+            <div class="w-12 h-0.5 bg-brandOrange mx-auto mt-3 rounded"></div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Siemens Gamesa (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Adamjee & Lukmanjee (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Sirio Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Vario Systems</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">NMK Holdings (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Lily Aqua (Private) Limited</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Wasser Kraft Tech Lanka</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Coats Thread Exports</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Orient Construction</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">LTL Projects (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Naladanavi (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-xs font-medium px-4 py-2 rounded-full text-gray-300 hover:border-brandOrange/40 transition">Mirachel Hospital</span>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="bg-slate-950 text-white py-16 px-4 sm:px-8 border-t border-slate-900">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h3 class="text-amber-500 uppercase tracking-widest font-bold text-xs mb-2">Connect With Us</h3>
-                <h2 class="text-3xl font-extrabold tracking-tight mb-6">Let's Discuss Your Next <br>Engineering Mandate</h2>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                    Our rapid response operations team is fully prepared to address emergency maintenance interventions, large scale industrial integrations, and structural evaluations nationwide.
-                </p>
-                <div class="space-y-3 font-medium text-sm">
-                    <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-amber-500 w-5 text-center"></i> <span>Alugoda Road, Kandegedra, Dewalegama, Kegalle.</span></div>
-                    <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-amber-500 w-5 text-center"></i> <a href="mailto:reengineering2020@gmail.com" class="hover:underline">reengineering2020@gmail.com</a></div>
-                </div>
-            </div>
+    <!-- CONTACT / GET IN TOUCH SECTION -->
+    <section id="contact" class="py-20 bg-brandCard/20 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
             
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
-                <h4 class="font-bold text-lg border-b border-slate-800 pb-2 flex items-center gap-2"><i class="fa-solid fa-phone text-amber-500"></i> Operation Hotlines</h4>
-                <div class="grid gap-2 text-sm">
-                    <a href="tel:074414058" class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-between items-center hover:border-amber-500/50 transition">
-                        <span class="font-bold text-gray-300 tracking-wide">Hotline 01</span>
-                        <span class="text-amber-500 font-extrabold">074-414058</span>
-                    </a>
-                    <a href="tel:074414059" class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-between items-center hover:border-amber-500/50 transition">
-                        <span class="font-bold text-gray-300 tracking-wide">Hotline 02</span>
-                        <span class="text-amber-500 font-extrabold">074-414059</span>
-                    </a>
-                    <a href="tel:074414060" class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-between items-center hover:border-amber-500/50 transition">
-                        <span class="font-bold text-gray-300 tracking-wide">Hotline 03</span>
-                        <span class="text-amber-500 font-extrabold">074-414060</span>
-                    </a>
+            <div class="lg:col-span-6 space-y-6">
+                <div>
+                    <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Contact Us</h2>
+                    <h3 class="text-3xl font-extrabold mt-2">Get In Touch</h3>
+                    <div class="w-12 h-1 bg-brandOrange mt-3 rounded"></div>
+                </div>
+                <p class="text-brandTextGray text-sm leading-relaxed">
+                    For industrial layout estimates, safety technical engineering schedules, or structural panel operations, please connect via our direct corporate details.
+                </p>
+                <div class="space-y-4 pt-2">
+                    <div class="flex items-center space-x-4 bg-brandCard p-4 rounded-xl border border-gray-800/80">
+                        <div class="text-brandOrange text-lg w-10 h-10 bg-brandOrange/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-wider text-gray-400">Hotlines</span>
+                            <span class="text-xs sm:text-sm font-semibold text-white">074-414058 / 074-414059 / 074-414060</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-brandCard p-4 rounded-xl border border-gray-800/80">
+                        <div class="text-brandOrange text-lg w-10 h-10 bg-brandOrange/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-wider text-gray-400">Email Address</span>
+                            <span class="text-xs sm:text-sm font-semibold text-white">reengineering2020@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-brandCard p-4 rounded-xl border border-gray-800/80">
+                        <div class="text-brandOrange text-lg w-10 h-10 bg-brandOrange/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-wider text-gray-400">Office Address</span>
+                            <span class="text-xs sm:text-sm font-semibold text-white">Alugoda Road, Kandegedra, Dewalegama, Kegalle.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="lg:col-span-6 flex flex-col justify-center">
+                <div class="bg-brandCard border border-gray-800 p-8 rounded-2xl space-y-6 relative overflow-hidden">
+                    <h4 class="text-xl font-bold tracking-tight">Send a Quick Message</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] text-gray-400 uppercase tracking-wider mb-1">Your Name</label>
+                            <input type="text" class="w-full bg-brandDark border border-gray-800 rounded-lg h-10 px-3 text-sm focus:outline-none focus:border-brandOrange text-white" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-400 uppercase tracking-wider mb-1">Email Address</label>
+                            <input type="email" class="w-full bg-brandDark border border-gray-800 rounded-lg h-10 px-3 text-sm focus:outline-none focus:border-brandOrange text-white" placeholder="example@domain.com">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-400 uppercase tracking-wider mb-1">Message</label>
+                            <textarea rows="3" class="w-full bg-brandDark border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-brandOrange text-white resize-none" placeholder="Type your requirements..."></textarea>
+                        </div>
+                        <button class="w-full h-11 bg-brandOrange hover:bg-orange-600 text-white font-semibold rounded-lg text-sm transition shadow-lg shadow-orange-600/10">Submit Inquiry</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-gray-500 text-center py-6 border-t border-slate-900 text-xs font-semibold">
-        &copy; 2026 Rashani Electrical & Engineering. All Rights Reserved.
+    <!-- FOOTER -->
+    <footer class="bg-brandDark border-t border-gray-900 py-6 text-center text-xs text-gray-500 tracking-wide">
+        <p>&copy; 2026 Rashani Electrical & Engineering. All Rights Reserved.</p>
     </footer>
 
+    <!-- Responsive Mobile Menu Script -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const navLinks = mobileMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
