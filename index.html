@@ -1,898 +1,460 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rashani Electrical & Engineering</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* --- Core Reset & Variables --- */
-        :root {
-            --bg-primary: #0a0f1d;
-            --bg-secondary: #111827;
-            --accent: #f97316;
-            --accent-glow: rgba(249, 115, 22, 0.2);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border: #1f2937;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
-
-        /* --- Reusable Components --- */
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title span {
-            color: var(--accent);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        /* --- Navigation & Brand Logo --- */
-        nav {
-            background: rgba(10, 15, 29, 0.9);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 0;
-        }
-
-        /* Modern Logo Badge Styling */
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            background: linear-gradient(135deg, var(--accent), #ea580c);
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px var(--accent-glow);
-            position: relative;
-        }
-
-        .logo-icon i.fa-gear {
-            font-size: 1.5rem;
-            color: #000;
-            animation: spin 6s linear infinite;
-        }
-
-        .logo-icon i.fa-bolt {
-            font-size: 0.9rem;
-            color: #000;
-            position: absolute;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            line-height: 1.1;
-        }
-
-        .logo-title span {
-            color: var(--accent);
-        }
-
-        .logo-subtitle {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* --- Hero Section --- */
-        header {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-            padding-top: 100px;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-
-        header h1 span {
-            color: var(--accent);
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .hero-logo-display {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        /* Large Animated Logo on Hero Right side */
-        .large-hero-logo {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border: 2px solid var(--border);
-            width: 280px;
-            height: 280px;
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            position: relative;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .large-hero-logo i.main-gear {
-            font-size: 6rem;
-            color: var(--accent);
-            animation: spin 25s linear infinite;
-            margin-bottom: 15px;
-        }
-
-        .large-hero-logo h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .large-hero-logo p {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin: 0;
-            color: var(--text-muted);
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: #000;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s ease;
-            box-shadow: 0 4px 15px var(--accent-glow);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px var(--accent);
-        }
-
-        /* Background Animated Gear */
-        .bg-gear {
-            position: absolute;
-            right: -10%;
-            top: 20%;
-            font-size: 35rem;
-            color: rgba(31, 41, 55, 0.08);
-            z-index: 1;
-            animation: spin 50s linear infinite;
-            pointer-events: none;
-        }
-
-        /* --- About & Stats --- */
-        .about-section {
-            padding: 5rem 0;
-            background: var(--bg-secondary);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .stats-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .stat-card {
-            background: var(--bg-primary);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: 0.3s;
-        }
-
-        .stat-card:hover {
-            border-color: var(--accent);
-        }
-
-        .stat-card h2 {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Services --- */
-        .services-section {
-            padding: 5rem 0;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--bg-secondary);
-            padding: 2.5rem;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px var(--accent-glow);
-        }
-
-        .service-card i {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .service-card ul {
-            list-style: none;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .service-card ul li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .service-card ul li::before {
-            content: '✓';
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* --- Projects Section --- */
-        .projects-section {
-            padding: 5rem 0;
-            background: var(--bg-secondary);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: 0.3s ease;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-        }
-
-        .project-img-wrapper {
-            height: 220px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            background: #1e293b;
-        }
-
-        .project-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s ease;
-            opacity: 0.85;
-        }
-
-        .project-card:hover .project-img-wrapper img {
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
-        .project-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(0, 0, 0, 0.75);
-            color: var(--accent);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid var(--accent);
-            backdrop-filter: blur(5px);
-        }
-
-        .project-info {
-            padding: 1.8rem;
-        }
-
-        .project-info h4 {
-            color: #fff;
-            margin-bottom: 0.7rem;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .project-info p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* --- Clients Showcase --- */
-        .clients-section {
-            padding: 5rem 0;
-        }
-
-        .client-tags {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .client-tag {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 0.6rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .client-tag:hover {
-            background: var(--accent);
-            color: #000;
-            font-weight: 600;
-        }
-
-        /* --- Contact --- */
-        .contact-section {
-            padding: 5rem 0;
-            background: var(--bg-secondary);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-card {
-            background: var(--bg-primary);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .contact-card i {
-            font-size: 1.8rem;
-            color: var(--accent);
-        }
-
-        .contact-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .contact-card h5 {
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background: var(--bg-primary);
-            padding: 2rem 0;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* --- Keyframe Animations --- */
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* --- Scroll Reveal Effects --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Layouts */
-        @media (max-width: 992px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem;}
-            .hero-logo-display { order: -1; }
-            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem;}
-            .nav-links { display: none; }
-        }
-    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#0B111E',
+                        brandCard: '#131C2E',
+                        brandOrange: '#FF6B00',
+                        brandTextGray: '#94A3B8'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+<body class="bg-brandDark text-white font-sans antialiased">
 
-    <!-- NAV BAR WITH CUSTOM LOGO -->
-    <nav>
-        <div class="container nav-container">
-            <a href="#home" class="brand-logo">
-                <div class="logo-icon">
-                    <i class="fa-solid fa-gear"></i>
-                    <i class="fa-solid fa-bolt"></i>
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed w-full top-0 z-50 bg-brandDark/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brandOrange text-brandDark p-2 rounded-lg font-black text-xl flex items-center justify-center w-10 h-10">
+                    <i class="fa-solid fa-gear animate-spin-slow"></i>
                 </div>
-                <div class="logo-text">
-                    <div class="logo-title">RASHANI <span>ENGINEERING</span></div>
-                    <div class="logo-subtitle">Electrical & Mechanical</div>
-                </div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION WITH LOGO DISPLAY -->
-    <header id="home">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1>Innovative <span>Engineering</span> Infrastructure Outputs</h1>
-                <p>Serving the Sri Lankan engineering sector since 2017. Delivering high-precision Electrical, Mechanical, and Civil engineering layouts with total efficiency[cite: 1].</p>
-                <a href="#services" class="btn">Explore Our Scope</a>
-            </div>
-            <div class="hero-logo-display">
-                <div class="large-hero-logo">
-                    <i class="fa-solid fa-gear main-gear"></i>
-                    <h2>RASHANI</h2>
-                    <p>ESTD 2017[cite: 1]</p>
+                <div>
+                    <span class="text-xl font-bold tracking-wider text-brandOrange block">RASHANI</span>
+                    <span class="text-xs uppercase tracking-widest text-gray-400 block -mt-1">Electrical & Mechanical</span>
                 </div>
             </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                <a href="#home" class="hover:text-brandOrange transition">Home</a>
+                <a href="#about" class="hover:text-brandOrange transition">About</a>
+                <a href="#services" class="hover:text-brandOrange transition">Services</a>
+                <a href="#projects" class="hover:text-brandOrange transition">Projects</a>
+                <a href="#contact" class="hover:text-brandOrange transition">Contact</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
         </div>
-        <i class="fa-solid fa-gear bg-gear"></i>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brandDark border-b border-gray-800 px-4 pt-2 pb-4 space-y-3">
+            <a href="#home" class="block text-base font-medium hover:text-brandOrange">Home</a>
+            <a href="#about" class="block text-base font-medium hover:text-brandOrange">About</a>
+            <a href="#services" class="block text-base font-medium hover:text-brandOrange">Services</a>
+            <a href="#projects" class="block text-base font-medium hover:text-brandOrange">Projects</a>
+            <a href="#contact" class="block text-base font-medium hover:text-brandOrange">Contact</a>
+        </div>
     </header>
 
-    <!-- ABOUT SECTION -->
-    <section class="about-section" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text reveal">
-                    <h3>Who We Are</h3>
-                    <p><strong>Rashani Electrical & Engineering (Reg No: කෑ/ග/ 002919)</strong> handles premium grid setups and automated system tasks across the country[cite: 1].</p>
-                    <p><strong>Our Vision:</strong> To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions[cite: 1].</p>
+    <!-- HERO SECTION -->
+    <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                Innovative <span class="text-brandOrange">Engineering</span> <br>Infrastructure Outputs
+            </h1>
+            <p class="text-brandTextGray text-lg max-w-xl leading-relaxed">
+                Serving the Sri Lankan engineering sector since 2017. Delivering high-precision Electrical, Mechanical, and Civil engineering layouts with total efficiency.
+            </p>
+            <div class="pt-4">
+                <a href="#about" class="inline-flex items-center justify-center px-6 h-12 font-semibold tracking-wide text-white bg-brandOrange hover:bg-orange-600 rounded-lg transition shadow-lg shadow-orange-600/20">
+                    Explore Our Scope
+                </a>
+            </div>
+        </div>
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+            <div class="bg-brandCard border border-gray-800 p-8 rounded-2xl shadow-2xl relative max-w-xs w-full text-center group hover:border-brandOrange/40 transition duration-300">
+                <div class="w-20 h-20 bg-brandOrange/10 text-brandOrange rounded-full flex items-center justify-center text-4xl mx-auto mb-6 group-hover:scale-110 transition duration-300">
+                    <i class="fa-solid fa-gears"></i>
                 </div>
-                <div class="stats-box reveal">
-                    <div class="stat-card">
-                        <h2 class="counter" data-target="2017">0</h2>
-                        <p>Established Year[cite: 1]</p>
-                    </div>
-                    <div class="stat-card">
-                        <h2>Many</h2>
-                        <p>Years Experienced Experts[cite: 1]</p>
-                    </div>
-                </div>
+                <h3 class="text-2xl font-bold tracking-wider text-white">RASHANI</h3>
+                <p class="text-xs uppercase text-brandTextGray mt-1 tracking-widest">ESTD 2017</p>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES SECTION -->
-    <section class="services-section" id="services">
-        <div class="container">
-            <h2 class="section-title">Core <span>Services</span></h2>
-            
-            <div class="services-grid">
-                <!-- Electrical Card -->
-                <div class="service-card reveal">
-                    <i class="fa-solid fa-bolt"></i>
-                    <h3>Electrical Engineering</h3>
-                    <ul>
-                        <li>Industrial & Domestic Installations[cite: 1]</li>
-                        <li>HV / LV Panel Boards Installation[cite: 1]</li>
-                        <li>Transmission Lines (Up to 33kV)[cite: 1]</li>
-                        <li>Solar On-Grid & Off-Grid Setup[cite: 1]</li>
-                        <li>CCTV & Server Rack Cabling[cite: 1]</li>
-                    </ul>
+    <!-- ABOUT / WHO WE ARE SECTION -->
+    <section id="about" class="py-20 bg-brandCard/30 border-y border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-7 space-y-8">
+                    <div>
+                        <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Who We Are</h2>
+                        <h3 class="text-3xl font-extrabold mt-2">Introduction</h3>
+                    </div>
+                    <p class="text-brandTextGray leading-relaxed text-justify">
+                        <strong>Rashani Electrical & Engineering (Reg No: 5/5/002919)</strong>, after serving the Sri Lankan engineering sector with unique and efficient services since 2017, introduces you to a comprehensive solutions framework designed to optimize every stage of your technical & engineering requirements. Our core expertise in high-end Electrical and Mechanical solutions ensures that your industrial, commercial, and residential operations run with absolute precision and maximum performance.
+                    </p>
+                    <p class="text-brandTextGray leading-relaxed text-justify">
+                        By integrating reliable Civil maintenance and general support structures, alongside sustainable Solar energy integrations, we streamline your entire engineering lifecycle. We empower your infrastructure with cutting-edge technology and safety compliance, making your operations smoother, completely result-oriented, and tailored to elevate your organizational efficiency.
+                    </p>
+                    
+                    <!-- Staff and Experience Mini Block -->
+                    <div class="p-5 bg-brandCard rounded-xl border border-gray-800/60">
+                        <h4 class="font-bold text-white mb-2"><i class="fa-solid fa-users text-brandOrange mr-2"></i> Staff and Experience</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            Our team represents a wide range of education, expertise, and experience in the construction industry. Dedicated to ensuring success, our professionals are deeply involved from start to finish on each project.
+                        </p>
+                    </div>
                 </div>
-
-                <!-- Mechanical Card -->
-                <div class="service-card reveal">
-                    <i class="fa-solid fa-screwdriver-wrench"></i>
-                    <h3>Mechanical Engineering</h3>
-                    <ul>
-                        <li>Industrial Steel Buildings[cite: 1]</li>
-                        <li>Steel & Aluminum Cladding[cite: 1]</li>
-                        <li>Heavy Machinery Moving & Leveling[cite: 1]</li>
-                        <li>Conveyor Belt Systems Repairing[cite: 1]</li>
-                        <li>GI Duct Work Fabrication[cite: 1]</li>
-                    </ul>
-                </div>
-
-                <!-- Civil Card -->
-                <div class="service-card reveal">
-                    <i class="fa-solid fa-trowel-bricks"></i>
-                    <h3>Civil Engineering</h3>
-                    <ul>
-                        <li>Industrial & Residential Construction[cite: 1]</li>
-                        <li>Concrete Structures (RCC Tanks)[cite: 1]</li>
-                        <li>Roads & Infrastructure Drainage[cite: 1]</li>
-                        <li>Retaining Walls & Earth Works[cite: 1]</li>
-                        <li>Floor Tiling & Interior Finishing[cite: 1]</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS SECTION WITH ALL PDF DATA & IMAGES -->
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <h2 class="section-title">Major <span>Projects Carried Out</span></h2>
-            <div class="projects-grid">
                 
-                <!-- Project 1 -->
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="project-badge">Automation</span>
-                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Kalawewa Project">
+                <!-- Quick Stats Info Panel -->
+                <div class="lg:col-span-5 flex flex-col justify-center space-y-4">
+                    <div class="bg-brandCard p-6 rounded-xl border border-gray-800 flex items-center space-x-4">
+                        <div class="text-3xl font-black text-brandOrange w-16">2017</div>
+                        <div class="text-sm tracking-wide text-gray-300">Established Year & Market Entry</div>
                     </div>
-                    <div class="project-info">
-                        <h4>Kalawewa Gate System[cite: 1]</h4>
-                        <p>Complete execution and handling of the advanced gate controlling system operations[cite: 1].</p>
+                    <div class="bg-brandCard p-6 rounded-xl border border-gray-800 flex items-center space-x-4">
+                        <div class="text-3xl font-black text-brandOrange w-16">05+</div>
+                        <div class="text-sm tracking-wide text-gray-300">Years of Trusted Operational Excellence</div>
+                    </div>
+                    <div class="bg-brandCard p-6 rounded-xl border border-gray-800 flex items-center space-x-4">
+                        <div class="text-3xl font-black text-brandOrange w-16"><i class="fa-solid fa-building-columns"></i></div>
+                        <div class="text-sm tracking-wide text-gray-300">Official Banker: Sampath Bank PLC</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision, Mission & Objectives Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <!-- Vision -->
+                <div class="bg-brandCard p-8 rounded-xl border border-gray-800 flex flex-col justify-between group hover:border-brandOrange/30 transition">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Our Vision</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            "To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions."
+                        </p>
+                    </div>
+                </div>
+                <!-- Mission -->
+                <div class="bg-brandCard p-8 rounded-xl border border-gray-800 flex flex-col justify-between group hover:border-brandOrange/30 transition">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Our Mission</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            "To maintain long-term relationships of value with our clients and partners by offering exceptional outputs in Electrical and Mechanical engineering. We are committed to employing excellent resources and latest technology..."
+                        </p>
+                    </div>
+                </div>
+                <!-- Objectives -->
+                <div class="bg-brandCard p-8 rounded-xl border border-gray-800 flex flex-col justify-between group hover:border-brandOrange/30 transition">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-orange-600/10 text-brandOrange flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-crosshairs"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Our Objectives</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            Targets to provide the highest possible standard of quality and safety across all multi-disciplinary projects, ensuring total technical efficiency and offering clients absolute satisfaction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE SERVICES SECTION -->
+    <section id="services" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">What We Excel In</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold mt-2">Core Services</h3>
+            <div class="w-16 h-1 bg-brandOrange mx-auto mt-4 rounded"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Electrical Engineering -->
+            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 space-y-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h4 class="text-xl font-bold">Electrical Engineering</h4>
+                </div>
+                <ul class="space-y-3 text-sm text-brandTextGray">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Industrial & Domestic Installations</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> HV / LV Panel Boards Installation</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Transmission Lines (Up to 33kV)</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Switchgears & Insulation Testing</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Industrial Generator Service</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Solar On-Grid & Off-Grid Setup</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> CCTV & Server Rack Cabling</li>
+                </ul>
+            </div>
+
+            <!-- Mechanical Engineering -->
+            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 space-y-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-orange-600/10 text-brandOrange rounded-xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h4 class="text-xl font-bold">Mechanical Engineering</h4>
+                </div>
+                <ul class="space-y-3 text-sm text-brandTextGray">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Industrial Steel Buildings & Sheds</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Steel & Aluminum Cladding Sheets</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Heavy Machinery Moving & Leveling</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Machine Assembly & Setup Work</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Conveyor Belt Systems Repairing</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> GI Duct Work Fabrication & Installation</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Aluminum and Glass Partitioning</li>
+                </ul>
+            </div>
+
+            <!-- Civil Engineering -->
+            <div class="bg-brandCard p-8 rounded-2xl border border-gray-800 space-y-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-trowel-bricks"></i>
+                    </div>
+                    <h4 class="text-xl font-bold">Civil Engineering</h4>
+                </div>
+                <ul class="space-y-3 text-sm text-brandTextGray">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Industrial Factory Construction</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Residential & Modern House Building</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Concrete Structures (RCC Tanks)</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Roads & Infrastructure Drainage</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Retaining Walls & Earth Works</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Block Paving & Land Leveling</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-brandOrange mt-1 mr-3 flex-shrink-0"></i> Floor Tiling & Interior Finishing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAJOR PROJECTS SECTION -->
+    <section id="projects" class="py-20 bg-brandCard/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Our Track Record</h2>
+                <h3 class="text-3xl font-extrabold mt-2">Major Projects Carried Out</h3>
+                <div class="w-16 h-1 bg-brandOrange mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800 group">
+                    <div class="h-48 bg-gray-900 flex items-center justify-center text-gray-700 text-4xl relative">
+                        <i class="fa-solid fa-industry"></i>
+                        <span class="absolute top-4 left-4 bg-brandOrange/20 text-brandOrange text-xs px-2 py-1 rounded uppercase font-semibold">Automation</span>
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brandOrange transition">Kalawewa Gate System</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            Complete execution and handling of the advanced gate controlling system operations with total technical alignment.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="project-badge">Hydraulics / Civil</span>
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Daduruoya Project">
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800 group">
+                    <div class="h-48 bg-gray-900 flex items-center justify-center text-gray-700 text-4xl relative">
+                        <i class="fa-solid fa-water-ladder"></i>
+                        <span class="absolute top-4 left-4 bg-brandOrange/20 text-brandOrange text-xs px-2 py-1 rounded uppercase font-semibold">Hydraulics / Civil</span>
                     </div>
-                    <div class="project-info">
-                        <h4>Daduruoya Project[cite: 1]</h4>
-                        <p>Infrastructure development layout and multi-disciplinary engineering operations[cite: 1].</p>
+                    <div class="p-6 space-y-2">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brandOrange transition">Daduruoya Project</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            Infrastructure development layout and complex multi-disciplinary engineering field operations framework.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="project-badge">Wind Power</span>
-                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" alt="Siemens Gamesa">
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800 group">
+                    <div class="h-48 bg-gray-900 flex items-center justify-center text-gray-700 text-4xl relative">
+                        <i class="fa-solid fa-wind"></i>
+                        <span class="absolute top-4 left-4 bg-brandOrange/20 text-brandOrange text-xs px-2 py-1 rounded uppercase font-semibold">Wind Power</span>
                     </div>
-                    <div class="project-info">
-                        <h4>Siemens Gamesa[cite: 1]</h4>
-                        <p>20MW Wind Power Plant (8 Turbines) heavy electrical and structural maintenance work in Jaffna[cite: 1].</p>
+                    <div class="p-6 space-y-2">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brandOrange transition">Siemens Gamesa</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            20MW Wind Power Plant (8 Turbines) heavy electrical and structural structural maintenance work execution in Jaffna.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="project-badge">Solar Systems</span>
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80" alt="Solar Power Plant">
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800 group">
+                    <div class="h-48 bg-gray-900 flex items-center justify-center text-gray-700 text-4xl relative">
+                        <i class="fa-solid fa-solar-panel"></i>
+                        <span class="absolute top-4 left-4 bg-brandOrange/20 text-brandOrange text-xs px-2 py-1 rounded uppercase font-semibold">Solar Power</span>
                     </div>
-                    <div class="project-info">
-                        <h4>Solar Power Plant[cite: 1]</h4>
-                        <p>Ground surface structural deployments and specialized commercial grid maintenance in Hambantota[cite: 1].</p>
+                    <div class="p-6 space-y-2">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brandOrange transition">Solar Power Plant</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            Ground surface structural deployment, maintenance framework, and grid-tied operational testing in Hambantota.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="project-badge">Industrial Electrical</span>
-                        <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=600&q=80" alt="Naladanavi Wind Plant">
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800 group">
+                    <div class="h-48 bg-gray-900 flex items-center justify-center text-gray-700 text-4xl relative">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                        <span class="absolute top-4 left-4 bg-brandOrange/20 text-brandOrange text-xs px-2 py-1 rounded uppercase font-semibold">Wind Power</span>
                     </div>
-                    <div class="project-info">
-                        <h4>Naladanavi Pvt Ltd[cite: 1]</h4>
-                        <p>Wind power plant electrical layouts and periodic complex technical component maintenance in Puttlam[cite: 1].</p>
+                    <div class="p-6 space-y-2">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brandOrange transition">Naladanavi Pvt Ltd</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            Comprehensive wind power plant distribution management and structural engineering maintenance tasks in Puttlam.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="project-badge">Mechanical Maintenance</span>
-                        <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=600&q=80" alt="NMK Refinery">
+                <div class="bg-brandCard rounded-xl overflow-hidden border border-gray-800 group">
+                    <div class="h-48 bg-gray-900 flex items-center justify-center text-gray-700 text-4xl relative">
+                        <i class="fa-solid fa-oil-well"></i>
+                        <span class="absolute top-4 left-4 bg-brandOrange/20 text-brandOrange text-xs px-2 py-1 rounded uppercase font-semibold">Mechanical Maintenance</span>
                     </div>
-                    <div class="project-info">
-                        <h4>NMK Pvt Ltd[cite: 1]</h4>
-                        <p>Heavy machinery moving, setup, and precision industrial Oil Refinery Plant operations in Puttlam[cite: 1].</p>
+                    <div class="p-6 space-y-2">
+                        <h4 class="text-lg font-bold text-white group-hover:text-brandOrange transition">NMK Pvt Ltd</h4>
+                        <p class="text-sm text-brandTextGray leading-relaxed">
+                            Industrial Oil Refinery Plant precision engineering setup, leveling, and ongoing maintenance lifecycle support.
+                        </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- CLIENTS SECTION -->
-    <section class="clients-section">
-        <div class="container">
-            <h2 class="section-title">Trusted <span>Clients Base</span></h2>
-            <div class="client-tags reveal">
-                <div class="client-tag">Siemens Gamesa[cite: 1]</div>
-                <div class="client-tag">Adamjee & Lukmanjee[cite: 1]</div>
-                <div class="client-tag">Sirio Ltd[cite: 1]</div>
-                <div class="client-tag">Vario Systems[cite: 1]</div>
-                <div class="client-tag">NMK Holdings[cite: 1]</div>
-                <div class="client-tag">Lily Aqua[cite: 1]</div>
-                <div class="client-tag">Wasser Kraft Tech[cite: 1]</div>
-                <div class="client-tag">LTL Projects[cite: 1]</div>
-                <div class="client-tag">Coats Thread Exports[cite: 1]</div>
-                <div class="client-tag">Orient Construction[cite: 1]</div>
-                <div class="client-tag">Naladanavi (Pvt) Ltd[cite: 1]</div>
-                <div class="client-tag">Mirachel Hospital[cite: 1]</div>
-                <div class="client-tag">Total Dental Care[cite: 1]</div>
-                <div class="client-tag">Coco Land[cite: 1]</div>
-            </div>
+    <!-- TRUSTED CLIENTS BASE -->
+    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h3 class="text-2xl font-bold">Trusted <span class="text-brandOrange">Clients</span> Base</h3>
+            <div class="w-12 h-0.5 bg-brandOrange mx-auto mt-3 rounded"></div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Siemens Gamesa (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Adamjee & Lukmanjee (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Sirio Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Vario Systems (Sub Contractor)</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">NMK Holdings (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Lily Aqua (Private) Limited</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Wasser Kraft Tech Lanka (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Coats Thread Exports (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Orient Construction (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">LTL Projects (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Naladanavi (Pvt) Ltd</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Mirachel Hospital</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Total Dental Care Hospital</span>
+            <span class="bg-brandCard border border-gray-800 text-sm font-medium px-4 py-2 rounded-full text-gray-300">Coco Land (Pvt) Ltd</span>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In <span>Touch</span></h2>
-            <div class="contact-grid">
-                <div class="contact-info-cards reveal">
-                    <div class="contact-card">
-                        <i class="fa-solid fa-phone"></i>
+    <!-- CONTACT / GET IN TOUCH SECTION -->
+    <section id="contact" class="py-20 bg-brandCard/30 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div class="lg:col-span-6 space-y-6">
+                <div>
+                    <h2 class="text-sm font-semibold uppercase tracking-widest text-brandOrange">Contact Us</h2>
+                    <h3 class="text-3xl font-extrabold mt-2">Get In Touch</h3>
+                    <div class="w-12 h-1 bg-brandOrange mt-3 rounded"></div>
+                </div>
+                <p class="text-brandTextGray leading-relaxed">
+                    For industrial layout estimates, safety technical engineering schedules, or structural panel operations, please connect via our direct corporate details listed here.
+                </p>
+                <div class="space-y-4 pt-2">
+                    <!-- Hotlines -->
+                    <div class="flex items-center space-x-4 bg-brandCard p-4 rounded-xl border border-gray-800/80">
+                        <div class="text-brandOrange text-xl w-10 h-10 bg-brandOrange/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
                         <div>
-                            <h5>Hotlines[cite: 1]</h5>
-                            <p>074-414058 / 074-414059 / 074-414060[cite: 1]</p>
+                            <span class="block text-xs uppercase tracking-wider text-gray-400">Hotlines</span>
+                            <span class="text-sm font-semibold text-white">074-414058 / 074-414059 / 074-414060</span>
                         </div>
                     </div>
-                    <div class="contact-card">
-                        <i class="fa-solid fa-envelope"></i>
+                    <!-- Email -->
+                    <div class="flex items-center space-x-4 bg-brandCard p-4 rounded-xl border border-gray-800/80">
+                        <div class="text-brandOrange text-xl w-10 h-10 bg-brandOrange/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div>
                         <div>
-                            <h5>Email Address[cite: 1]</h5>
-                            <p>reengineering2020@gmail.com[cite: 1]</p>
+                            <span class="block text-xs uppercase tracking-wider text-gray-400">Email Address</span>
+                            <span class="text-sm font-semibold text-white">reengineering2020@gmail.com</span>
                         </div>
                     </div>
-                    <div class="contact-card">
-                        <i class="fa-solid fa-location-dot"></i>
+                    <!-- Address -->
+                    <div class="flex items-center space-x-4 bg-brandCard p-4 rounded-xl border border-gray-800/80">
+                        <div class="text-brandOrange text-xl w-10 h-10 bg-brandOrange/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></div>
                         <div>
-                            <h5>Office Address[cite: 1]</h5>
-                            <p>Alugoda Road, Kandegedra, Dewalegama, Kegalle[cite: 1]</p>
+                            <span class="block text-xs uppercase tracking-wider text-gray-400">Office Address</span>
+                            <span class="text-sm font-semibold text-white">Alugoda Road, Kandegedra, Dewalegama, Kegalle.</span>
                         </div>
                     </div>
-                    <div class="contact-card">
-                        <i class="fa-solid fa-building-columns"></i>
+                    <!-- Registration -->
+                    <div class="flex items-center space-x-4 bg-brandCard p-4 rounded-xl border border-gray-800/80">
+                        <div class="text-brandOrange text-xl w-10 h-10 bg-brandOrange/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-id-card"></i></div>
                         <div>
-                            <h5>Bank & Registration[cite: 1]</h5>
-                            <p>Sampath Bank PLC | Reg: කෑ/ග/ 002919[cite: 1]</p>
+                            <span class="block text-xs uppercase tracking-wider text-gray-400">Bank & Registration</span>
+                            <span class="text-sm font-semibold text-white">Sampath Bank PLC | Reg No: 5/5/002919</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="contact-info-cards reveal" style="justify-content: center; text-align: center;">
-                    <p style="color: var(--text-muted); line-height: 2;">For industrial layout estimates, safety technical engineering schedules, or structural panel operations, please connect via our direct corporate details[cite: 1].</p>
+            </div>
+
+            <!-- Form Placeholder or Structural Card -->
+            <div class="lg:col-span-6 flex flex-col justify-center">
+                <div class="bg-brandCard border border-gray-800 p-8 rounded-2xl space-y-6 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 text-9xl text-gray-800/10 pointer-events-none">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <h4 class="text-xl font-bold tracking-tight">Send a Quick Message</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-1">Your Name</label>
+                            <input type="text" class="w-full bg-brandDark border border-gray-800 rounded-lg h-10 px-3 text-sm focus:outline-none focus:border-brandOrange text-white" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-1">Email Address</label>
+                            <input type="email" class="w-full bg-brandDark border border-gray-800 rounded-lg h-10 px-3 text-sm focus:outline-none focus:border-brandOrange text-white" placeholder="example@domain.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-1">Message</label>
+                            <textarea rows="4" class="w-full bg-brandDark border border-gray-800 rounded-lg p-3 text-sm focus:outline-none focus:border-brandOrange text-white resize-none" placeholder="Type your requirements..."></textarea>
+                        </div>
+                        <button class="w-full h-11 bg-brandOrange hover:bg-orange-600 text-white font-semibold rounded-lg text-sm transition">Submit Inquiry</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Rashani Electrical & Engineering. All Rights Reserved.</p>
-        </div>
+    <footer class="bg-brandDark border-t border-gray-900 py-6 text-center text-xs text-gray-500 tracking-wide">
+        <p>&copy; 2026 Rashani Electrical & Engineering. All Rights Reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR SCROLL REVEAL & COUNTERS -->
+    <!-- Responsive Mobile Menu Script -->
     <script>
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealOnScroll = () => {
-            for (let i = 0; i < revealElements.length; i++) {
-                let windowHeight = window.innerHeight;
-                let elementTop = revealElements[i].getBoundingClientRect().top;
-                let elementVisible = 120;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    revealElements[i].classList.add('active');
-                }
-            }
-        };
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        // Counter Animation
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const speed = 100;
-            
-            const updateCount = () => {
-                const initial = +counter.innerText;
-                const inc = target / speed;
-                
-                if (initial < target) {
-                    counter.innerText = Math.ceil(initial + inc);
-                    setTimeout(updateCount, 25);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            
-            let observer = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) {
-                    updateCount();
-                    observer.disconnect();
-                }
+        // Close menu on link click
+        const navLinks = mobileMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
-            observer.observe(counter);
         });
     </script>
 </body>
