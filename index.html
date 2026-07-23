@@ -146,26 +146,24 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden">
 
-  
-
   <!-- MAIN NAVIGATION -->
   <nav class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-200 z-50 shadow-sm transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+      
+      <!-- Brand Logo -->
       <a href="#home" class="flex items-center space-x-3 group">
-      <!-- Original High-Res Rashani Logo Image (No Text) -->
-<a href="#home" class="flex items-center space-x-3 group">
-  <img 
-    src="images/logo-icon.jpg" 
-    alt="Rashani Electrical & Engineering Logo" 
-    class="w-12 h-12 object-contain group-hover:scale-105 transition-transform duration-300"
-  />
-  <div>
-    <span class="text-lg font-extrabold tracking-wider text-slate-900 block leading-tight group-hover:text-brandBlue transition">RASHANI</span>
-    <span class="text-[10px] text-brandOrange font-bold tracking-widest block uppercase">Electrical & Engineering</span>
-  </div>
-</a>
+        <img 
+          src="images/logo-icon.jpg" 
+          alt="Rashani Electrical & Engineering Logo" 
+          class="w-10 h-10 sm:w-12 sm:h-12 object-contain group-hover:scale-105 transition-transform duration-300"
+        />
+        <div>
+          <span class="text-base sm:text-lg font-extrabold tracking-wider text-slate-900 block leading-tight group-hover:text-brandBlue transition">RASHANI</span>
+          <span class="text-[9px] sm:text-[10px] text-brandOrange font-bold tracking-widest block uppercase">Electrical & Engineering</span>
+        </div>
+      </a>
 
-      <!-- Desktop Links -->
+      <!-- Desktop Links (Show on md and above) -->
       <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
         <a href="#home" class="hover:text-brandBlue transition">Home</a>
         <a href="#about" class="hover:text-brandBlue transition">About Us</a>
@@ -175,7 +173,26 @@
         <a href="#contact" class="hover:text-brandBlue transition">Contact Us</a>
       </div>
 
-      <a href="#contact" class="hidden sm:inline-block bg-brandOrange hover:bg-orange-600 text-white text-xs uppercase font-bold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 animate-pulse-orange">
+      <a href="#contact" class="hidden md:inline-block bg-brandOrange hover:bg-orange-600 text-white text-xs uppercase font-bold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 animate-pulse-orange">
+        Get A Quote
+      </a>
+
+      <!-- Mobile Hamburger Button (Iri 3 Button - Show only on Mobile) -->
+      <button id="mobileMenuBtn" class="md:hidden text-slate-800 focus:outline-none p-2 rounded-md hover:bg-slate-100 transition">
+        <i id="menuIcon" class="fa-solid fa-bars text-2xl"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-200 px-6 py-4 flex-col space-y-3 text-sm font-semibold text-slate-700 shadow-xl">
+      <a href="#home" class="mobile-link hover:text-brandBlue transition py-1">Home</a>
+      <a href="#about" class="mobile-link hover:text-brandBlue transition py-1">About Us</a>
+      <a href="#services" class="mobile-link hover:text-brandBlue transition py-1">Services</a>
+      <a href="#projects" class="mobile-link hover:text-brandBlue transition py-1">Projects</a>
+      <a href="#clients" class="mobile-link hover:text-brandBlue transition py-1">Clients</a>
+      <a href="#contact" class="mobile-link hover:text-brandBlue transition py-1">Contact Us</a>
+      <a href="#contact" class="mobile-link inline-block text-center bg-brandOrange hover:bg-orange-600 text-white text-xs uppercase font-bold py-2.5 rounded-lg shadow-md transition mt-2">
         Get A Quote
       </a>
     </div>
@@ -183,12 +200,8 @@
 
   <!-- HERO SECTION -->
   <section id="home" class="relative pt-16 pb-24 px-6 bg-slate-900 text-white overflow-hidden">
-    
-    <!-- Dynamic Ambient Background Blobs -->
     <div class="absolute top-10 left-10 w-96 h-96 bg-brandBlue/30 rounded-full filter blur-3xl animate-float pointer-events-none"></div>
     <div class="absolute bottom-10 right-10 w-96 h-96 bg-brandOrange/20 rounded-full filter blur-3xl animate-float-reverse pointer-events-none"></div>
-    
-    <!-- Interactive Electrical Nodes Canvas -->
     <canvas id="heroCanvas" class="absolute inset-0 opacity-25 pointer-events-none"></canvas>
 
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
@@ -213,17 +226,13 @@
         </div>
       </div>
 
-      <!-- Main Image Showcase -->
       <div class="relative group reveal">
         <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandOrange rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000"></div>
         <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 animate-float aspect-[4/3]">
           <img src="images/hero-electrical-panel.jpg" alt="Rashani Engineering Operations" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/30 to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
-            <div>
-              
-              
-            </div>
+            <div></div>
             <div class="text-brandOrange text-2xl animate-spin-slow">
               <i class="fa-solid fa-gear"></i>
             </div>
@@ -259,7 +268,6 @@
       </div>
     </div>
 
-    <!-- Vision & Mission -->
     <div class="grid md:grid-cols-2 gap-8 reveal">
       <div class="bg-white border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
         <div class="w-12 h-12 bg-blue-100 text-brandBlue rounded-lg flex items-center justify-center text-xl font-bold mb-4 animate-bounce">
@@ -294,7 +302,6 @@
 
       <div class="grid md:grid-cols-3 gap-8">
         
-        <!-- Electrical Scope -->
         <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-brandBlue/50">
           <div>
             <div class="service-icon text-brandBlue text-3xl mb-4 inline-block">
@@ -316,7 +323,6 @@
           </div>
         </div>
 
-        <!-- Mechanical Scope -->
         <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-brandOrange/50">
           <div>
             <div class="service-icon text-brandOrange text-3xl mb-4 inline-block">
@@ -338,7 +344,6 @@
           </div>
         </div>
 
-        <!-- Civil Scope -->
         <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-blue-500/50">
           <div>
             <div class="service-icon text-blue-600 text-3xl mb-4 inline-block">
@@ -373,8 +378,6 @@
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Project Cards -->
       <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group flex flex-col justify-between">
         <div class="overflow-hidden aspect-video w-full bg-slate-100">
           <img src="images/project-kalawewa.jpg" alt="Kalawewa Project" class="h-full w-full object-cover object-center group-hover:scale-110 transition duration-500">
@@ -452,7 +455,6 @@
           <p class="text-slate-600 text-xs mt-2">Oil Refinery Plant mechanical and electrical servicing – Puttalam.</p>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -465,7 +467,6 @@
       </div>
     </div>
 
-    <!-- Infinite Marquee Track -->
     <div class="marquee-container py-4">
       <div class="marquee-content">
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
@@ -558,20 +559,21 @@
         </div>
       </div>
 
+      <!-- Contact Inquiry Form with Working WhatsApp Action -->
       <div class="bg-slate-800/80 border border-slate-700 p-8 rounded-2xl shadow-2xl backdrop-blur-md">
         <h4 class="text-lg font-bold text-white mb-4">Send an Inquiry</h4>
-        <form class="space-y-4">
+        <form id="whatsappForm" class="space-y-4">
           <div>
-            <input type="text" placeholder="Your Name" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brandOrange transition">
+            <input id="userName" type="text" placeholder="Your Name" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brandOrange transition">
           </div>
           <div>
-            <input type="email" placeholder="Your Email / Phone Number" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brandOrange transition">
+            <input id="userContact" type="text" placeholder="Your Email / Phone Number" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brandOrange transition">
           </div>
           <div>
-            <textarea rows="4" placeholder="Your Requirement / Message" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brandOrange transition"></textarea>
+            <textarea id="userMsg" rows="4" placeholder="Your Requirement / Message" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brandOrange transition"></textarea>
           </div>
-          <button type="button" class="w-full bg-brandOrange hover:bg-orange-600 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-orange-500/30 transition text-sm transform hover:-translate-y-0.5 animate-pulse-orange">
-            Send Message
+          <button type="submit" class="w-full bg-brandOrange hover:bg-orange-600 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-orange-500/30 transition text-sm transform hover:-translate-y-0.5 animate-pulse-orange flex items-center justify-center gap-2">
+            <i class="fa-brands fa-whatsapp text-lg"></i> Send Message
           </button>
         </form>
       </div>
@@ -583,15 +585,65 @@
     </div>
   </footer>
 
-  <!-- JS: Dynamic Scroll Animations & Canvas Background -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    // 1. Dynamic Scroll Reveal Observer Script (Triggers on re-scroll)
+    // 1. Mobile Menu Toggle Logic
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('flex');
+        
+        if (mobileMenu.classList.contains('hidden')) {
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars');
+        } else {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-xmark');
+        }
+      });
+
+      // Hide menu when link clicked
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('flex');
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars');
+        });
+      });
+    }
+
+    // 2. WhatsApp Direct Inquiry Submission
+    const whatsappForm = document.getElementById('whatsappForm');
+    if (whatsappForm) {
+      whatsappForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('userName').value.trim();
+        const contact = document.getElementById('userContact').value.trim();
+        const msg = document.getElementById('userMsg').value.trim();
+
+        const phoneNumber = "9474414058"; // Company Hotline
+
+        const textMessage = `Hello Rashani Electrical & Engineering,%0A%0A*New Inquiry Details:*%0A• *Name:* ${encodeURIComponent(name)}%0A• *Contact:* ${encodeURIComponent(contact)}%0A• *Message:* ${encodeURIComponent(msg)}`;
+
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${textMessage}`;
+        
+        window.open(whatsappUrl, '_blank');
+      });
+    }
+
+    // 3. Dynamic Scroll Reveal Observer Script
     document.addEventListener("DOMContentLoaded", function () {
       const reveals = document.querySelectorAll(".reveal");
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          // Dynamic toggle based on visibility threshold
           entry.target.classList.toggle("active", entry.isIntersecting);
         });
       }, {
@@ -604,7 +656,7 @@
       });
     });
 
-    // 2. Hero Interactive Network Canvas
+    // 4. Hero Interactive Network Canvas
     const canvas = document.getElementById('heroCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
