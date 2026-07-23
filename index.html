@@ -116,7 +116,7 @@
     .reveal {
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform, opacity;
     }
 
@@ -161,14 +161,19 @@
 
   <!-- MAIN NAVIGATION -->
   <nav class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-200 z-50 shadow-sm transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
       <a href="#home" class="flex items-center space-x-3 group">
-        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center font-bold text-brandBlue shadow-inner group-hover:rotate-12 transition-transform duration-300">
-          RE
+        <!-- Enhanced Vector Brand Logo -->
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brandBlue to-slate-900 flex items-center justify-center p-2 shadow-md group-hover:scale-105 transition-transform duration-300">
+          <svg viewBox="0 0 100 100" class="w-full h-full text-white fill-current">
+            <path d="M20 20 H55 C70 20 80 28 80 40 C80 50 72 57 60 59 L82 85 H64 L46 60 H36 V85 H20 V20 Z M36 34 V48 H52 C60 48 64 45 64 41 C64 37 60 34 52 34 H36 Z" fill="#0052A5"/>
+            <path d="M45 20 H80 L72 32 H45 Z" fill="#FF7A00"/>
+            <circle cx="75" cy="75" r="8" fill="#FF7A00"/>
+          </svg>
         </div>
         <div>
-          <span class="text-lg font-bold tracking-wider text-slate-900 block leading-tight group-hover:text-brandBlue transition">RASHANI</span>
-          <span class="text-xs text-brandOrange font-semibold tracking-widest block uppercase">Electrical & Engineering</span>
+          <span class="text-lg font-extrabold tracking-wider text-slate-900 block leading-tight group-hover:text-brandBlue transition">RASHANI</span>
+          <span class="text-[10px] text-brandOrange font-bold tracking-widest block uppercase">Electrical & Engineering</span>
         </div>
       </a>
 
@@ -223,9 +228,9 @@
       <!-- Main Image Showcase -->
       <div class="relative group reveal">
         <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandOrange rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000"></div>
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 animate-float">
-          <img src="images/hero-electrical-panel.jpg" alt="Rashani Engineering Operations" class="w-full h-[380px] object-cover group-hover:scale-105 transition duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent"></div>
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 animate-float aspect-[4/3]">
+          <img src="images/hero-electrical-panel.jpg" alt="Rashani Engineering Operations" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/30 to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
             <div>
               <span class="bg-brandOrange text-white text-xs font-bold px-3 py-1 rounded shadow animate-pulse">High Quality Output</span>
@@ -257,11 +262,11 @@
       </div>
 
       <div class="grid grid-cols-2 gap-4 relative">
-        <div class="animate-float">
-          <img src="images/about-work-1.jpg" alt="Technical Team" class="rounded-xl border border-slate-200 shadow-md object-cover h-48 w-full hover:scale-105 transition duration-500">
+        <div class="animate-float aspect-[4/3] rounded-xl overflow-hidden border border-slate-200 shadow-md">
+          <img src="images/about-work-1.jpg" alt="Technical Team" class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
         </div>
-        <div class="animate-float-reverse mt-6">
-          <img src="images/about-work-2.jpg" alt="On-site Works" class="rounded-xl border border-slate-200 shadow-md object-cover h-48 w-full hover:scale-105 transition duration-500">
+        <div class="animate-float-reverse mt-6 aspect-[4/3] rounded-xl overflow-hidden border border-slate-200 shadow-md">
+          <img src="images/about-work-2.jpg" alt="On-site Works" class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
         </div>
       </div>
     </div>
@@ -290,7 +295,7 @@
     </div>
   </section>
 
-  <!-- SERVICES SECTION (FIXED CLICK BUG & ADDED SMOOTH SCROLL REVEAL) -->
+  <!-- SERVICES SECTION -->
   <section id="services" class="py-20 px-6 bg-slate-100 border-y border-slate-200 relative">
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-16 reveal">
@@ -318,8 +323,8 @@
               <li>CCTV Surveillance & Network Systems</li>
             </ul>
           </div>
-          <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-electrical.jpg" alt="Electrical Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
+          <div class="overflow-hidden rounded-lg aspect-video w-full bg-slate-100">
+            <img src="images/service-electrical.jpg" alt="Electrical Service" class="h-full w-full object-cover object-center hover:scale-110 transition duration-500">
           </div>
         </div>
 
@@ -340,8 +345,8 @@
               <li>GI Duct Work Fabrication & Installation</li>
             </ul>
           </div>
-          <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-mechanical.jpg" alt="Mechanical Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
+          <div class="overflow-hidden rounded-lg aspect-video w-full bg-slate-100">
+            <img src="images/service-mechanical.jpg" alt="Mechanical Service" class="h-full w-full object-cover object-center hover:scale-110 transition duration-500">
           </div>
         </div>
 
@@ -362,8 +367,8 @@
               <li>High-Quality Floor Tiling & Finishing</li>
             </ul>
           </div>
-          <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-civil.jpg" alt="Civil Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
+          <div class="overflow-hidden rounded-lg aspect-video w-full bg-slate-100">
+            <img src="images/service-civil.jpg" alt="Civil Service" class="h-full w-full object-cover object-center hover:scale-110 transition duration-500">
           </div>
         </div>
 
@@ -382,69 +387,81 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       
       <!-- Project Cards -->
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-kalawewa.jpg" alt="Kalawewa Project" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group flex flex-col justify-between">
+        <div class="overflow-hidden aspect-video w-full bg-slate-100">
+          <img src="images/project-kalawewa.jpg" alt="Kalawewa Project" class="h-full w-full object-cover object-center group-hover:scale-110 transition duration-500">
         </div>
-        <div class="p-5">
-          <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Water Resource</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandOrange transition">Kalawewa Gate Controlling System</h4>
-          <p class="text-slate-600 text-xs">Electrical & Control Systems installation for gate controlling infrastructure.</p>
-        </div>
-      </div>
-
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-daduruoya.jpg" alt="Daduruoya Project" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
-        </div>
-        <div class="p-5">
-          <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Infrastructure</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandOrange transition">Daduruoya Project</h4>
-          <p class="text-slate-600 text-xs">Heavy mechanical and civil construction & engineering works.</p>
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Water Resource</span>
+            <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandOrange transition">Kalawewa Gate Controlling System</h4>
+          </div>
+          <p class="text-slate-600 text-xs mt-2">Electrical & Control Systems installation for gate controlling infrastructure.</p>
         </div>
       </div>
 
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-wind.jpg" alt="Siemens Gamesa Jaffna" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group flex flex-col justify-between">
+        <div class="overflow-hidden aspect-video w-full bg-slate-100">
+          <img src="images/project-daduruoya.jpg" alt="Daduruoya Project" class="h-full w-full object-cover object-center group-hover:scale-110 transition duration-500">
         </div>
-        <div class="p-5">
-          <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Renewable Energy</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandBlue transition">Siemens Gamesa Wind Power Plant</h4>
-          <p class="text-slate-600 text-xs">20MW, 8 Turbines Maintenance Work – Jaffna.</p>
-        </div>
-      </div>
-
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-solar.jpg" alt="Hambantota Solar" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
-        </div>
-        <div class="p-5">
-          <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Solar Power</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandBlue transition">Ground Surface Solar Power Plant</h4>
-          <p class="text-slate-600 text-xs">Full ground surface maintenance & technical servicing – Hambantota.</p>
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Infrastructure</span>
+            <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandOrange transition">Daduruoya Project</h4>
+          </div>
+          <p class="text-slate-600 text-xs mt-2">Heavy mechanical and civil construction & engineering works.</p>
         </div>
       </div>
 
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-motor.jpg" alt="Naladanavi Wind Power" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group flex flex-col justify-between">
+        <div class="overflow-hidden aspect-video w-full bg-slate-100">
+          <img src="images/project-wind.jpg" alt="Siemens Gamesa Jaffna" class="h-full w-full object-cover object-center group-hover:scale-110 transition duration-500">
         </div>
-        <div class="p-5">
-          <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Wind Energy</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandBlue transition">Naladanavi Wind Power Plant</h4>
-          <p class="text-slate-600 text-xs">Wind power plant technical & motor rewinding maintenance work – Puttalam.</p>
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Renewable Energy</span>
+            <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandBlue transition">Siemens Gamesa Wind Power Plant</h4>
+          </div>
+          <p class="text-slate-600 text-xs mt-2">20MW, 8 Turbines Maintenance Work – Jaffna.</p>
         </div>
       </div>
 
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-refinery.jpg" alt="NMK Oil Refinery" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group flex flex-col justify-between">
+        <div class="overflow-hidden aspect-video w-full bg-slate-100">
+          <img src="images/project-solar.jpg" alt="Hambantota Solar" class="h-full w-full object-cover object-center group-hover:scale-110 transition duration-500">
         </div>
-        <div class="p-5">
-          <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Refinery</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandOrange transition">NMK Oil Refinery Plant</h4>
-          <p class="text-slate-600 text-xs">Oil Refinery Plant mechanical and electrical servicing – Puttalam.</p>
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Solar Power</span>
+            <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandBlue transition">Ground Surface Solar Power Plant</h4>
+          </div>
+          <p class="text-slate-600 text-xs mt-2">Full ground surface maintenance & technical servicing – Hambantota.</p>
+        </div>
+      </div>
+
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group flex flex-col justify-between">
+        <div class="overflow-hidden aspect-video w-full bg-slate-100">
+          <img src="images/project-motor.jpg" alt="Naladanavi Wind Power" class="h-full w-full object-cover object-center group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Wind Energy</span>
+            <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandBlue transition">Naladanavi Wind Power Plant</h4>
+          </div>
+          <p class="text-slate-600 text-xs mt-2">Wind power plant technical & motor rewinding maintenance work – Puttalam.</p>
+        </div>
+      </div>
+
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group flex flex-col justify-between">
+        <div class="overflow-hidden aspect-video w-full bg-slate-100">
+          <img src="images/project-refinery.jpg" alt="NMK Oil Refinery" class="h-full w-full object-cover object-center group-hover:scale-110 transition duration-500">
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Refinery</span>
+            <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandOrange transition">NMK Oil Refinery Plant</h4>
+          </div>
+          <p class="text-slate-600 text-xs mt-2">Oil Refinery Plant mechanical and electrical servicing – Puttalam.</p>
         </div>
       </div>
 
@@ -464,54 +481,54 @@
     <div class="marquee-container py-4">
       <div class="marquee-content">
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/siemens.png" alt="Siemens Gamesa" class="h-10 object-contain">
+          <img src="logos/siemens.png" alt="Siemens Gamesa" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Siemens Gamesa</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/adamjee.png" alt="Adamjee" class="h-10 object-contain">
+          <img src="logos/adamjee.png" alt="Adamjee" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Adamjee & Lukmanjee</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/sirio.png" alt="Sirio" class="h-10 object-contain">
+          <img src="logos/sirio.png" alt="Sirio" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Sirio Ltd</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/variosystems.png" alt="Vario Systems" class="h-10 object-contain">
+          <img src="logos/variosystems.png" alt="Vario Systems" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Vario Systems</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/nmk.png" alt="NMK" class="h-10 object-contain">
+          <img src="logos/nmk.png" alt="NMK" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">NMK Holdings</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/coats.png" alt="Coats" class="h-10 object-contain">
+          <img src="logos/coats.png" alt="Coats" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Coats Thread</span>
         </div>
       </div>
 
       <div class="marquee-content" aria-hidden="true">
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/ltl.png" alt="LTL" class="h-10 object-contain">
+          <img src="logos/ltl.png" alt="LTL" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">LTL Projects</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/naladanavi.png" alt="Naladanavi" class="h-10 object-contain">
+          <img src="logos/naladanavi.png" alt="Naladanavi" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Naladanavi</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/orient.png" alt="Orient" class="h-10 object-contain">
+          <img src="logos/orient.png" alt="Orient" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Orient Construction</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/mirachel.png" alt="Mirachel" class="h-10 object-contain">
+          <img src="logos/mirachel.png" alt="Mirachel" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Mirachel Hospital</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/totaldental.png" alt="Total Dental" class="h-10 object-contain">
+          <img src="logos/totaldental.png" alt="Total Dental" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Total Dental Care</span>
         </div>
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/cocoland.png" alt="Coco Land" class="h-10 object-contain">
+          <img src="logos/cocoland.png" alt="Coco Land" class="h-10 w-auto object-contain">
           <span class="text-xs font-semibold text-slate-700">Coco Land</span>
         </div>
       </div>
@@ -578,20 +595,20 @@
     </div>
   </footer>
 
-  <!-- JS: Canvas Background & Scroll Reveal Observer -->
+  <!-- JS: Dynamic Scroll Animations & Canvas Background -->
   <script>
-    // 1. Scroll Reveal Observer Script
+    // 1. Dynamic Scroll Reveal Observer Script (Triggers on re-scroll)
     document.addEventListener("DOMContentLoaded", function () {
       const reveals = document.querySelectorAll(".reveal");
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
+          // Dynamic toggle based on visibility threshold
+          entry.target.classList.toggle("active", entry.isIntersecting);
         });
       }, {
-        threshold: 0.15
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
       });
 
       reveals.forEach((reveal) => {
