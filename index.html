@@ -618,25 +618,28 @@
       });
     }
 
-    // 2. WhatsApp Direct Inquiry Submission
-    const whatsappForm = document.getElementById('whatsappForm');
-    if (whatsappForm) {
-      whatsappForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('userName').value.trim();
-        const contact = document.getElementById('userContact').value.trim();
-        const msg = document.getElementById('userMsg').value.trim();
+ // 2. WhatsApp Direct Inquiry Submission
+const whatsappForm = document.getElementById('whatsappForm');
+if (whatsappForm) {
+  whatsappForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('userName').value.trim();
+    const contact = document.getElementById('userContact').value.trim();
+    const msg = document.getElementById('userMsg').value.trim();
 
-        const phoneNumber = "94744140060"; // Company Hotline
+    const phoneNumber = "94744140060"; // Company Hotline
 
-        const textMessage = `Hello Rashani Electrical & Engineering,%0A%0A*New Inquiry Details:*%0A• *Name:* ${encodeURIComponent(name)}%0A• *Contact:* ${encodeURIComponent(contact)}%0A• *Message:* ${encodeURIComponent(msg)}`;
+    // Message එක plain text එකක් විදිහට සාදාගැනීම
+    const fullMessage = `Hello Rashani Electrical & Engineering,\n\n*New Inquiry Details:*\n• *Name:* ${name}\n• *Contact:* ${contact}\n• *Message:* ${msg}`;
 
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${textMessage}`;
-        
-        window.open(whatsappUrl, '_blank');
-      });
-    }
+    // මුළු message එකම එකපාර URL එකට ගැලපෙන සේ encode කිරීම
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fullMessage)}`;
+    
+    window.open(whatsappUrl, '_blank');
+  });
+}
+
 
     // 3. Dynamic Scroll Reveal Observer Script
     document.addEventListener("DOMContentLoaded", function () {
