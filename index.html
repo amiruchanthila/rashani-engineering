@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rashani Electrical & Engineering | Engineering Solutions Sri Lanka</title>
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <script>
     tailwind.config = {
       theme: {
@@ -23,27 +25,7 @@
   </script>
   
   <style>
-    /* Continuous Keyframe Animations */
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(2deg); }
-    }
-
-    @keyframes floatReverse {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(10px) rotate(-2deg); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 15px rgba(255, 122, 0, 0.4); }
-      50% { box-shadow: 0 0 28px rgba(255, 122, 0, 0.8); }
-    }
-
-    @keyframes pulseGlowBlue {
-      0%, 100% { box-shadow: 0 0 12px rgba(0, 82, 165, 0.3); }
-      50% { box-shadow: 0 0 25px rgba(0, 82, 165, 0.7); }
-    }
-
+    /* Marquee Track Keyframe */
     @keyframes marquee {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -58,23 +40,6 @@
     @keyframes slowSpin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
-    }
-
-    /* Animation Classes */
-    .animate-float {
-      animation: floatSlow 6s ease-in-out infinite;
-    }
-
-    .animate-float-reverse {
-      animation: floatReverse 7s ease-in-out infinite;
-    }
-
-    .animate-pulse-orange {
-      animation: pulseGlow 2.5s infinite;
-    }
-
-    .animate-pulse-blue {
-      animation: pulseGlowBlue 3s infinite;
     }
 
     .animate-spin-slow {
@@ -103,7 +68,7 @@
       animation-play-state: paused;
     }
 
-    /* Gradient Motion Text & Background */
+    /* Gradient Motion Text */
     .animated-gradient-text {
       background: linear-gradient(-45deg, #0052A5, #FF7A00, #0284c7, #f97316);
       background-size: 300% 300%;
@@ -112,36 +77,24 @@
       animation: gradientShift 6s ease infinite;
     }
 
-    /* Scroll Reveal Dynamic Classes */
-    .reveal {
+    /* SCROLL ANIMATION CLASSES (Intersection Observer Triggered) */
+    .reveal-element {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, opacity;
+      transform: translateY(35px) scale(0.98);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
     }
 
-    .reveal.active {
+    .reveal-element.active {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
-    /* Fixed smooth card hover without click-glitch */
-    .service-card {
-      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-      user-select: none;
-    }
-
-    .service-card:hover {
-      transform: translateY(-8px);
-    }
-
-    .service-icon {
-      transition: transform 0.5s ease-out;
-    }
-
-    .service-card:hover .service-icon {
-      transform: scale(1.2) rotate(8deg);
-    }
+    /* Stagger Delays for Grid Items */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden">
@@ -151,7 +104,7 @@
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center space-x-6">
         <span><i class="fa-solid fa-phone text-brandOrange mr-1.5 animate-pulse"></i> 074-414058 / 074-414059 / 074-414060</span>
-        <span><i class="fa-solid fa-envelope text-brandOrange mr-1.5"></i> reengineering2020@gmail.com</span>
+        <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-brandOrange mr-1.5"></i> reengineering2020@gmail.com</span>
       </div>
       <div>
         <span class="text-slate-400"><i class="fa-solid fa-certificate text-brandOrange/80 mr-1"></i> Reg No: 5/5/002919 | Est. 2017</span>
@@ -160,15 +113,19 @@
   </div>
 
   <!-- MAIN NAVIGATION -->
-  <nav class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-200 z-50 shadow-sm transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+  <nav class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-200 z-50 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center">
+      
+      <!-- BRAND LOGO -->
       <a href="#home" class="flex items-center space-x-3 group">
-        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center font-bold text-brandBlue shadow-inner group-hover:rotate-12 transition-transform duration-300">
-          RE
+        <div class="relative w-11 h-11 rounded-xl bg-gradient-to-tr from-brandBlue via-blue-600 to-brandOrange p-[2px] shadow-md group-hover:shadow-brandOrange/30 transition duration-300">
+          <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
+            <span class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-orange-400 text-base tracking-tighter">RE</span>
+          </div>
         </div>
         <div>
-          <span class="text-lg font-bold tracking-wider text-slate-900 block leading-tight group-hover:text-brandBlue transition">RASHANI</span>
-          <span class="text-xs text-brandOrange font-semibold tracking-widest block uppercase">Electrical & Engineering</span>
+          <span class="text-lg font-black tracking-wider text-slate-900 block leading-tight group-hover:text-brandBlue transition">RASHANI</span>
+          <span class="text-[10px] text-brandOrange font-bold tracking-widest block uppercase">Electrical & Engineering</span>
         </div>
       </a>
 
@@ -182,7 +139,7 @@
         <a href="#contact" class="hover:text-brandBlue transition">Contact Us</a>
       </div>
 
-      <a href="#contact" class="hidden sm:inline-block bg-brandOrange hover:bg-orange-600 text-white text-xs uppercase font-bold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 animate-pulse-orange">
+      <a href="#contact" class="hidden sm:inline-block bg-brandOrange hover:bg-orange-600 text-white text-xs uppercase font-bold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5">
         Get A Quote
       </a>
     </div>
@@ -190,17 +147,11 @@
 
   <!-- HERO SECTION -->
   <section id="home" class="relative pt-16 pb-24 px-6 bg-slate-900 text-white overflow-hidden">
-    
-    <!-- Dynamic Ambient Background Blobs -->
-    <div class="absolute top-10 left-10 w-96 h-96 bg-brandBlue/30 rounded-full filter blur-3xl animate-float pointer-events-none"></div>
-    <div class="absolute bottom-10 right-10 w-96 h-96 bg-brandOrange/20 rounded-full filter blur-3xl animate-float-reverse pointer-events-none"></div>
-    
-    <!-- Interactive Electrical Nodes Canvas -->
     <canvas id="heroCanvas" class="absolute inset-0 opacity-25 pointer-events-none"></canvas>
 
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="reveal">
-        <span class="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold rounded-full mb-4 backdrop-blur-sm animate-pulse-blue">
+      <div class="reveal-element">
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold rounded-full mb-4 backdrop-blur-sm">
           <span class="w-2 h-2 rounded-full bg-brandOrange animate-ping"></span>
           Serving Sri Lanka Since 2017
         </span>
@@ -208,27 +159,26 @@
           Comprehensive Technical & <span class="animated-gradient-text">Engineering Solutions</span>
         </h1>
         <p class="text-slate-300 text-base leading-relaxed mb-8">
-          Specializing in high-end Electrical, Mechanical, Civil maintenance, and sustainable Solar energy integrations. We optimize every stage of your industrial, commercial, and residential technical requirements.
+          Specializing in High-End Electrical, Mechanical, Civil maintenance, and sustainable Solar energy integrations across industrial and commercial sectors.
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="#services" class="bg-brandBlue hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-blue-500/30 transition transform hover:-translate-y-1 flex items-center gap-2">
             Explore Services <i class="fa-solid fa-arrow-right text-xs"></i>
           </a>
-          <a href="#contact" class="border border-slate-700 hover:bg-slate-800 text-slate-200 font-semibold px-6 py-3 rounded-lg transition backdrop-blur-sm">
+          <a href="#contact" class="border border-slate-700 hover:bg-slate-800 text-slate-200 font-semibold px-6 py-3 rounded-lg transition">
             Contact Us
           </a>
         </div>
       </div>
 
-      <!-- Main Image Showcase -->
-      <div class="relative group reveal">
-        <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandOrange rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000"></div>
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 animate-float">
-          <img src="images/hero-electrical-panel.jpg" alt="Rashani Engineering Operations" class="w-full h-[380px] object-cover group-hover:scale-105 transition duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent"></div>
+      <!-- Hero Image Box -->
+      <div class="relative group reveal-element delay-2">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-950 aspect-video md:aspect-[4/3]">
+          <img src="images/hero-electrical-panel.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';" alt="Rashani Engineering Operations" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/30 to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
             <div>
-              <span class="bg-brandOrange text-white text-xs font-bold px-3 py-1 rounded shadow animate-pulse">High Quality Output</span>
+              <span class="bg-brandOrange text-white text-xs font-bold px-3 py-1 rounded shadow">High Quality Output</span>
               <p class="text-white text-sm font-semibold mt-2">Electrical Panel Testing & Commissioning Works</p>
             </div>
             <div class="text-brandOrange text-2xl animate-spin-slow">
@@ -242,34 +192,34 @@
 
   <!-- ABOUT SECTION -->
   <section id="about" class="py-20 px-6 max-w-7xl mx-auto relative">
-    <div class="grid md:grid-cols-2 gap-12 items-center mb-16 reveal">
-      <div>
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+      <div class="reveal-element">
         <h2 class="text-3xl font-bold text-slate-900 mb-4">About Our Company</h2>
         <div class="w-16 h-1 bg-brandOrange mb-6 rounded-full"></div>
         <p class="text-slate-600 leading-relaxed mb-6">
-          Since 2017, Rashani Electrical & Engineering has been delivering unique and efficient technical services across Sri Lanka. Our team of experienced professionals ensures seamless design, installation, commissioning, and maintenance tailored to elevate organizational efficiency.
+          Since 2017, Rashani Electrical & Engineering has been delivering unique and efficient technical services across Sri Lanka. Our team ensures seamless design, installation, commissioning, and maintenance tailored to elevate organizational efficiency.
         </p>
         <ul class="space-y-3 text-sm text-slate-700 font-medium">
           <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brandOrange"></i> Registered Entity: Reg No: 5/5/002919</li>
           <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brandOrange"></i> Banking Partner: Sampath Bank</li>
-          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brandOrange"></i> Experienced and Technically Sound Team</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brandOrange"></i> Experienced & Technically Sound Engineering Team</li>
         </ul>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 relative">
-        <div class="animate-float">
-          <img src="images/about-work-1.jpg" alt="Technical Team" class="rounded-xl border border-slate-200 shadow-md object-cover h-48 w-full hover:scale-105 transition duration-500">
+      <div class="grid grid-cols-2 gap-4 reveal-element delay-2">
+        <div class="rounded-xl overflow-hidden border border-slate-200 shadow-md aspect-square bg-slate-100">
+          <img src="images/about-work-1.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80';" alt="Technical Team" class="w-full h-full object-cover hover:scale-105 transition duration-500">
         </div>
-        <div class="animate-float-reverse mt-6">
-          <img src="images/about-work-2.jpg" alt="On-site Works" class="rounded-xl border border-slate-200 shadow-md object-cover h-48 w-full hover:scale-105 transition duration-500">
+        <div class="rounded-xl overflow-hidden border border-slate-200 shadow-md aspect-square bg-slate-100 mt-6">
+          <img src="images/about-work-2.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80';" alt="On-site Works" class="w-full h-full object-cover hover:scale-105 transition duration-500">
         </div>
       </div>
     </div>
 
     <!-- Vision & Mission -->
-    <div class="grid md:grid-cols-2 gap-8 reveal">
-      <div class="bg-white border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
-        <div class="w-12 h-12 bg-blue-100 text-brandBlue rounded-lg flex items-center justify-center text-xl font-bold mb-4 animate-bounce">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 reveal-element delay-1">
+        <div class="w-12 h-12 bg-blue-100 text-brandBlue rounded-lg flex items-center justify-center text-xl font-bold mb-4">
           <i class="fa-solid fa-eye"></i>
         </div>
         <h3 class="text-xl font-bold text-slate-900 mb-3">Our Vision</h3>
@@ -278,92 +228,86 @@
         </p>
       </div>
 
-      <div class="bg-white border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
-        <div class="w-12 h-12 bg-orange-100 text-brandOrange rounded-lg flex items-center justify-center text-xl font-bold mb-4 animate-bounce">
+      <div class="bg-white border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 reveal-element delay-2">
+        <div class="w-12 h-12 bg-orange-100 text-brandOrange rounded-lg flex items-center justify-center text-xl font-bold mb-4">
           <i class="fa-solid fa-bullseye"></i>
         </div>
         <h3 class="text-xl font-bold text-slate-900 mb-3">Our Mission</h3>
         <p class="text-slate-600 text-sm leading-relaxed">
-          "To maintain long-term relationships of value with our clients and partners by offering exceptional outputs in Electrical and Mechanical engineering, integrated safely with Civil infrastructure support and Solar solutions."
+          "To maintain long-term relationships of value with our clients and partners by offering exceptional outputs in Electrical and Mechanical engineering integrated safely."
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES SECTION (FIXED CLICK BUG & ADDED SMOOTH SCROLL REVEAL) -->
+  <!-- SERVICES SECTION -->
   <section id="services" class="py-20 px-6 bg-slate-100 border-y border-slate-200 relative">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-element">
         <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Core Services</h2>
         <div class="w-16 h-1 bg-brandBlue mx-auto mb-6 rounded-full"></div>
-        <p class="text-slate-600">Integrated multi-disciplinary engineering solutions executed by well-known qualified technical staff using advanced equipment.</p>
+        <p class="text-slate-600">Integrated multi-disciplinary engineering solutions executed by well-known qualified technical staff.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         
         <!-- Electrical Scope -->
-        <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-brandBlue/50">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl transition group reveal-element delay-1">
           <div>
-            <div class="service-icon text-brandBlue text-3xl mb-4 inline-block">
-              <i class="fa-solid fa-bolt animate-pulse"></i>
+            <div class="text-brandBlue text-3xl mb-4 group-hover:scale-110 transition duration-300">
+              <i class="fa-solid fa-bolt"></i>
             </div>
             <h3 class="text-xl font-bold text-slate-900 mb-4">Electrical Engineering</h3>
             <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside mb-6">
               <li>Industrial & Domestic Electrical Wiring</li>
-              <li>High Voltage (HV) & Low Voltage (LV) Panel Boards</li>
-              <li>Transmission Lines Management (Up to 33kV)</li>
+              <li>HV & LV Panel Boards Installation</li>
+              <li>Transmission Lines (Up to 33kV)</li>
               <li>Switchgears & Insulation Testing</li>
-              <li>Industrial Generator Installation & Service</li>
-              <li>Solar On-Grid & Off-Grid Integrations</li>
-              <li>CCTV Surveillance & Network Systems</li>
+              <li>Generator Installation & Servicing</li>
             </ul>
           </div>
-          <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-electrical.jpg" alt="Electrical Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
+          <div class="overflow-hidden rounded-lg aspect-video bg-slate-100">
+            <img src="images/service-electrical.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80';" alt="Electrical Service" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
           </div>
         </div>
 
         <!-- Mechanical Scope -->
-        <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-brandOrange/50">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl transition group reveal-element delay-2">
           <div>
-            <div class="service-icon text-brandOrange text-3xl mb-4 inline-block">
+            <div class="text-brandOrange text-3xl mb-4 group-hover:rotate-45 transition duration-500">
               <i class="fa-solid fa-gears"></i>
             </div>
             <h3 class="text-xl font-bold text-slate-900 mb-4">Mechanical Engineering</h3>
             <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside mb-6">
               <li>Industrial Steel Buildings & Warehouses</li>
-              <li>Steel & Aluminum Roof/Wall Cladding</li>
-              <li>Steel Mezzanine Floors Construction</li>
-              <li>Aluminum & Glass Office Partitioning</li>
+              <li>Steel & Aluminum Roof Cladding</li>
               <li>Heavy Machinery Shifting & Relocation</li>
               <li>Factory Machine Line Installation</li>
-              <li>GI Duct Work Fabrication & Installation</li>
+              <li>GI Duct Work Fabrication</li>
             </ul>
           </div>
-          <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-mechanical.jpg" alt="Mechanical Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
+          <div class="overflow-hidden rounded-lg aspect-video bg-slate-100">
+            <img src="images/service-mechanical.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&w=600&q=80';" alt="Mechanical Service" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
           </div>
         </div>
 
         <!-- Civil Scope -->
-        <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-blue-500/50">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl transition group reveal-element delay-3">
           <div>
-            <div class="service-icon text-blue-600 text-3xl mb-4 inline-block">
+            <div class="text-blue-600 text-3xl mb-4 group-hover:scale-110 transition duration-300">
               <i class="fa-solid fa-building"></i>
             </div>
             <h3 class="text-xl font-bold text-slate-900 mb-4">Civil Engineering</h3>
             <ul class="space-y-2 text-slate-600 text-sm list-disc list-inside mb-6">
               <li>Industrial Processing Plants & Factories</li>
-              <li>Residential Living Space Construction</li>
-              <li>Concrete Structures (RCC Water Tanks)</li>
-              <li>Infrastructure, Roads & Drainage Systems</li>
-              <li>Ground & Earth Works / Interlock Paving</li>
+              <li>Concrete Structures & Water Tanks</li>
+              <li>Roads & Infrastructure Construction</li>
               <li>Rubble & RCC Retaining Walls</li>
               <li>High-Quality Floor Tiling & Finishing</li>
             </ul>
           </div>
-          <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-civil.jpg" alt="Civil Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
+          <div class="overflow-hidden rounded-lg aspect-video bg-slate-100">
+            <img src="images/service-civil.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80';" alt="Civil Service" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
           </div>
         </div>
 
@@ -373,18 +317,18 @@
 
   <!-- FEATURED PROJECTS SECTION -->
   <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal-element">
       <h2 class="text-3xl font-bold text-slate-900 mb-4">Key Projects Carried Out</h2>
       <div class="w-16 h-1 bg-brandOrange mx-auto mb-6 rounded-full"></div>
-      <p class="text-slate-600">A glimpse of successful engineering projects delivered across various industrial sectors in Sri Lanka.</p>
+      <p class="text-slate-600">A glimpse of successful engineering projects delivered across various Sri Lankan sectors.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- Project Cards -->
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-kalawewa.jpg" alt="Kalawewa Project" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <!-- Project 1 -->
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group reveal-element delay-1">
+        <div class="overflow-hidden aspect-video bg-slate-100">
+          <img src="images/project-kalawewa.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1468495244123-6c6c332eeece?auto=format&fit=crop&w=600&q=80';" alt="Kalawewa Project" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
         </div>
         <div class="p-5">
           <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Water Resource</span>
@@ -393,20 +337,22 @@
         </div>
       </div>
 
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-daduruoya.jpg" alt="Daduruoya Project" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <!-- Project 2 -->
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group reveal-element delay-2">
+        <div class="overflow-hidden aspect-video bg-slate-100">
+          <img src="images/project-daduruoya.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?auto=format&fit=crop&w=600&q=80';" alt="Daduruoya Project" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
         </div>
         <div class="p-5">
           <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Infrastructure</span>
-          <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandOrange transition">Daduruoya Project</h4>
+          <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandOrange transition">Daduruoya Infrastructure Project</h4>
           <p class="text-slate-600 text-xs">Heavy mechanical and civil construction & engineering works.</p>
         </div>
       </div>
 
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-wind.jpg" alt="Siemens Gamesa Jaffna" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <!-- Project 3 -->
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group reveal-element delay-3">
+        <div class="overflow-hidden aspect-video bg-slate-100">
+          <img src="images/project-wind.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80';" alt="Siemens Gamesa Jaffna" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
         </div>
         <div class="p-5">
           <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Renewable Energy</span>
@@ -415,9 +361,10 @@
         </div>
       </div>
 
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-solar.jpg" alt="Hambantota Solar" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <!-- Project 4 -->
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group reveal-element delay-1">
+        <div class="overflow-hidden aspect-video bg-slate-100">
+          <img src="images/project-solar.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80';" alt="Hambantota Solar" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
         </div>
         <div class="p-5">
           <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Solar Power</span>
@@ -426,20 +373,22 @@
         </div>
       </div>
 
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-motor.jpg" alt="Naladanavi Wind Power" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <!-- Project 5 -->
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group reveal-element delay-2">
+        <div class="overflow-hidden aspect-video bg-slate-100">
+          <img src="images/project-motor.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=600&q=80';" alt="Naladanavi Wind Power" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
         </div>
         <div class="p-5">
           <span class="text-[10px] bg-blue-100 border border-blue-200 text-blue-700 font-bold px-2 py-0.5 rounded uppercase">Wind Energy</span>
           <h4 class="text-base font-bold text-slate-900 mt-2 mb-1 group-hover:text-brandBlue transition">Naladanavi Wind Power Plant</h4>
-          <p class="text-slate-600 text-xs">Wind power plant technical & motor rewinding maintenance work – Puttalam.</p>
+          <p class="text-slate-600 text-xs">Wind power plant technical & motor rewinding maintenance – Puttalam.</p>
         </div>
       </div>
 
-      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
-        <div class="overflow-hidden h-44">
-          <img src="images/project-refinery.jpg" alt="NMK Oil Refinery" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+      <!-- Project 6 -->
+      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition group reveal-element delay-3">
+        <div class="overflow-hidden aspect-video bg-slate-100">
+          <img src="images/project-refinery.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80';" alt="NMK Oil Refinery" class="h-full w-full object-cover group-hover:scale-105 transition duration-500">
         </div>
         <div class="p-5">
           <span class="text-[10px] bg-orange-100 border border-orange-200 text-orange-700 font-bold px-2 py-0.5 rounded uppercase">Refinery</span>
@@ -453,66 +402,55 @@
 
   <!-- CLIENT BASE SECTION -->
   <section id="clients" class="py-20 bg-slate-100 border-t border-slate-200 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 mb-12 reveal">
+    <div class="max-w-7xl mx-auto px-6 mb-12 reveal-element">
       <div class="text-center max-w-3xl mx-auto">
         <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight uppercase">Valued Clients</h2>
         <div class="w-16 h-1 bg-brandBlue mx-auto mt-3 rounded-full"></div>
       </div>
     </div>
 
-    <!-- Infinite Marquee Track -->
+    <!-- Continuous Infinite Scrolling Slider Track -->
     <div class="marquee-container py-4">
       <div class="marquee-content">
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/siemens.png" alt="Siemens Gamesa" class="h-10 object-contain">
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
           <span class="text-xs font-semibold text-slate-700">Siemens Gamesa</span>
         </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/adamjee.png" alt="Adamjee" class="h-10 object-contain">
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
           <span class="text-xs font-semibold text-slate-700">Adamjee & Lukmanjee</span>
         </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/sirio.png" alt="Sirio" class="h-10 object-contain">
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
           <span class="text-xs font-semibold text-slate-700">Sirio Ltd</span>
         </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/variosystems.png" alt="Vario Systems" class="h-10 object-contain">
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
           <span class="text-xs font-semibold text-slate-700">Vario Systems</span>
         </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/nmk.png" alt="NMK" class="h-10 object-contain">
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
           <span class="text-xs font-semibold text-slate-700">NMK Holdings</span>
-        </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/coats.png" alt="Coats" class="h-10 object-contain">
-          <span class="text-xs font-semibold text-slate-700">Coats Thread</span>
         </div>
       </div>
 
+      <!-- Duplicate Set for Seamless Loop -->
       <div class="marquee-content" aria-hidden="true">
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/ltl.png" alt="LTL" class="h-10 object-contain">
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
+          <span class="text-xs font-semibold text-slate-700">Coats Thread</span>
+        </div>
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
           <span class="text-xs font-semibold text-slate-700">LTL Projects</span>
         </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/naladanavi.png" alt="Naladanavi" class="h-10 object-contain">
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
           <span class="text-xs font-semibold text-slate-700">Naladanavi</span>
         </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/orient.png" alt="Orient" class="h-10 object-contain">
+        <div class="bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-60 shrink-0">
+          <i class="fa-solid fa-building-user text-brandBlue text-xl"></i>
           <span class="text-xs font-semibold text-slate-700">Orient Construction</span>
-        </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/mirachel.png" alt="Mirachel" class="h-10 object-contain">
-          <span class="text-xs font-semibold text-slate-700">Mirachel Hospital</span>
-        </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/totaldental.png" alt="Total Dental" class="h-10 object-contain">
-          <span class="text-xs font-semibold text-slate-700">Total Dental Care</span>
-        </div>
-        <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
-          <img src="logos/cocoland.png" alt="Coco Land" class="h-10 object-contain">
-          <span class="text-xs font-semibold text-slate-700">Coco Land</span>
         </div>
       </div>
     </div>
@@ -520,30 +458,31 @@
 
   <!-- CONTACT & FOOTER SECTION -->
   <footer id="contact" class="py-20 px-6 bg-slate-900 text-white relative overflow-hidden">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 relative z-10 reveal">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 relative z-10">
       
-      <div>
+      <!-- Contact Info -->
+      <div class="reveal-element">
         <h3 class="text-2xl font-bold text-white mb-6">Contact Us</h3>
         <p class="text-slate-400 text-sm mb-8">Reach out to our expert team for inquiries, project estimations, or technical support.</p>
         
         <div class="space-y-4 text-sm text-slate-300">
-          <div class="flex items-start gap-4 p-3 bg-slate-800/40 rounded-lg border border-slate-800 hover:border-brandOrange/40 transition">
-            <i class="fa-solid fa-location-dot text-brandOrange text-lg mt-1 animate-bounce"></i>
+          <div class="flex items-start gap-4 p-3 bg-slate-800/40 rounded-lg border border-slate-800">
+            <i class="fa-solid fa-location-dot text-brandOrange text-lg mt-1"></i>
             <div>
               <strong class="block text-white">Address:</strong>
               <span>Alugoda Road, Kandegedara, Dewalegama, Kegalle, Sri Lanka</span>
             </div>
           </div>
 
-          <div class="flex items-start gap-4 p-3 bg-slate-800/40 rounded-lg border border-slate-800 hover:border-brandOrange/40 transition">
-            <i class="fa-solid fa-phone text-brandOrange text-lg mt-1 animate-pulse"></i>
+          <div class="flex items-start gap-4 p-3 bg-slate-800/40 rounded-lg border border-slate-800">
+            <i class="fa-solid fa-phone text-brandOrange text-lg mt-1"></i>
             <div>
               <strong class="block text-white">Hotlines:</strong>
               <span>074-414058 / 074-414059 / 074-414060</span>
             </div>
           </div>
 
-          <div class="flex items-start gap-4 p-3 bg-slate-800/40 rounded-lg border border-slate-800 hover:border-brandOrange/40 transition">
+          <div class="flex items-start gap-4 p-3 bg-slate-800/40 rounded-lg border border-slate-800">
             <i class="fa-solid fa-envelope text-brandOrange text-lg mt-1"></i>
             <div>
               <strong class="block text-white">Email Address:</strong>
@@ -553,7 +492,8 @@
         </div>
       </div>
 
-      <div class="bg-slate-800/80 border border-slate-700 p-8 rounded-2xl shadow-2xl backdrop-blur-md">
+      <!-- Quick Contact Form -->
+      <div class="bg-slate-800/80 border border-slate-700 p-8 rounded-2xl shadow-2xl backdrop-blur-md reveal-element delay-2">
         <h4 class="text-lg font-bold text-white mb-4">Send an Inquiry</h4>
         <form class="space-y-4">
           <div>
@@ -565,7 +505,7 @@
           <div>
             <textarea rows="4" placeholder="Your Requirement / Message" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brandOrange transition"></textarea>
           </div>
-          <button type="button" class="w-full bg-brandOrange hover:bg-orange-600 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-orange-500/30 transition text-sm transform hover:-translate-y-0.5 animate-pulse-orange">
+          <button type="button" class="w-full bg-brandOrange hover:bg-orange-600 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-orange-500/30 transition text-sm">
             Send Message
           </button>
         </form>
@@ -578,28 +518,33 @@
     </div>
   </footer>
 
-  <!-- JS: Canvas Background & Scroll Reveal Observer -->
+  <!-- SCRIPT 1: INTERSECTION OBSERVER FOR CONTINUOUS SCROLL ANIMATION -->
   <script>
-    // 1. Scroll Reveal Observer Script
-    document.addEventListener("DOMContentLoaded", function () {
-      const reveals = document.querySelectorAll(".reveal");
+    document.addEventListener("DOMContentLoaded", () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 // Trigger when 15% of element is visible
+      };
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("active");
+            entry.target.classList.add('active');
+          } else {
+            // Remove 'active' class when scrolled out of view so it animates again on scroll
+            entry.target.classList.remove('active');
           }
         });
-      }, {
-        threshold: 0.15
-      });
+      }, observerOptions);
 
-      reveals.forEach((reveal) => {
-        observer.observe(reveal);
-      });
+      const revealElements = document.querySelectorAll('.reveal-element');
+      revealElements.forEach(el => observer.observe(el));
     });
+  </script>
 
-    // 2. Hero Interactive Network Canvas
+  <!-- SCRIPT 2: HERO CANVAS BACKGROUND -->
+  <script>
     const canvas = document.getElementById('heroCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
