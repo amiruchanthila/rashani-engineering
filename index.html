@@ -26,12 +26,12 @@
     /* Continuous Keyframe Animations */
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(3deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
     }
 
     @keyframes floatReverse {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(12px) rotate(-3deg); }
+      50% { transform: translateY(10px) rotate(-2deg); }
     }
 
     @keyframes pulseGlow {
@@ -112,10 +112,35 @@
       animation: gradientShift 6s ease infinite;
     }
 
-    .animated-gradient-bg {
-      background: linear-gradient(-45deg, #0052A5, #1e3a8a, #d97706, #FF7A00);
-      background-size: 400% 400%;
-      animation: gradientShift 10s ease infinite;
+    /* Scroll Reveal Dynamic Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Fixed smooth card hover without click-glitch */
+    .service-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      user-select: none;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .service-icon {
+      transition: transform 0.5s ease-out;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.2) rotate(8deg);
     }
   </style>
 </head>
@@ -163,18 +188,18 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION WITH CONTINUOUS INTERACTIVE CANVAS & FLOATING BLOBS -->
+  <!-- HERO SECTION -->
   <section id="home" class="relative pt-16 pb-24 px-6 bg-slate-900 text-white overflow-hidden">
     
-    <!-- Dynamic Ambient Background Blobs (Continuous Motion) -->
+    <!-- Dynamic Ambient Background Blobs -->
     <div class="absolute top-10 left-10 w-96 h-96 bg-brandBlue/30 rounded-full filter blur-3xl animate-float pointer-events-none"></div>
     <div class="absolute bottom-10 right-10 w-96 h-96 bg-brandOrange/20 rounded-full filter blur-3xl animate-float-reverse pointer-events-none"></div>
     
-    <!-- Interactive Electrical Nodes Canvas Background -->
+    <!-- Interactive Electrical Nodes Canvas -->
     <canvas id="heroCanvas" class="absolute inset-0 opacity-25 pointer-events-none"></canvas>
 
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div>
+      <div class="reveal">
         <span class="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold rounded-full mb-4 backdrop-blur-sm animate-pulse-blue">
           <span class="w-2 h-2 rounded-full bg-brandOrange animate-ping"></span>
           Serving Sri Lanka Since 2017
@@ -195,9 +220,9 @@
         </div>
       </div>
 
-      <!-- Main Image Showcase with Floating Card Effect -->
-      <div class="relative group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandOrange rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+      <!-- Main Image Showcase -->
+      <div class="relative group reveal">
+        <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandOrange rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000"></div>
         <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 animate-float">
           <img src="images/hero-electrical-panel.jpg" alt="Rashani Engineering Operations" class="w-full h-[380px] object-cover group-hover:scale-105 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent"></div>
@@ -215,9 +240,9 @@
     </div>
   </section>
 
-  <!-- ABOUT SECTION WITH FLOATING IMAGES -->
+  <!-- ABOUT SECTION -->
   <section id="about" class="py-20 px-6 max-w-7xl mx-auto relative">
-    <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-16 reveal">
       <div>
         <h2 class="text-3xl font-bold text-slate-900 mb-4">About Our Company</h2>
         <div class="w-16 h-1 bg-brandOrange mb-6 rounded-full"></div>
@@ -242,7 +267,7 @@
     </div>
 
     <!-- Vision & Mission -->
-    <div class="grid md:grid-cols-2 gap-8">
+    <div class="grid md:grid-cols-2 gap-8 reveal">
       <div class="bg-white border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-xl transition transform hover:-translate-y-1">
         <div class="w-12 h-12 bg-blue-100 text-brandBlue rounded-lg flex items-center justify-center text-xl font-bold mb-4 animate-bounce">
           <i class="fa-solid fa-eye"></i>
@@ -265,10 +290,10 @@
     </div>
   </section>
 
-  <!-- SERVICES SECTION WITH DYNAMIC CARDS -->
+  <!-- SERVICES SECTION (FIXED CLICK BUG & ADDED SMOOTH SCROLL REVEAL) -->
   <section id="services" class="py-20 px-6 bg-slate-100 border-y border-slate-200 relative">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
         <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Core Services</h2>
         <div class="w-16 h-1 bg-brandBlue mx-auto mb-6 rounded-full"></div>
         <p class="text-slate-600">Integrated multi-disciplinary engineering solutions executed by well-known qualified technical staff using advanced equipment.</p>
@@ -277,9 +302,9 @@
       <div class="grid md:grid-cols-3 gap-8">
         
         <!-- Electrical Scope -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-brandBlue/50 transition transform hover:-translate-y-2 group">
+        <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-brandBlue/50">
           <div>
-            <div class="text-brandBlue text-3xl mb-4 group-hover:scale-125 transition duration-300">
+            <div class="service-icon text-brandBlue text-3xl mb-4 inline-block">
               <i class="fa-solid fa-bolt animate-pulse"></i>
             </div>
             <h3 class="text-xl font-bold text-slate-900 mb-4">Electrical Engineering</h3>
@@ -294,14 +319,14 @@
             </ul>
           </div>
           <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-electrical.jpg" alt="Electrical Service" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+            <img src="images/service-electrical.jpg" alt="Electrical Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
           </div>
         </div>
 
         <!-- Mechanical Scope -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-brandOrange/50 transition transform hover:-translate-y-2 group">
+        <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-brandOrange/50">
           <div>
-            <div class="text-brandOrange text-3xl mb-4 group-hover:rotate-180 transition duration-700">
+            <div class="service-icon text-brandOrange text-3xl mb-4 inline-block">
               <i class="fa-solid fa-gears"></i>
             </div>
             <h3 class="text-xl font-bold text-slate-900 mb-4">Mechanical Engineering</h3>
@@ -316,14 +341,14 @@
             </ul>
           </div>
           <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-mechanical.jpg" alt="Mechanical Service" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+            <img src="images/service-mechanical.jpg" alt="Mechanical Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
           </div>
         </div>
 
         <!-- Civil Scope -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-blue-500/50 transition transform hover:-translate-y-2 group">
+        <div class="service-card reveal bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl hover:border-blue-500/50">
           <div>
-            <div class="text-blue-600 text-3xl mb-4 group-hover:scale-125 transition duration-300">
+            <div class="service-icon text-blue-600 text-3xl mb-4 inline-block">
               <i class="fa-solid fa-building"></i>
             </div>
             <h3 class="text-xl font-bold text-slate-900 mb-4">Civil Engineering</h3>
@@ -338,7 +363,7 @@
             </ul>
           </div>
           <div class="overflow-hidden rounded-lg h-40">
-            <img src="images/service-civil.jpg" alt="Civil Service" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
+            <img src="images/service-civil.jpg" alt="Civil Service" class="h-full w-full object-cover hover:scale-110 transition duration-500">
           </div>
         </div>
 
@@ -348,7 +373,7 @@
 
   <!-- FEATURED PROJECTS SECTION -->
   <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-16">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
       <h2 class="text-3xl font-bold text-slate-900 mb-4">Key Projects Carried Out</h2>
       <div class="w-16 h-1 bg-brandOrange mx-auto mb-6 rounded-full"></div>
       <p class="text-slate-600">A glimpse of successful engineering projects delivered across various industrial sectors in Sri Lanka.</p>
@@ -356,8 +381,8 @@
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- Project Cards with Continuous Hover Glow -->
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
+      <!-- Project Cards -->
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
         <div class="overflow-hidden h-44">
           <img src="images/project-kalawewa.jpg" alt="Kalawewa Project" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
         </div>
@@ -368,7 +393,7 @@
         </div>
       </div>
 
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
         <div class="overflow-hidden h-44">
           <img src="images/project-daduruoya.jpg" alt="Daduruoya Project" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
         </div>
@@ -379,7 +404,7 @@
         </div>
       </div>
 
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
         <div class="overflow-hidden h-44">
           <img src="images/project-wind.jpg" alt="Siemens Gamesa Jaffna" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
         </div>
@@ -390,7 +415,7 @@
         </div>
       </div>
 
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
         <div class="overflow-hidden h-44">
           <img src="images/project-solar.jpg" alt="Hambantota Solar" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
         </div>
@@ -401,7 +426,7 @@
         </div>
       </div>
 
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
         <div class="overflow-hidden h-44">
           <img src="images/project-motor.jpg" alt="Naladanavi Wind Power" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
         </div>
@@ -412,7 +437,7 @@
         </div>
       </div>
 
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
+      <div class="reveal bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1.5 group">
         <div class="overflow-hidden h-44">
           <img src="images/project-refinery.jpg" alt="NMK Oil Refinery" class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
         </div>
@@ -426,78 +451,65 @@
     </div>
   </section>
 
-  <!-- CLIENT BASE SECTION WITH CONTINUOUS INFINITE MARQUEE TICKER -->
+  <!-- CLIENT BASE SECTION -->
   <section id="clients" class="py-20 bg-slate-100 border-t border-slate-200 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 mb-12">
+    <div class="max-w-7xl mx-auto px-6 mb-12 reveal">
       <div class="text-center max-w-3xl mx-auto">
         <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight uppercase">Valued Clients</h2>
         <div class="w-16 h-1 bg-brandBlue mx-auto mt-3 rounded-full"></div>
       </div>
     </div>
 
-    <!-- Continuous Infinite Scrolling Slider Track -->
+    <!-- Infinite Marquee Track -->
     <div class="marquee-container py-4">
       <div class="marquee-content">
-        <!-- Client 1 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/siemens.png" alt="Siemens Gamesa" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Siemens Gamesa</span>
         </div>
-        <!-- Client 2 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/adamjee.png" alt="Adamjee" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Adamjee & Lukmanjee</span>
         </div>
-        <!-- Client 3 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/sirio.png" alt="Sirio" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Sirio Ltd</span>
         </div>
-        <!-- Client 4 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/variosystems.png" alt="Vario Systems" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Vario Systems</span>
         </div>
-        <!-- Client 5 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/nmk.png" alt="NMK" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">NMK Holdings</span>
         </div>
-        <!-- Client 6 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/coats.png" alt="Coats" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Coats Thread</span>
         </div>
       </div>
 
-      <!-- Duplicate Set for Seamless Loop -->
       <div class="marquee-content" aria-hidden="true">
-        <!-- Client 7 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/ltl.png" alt="LTL" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">LTL Projects</span>
         </div>
-        <!-- Client 8 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/naladanavi.png" alt="Naladanavi" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Naladanavi</span>
         </div>
-        <!-- Client 9 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/orient.png" alt="Orient" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Orient Construction</span>
         </div>
-        <!-- Client 10 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/mirachel.png" alt="Mirachel" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Mirachel Hospital</span>
         </div>
-        <!-- Client 11 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/totaldental.png" alt="Total Dental" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Total Dental Care</span>
         </div>
-        <!-- Client 12 -->
         <div class="bg-white px-8 py-5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center space-x-3 w-64 shrink-0 hover:scale-105 transition">
           <img src="logos/cocoland.png" alt="Coco Land" class="h-10 object-contain">
           <span class="text-xs font-semibold text-slate-700">Coco Land</span>
@@ -508,9 +520,8 @@
 
   <!-- CONTACT & FOOTER SECTION -->
   <footer id="contact" class="py-20 px-6 bg-slate-900 text-white relative overflow-hidden">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 relative z-10">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 relative z-10 reveal">
       
-      <!-- Contact Info -->
       <div>
         <h3 class="text-2xl font-bold text-white mb-6">Contact Us</h3>
         <p class="text-slate-400 text-sm mb-8">Reach out to our expert team for inquiries, project estimations, or technical support.</p>
@@ -542,7 +553,6 @@
         </div>
       </div>
 
-      <!-- Quick Contact Form -->
       <div class="bg-slate-800/80 border border-slate-700 p-8 rounded-2xl shadow-2xl backdrop-blur-md">
         <h4 class="text-lg font-bold text-white mb-4">Send an Inquiry</h4>
         <form class="space-y-4">
@@ -563,15 +573,34 @@
 
     </div>
 
-    <!-- Copyright -->
     <div class="max-w-7xl mx-auto border-t border-slate-800 mt-16 pt-8 text-center text-xs text-slate-500">
       <p>&copy; 2026 Rashani Electrical & Engineering (Reg No: 5/5/002919). All Rights Reserved.</p>
     </div>
   </footer>
 
-  <!-- Continuous Interactive Canvas Animation Script -->
+  <!-- JS: Canvas Background & Scroll Reveal Observer -->
   <script>
-    const canvas = id = document.getElementById('heroCanvas');
+    // 1. Scroll Reveal Observer Script
+    document.addEventListener("DOMContentLoaded", function () {
+      const reveals = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+
+      reveals.forEach((reveal) => {
+        observer.observe(reveal);
+      });
+    });
+
+    // 2. Hero Interactive Network Canvas
+    const canvas = document.getElementById('heroCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
       let width, height, particles;
