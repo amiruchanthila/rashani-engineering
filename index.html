@@ -146,31 +146,59 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden">
 
-  <!-- TOP HEADER / QUICK CONTACT -->
-  <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-6 relative z-10 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-      <div class="flex items-center space-x-6">
-        <span><i class="fa-solid fa-phone text-brandOrange mr-1.5 animate-pulse"></i> 074-414058 / 074-414059 / 074-414060</span>
-        <span><i class="fa-solid fa-envelope text-brandOrange mr-1.5"></i> reengineering2020@gmail.com</span>
-      </div>
-      <div>
-        <span class="text-slate-400"><i class="fa-solid fa-certificate text-brandOrange/80 mr-1"></i> Reg No: 5/5/002919 | Est. 2017</span>
-      </div>
-    </div>
-  </div>
+  
 
   <!-- MAIN NAVIGATION -->
   <nav class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-200 z-50 shadow-sm transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
       <a href="#home" class="flex items-center space-x-3 group">
-        <!-- Enhanced Vector Brand Logo -->
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brandBlue to-slate-900 flex items-center justify-center p-2 shadow-md group-hover:scale-105 transition-transform duration-300">
-          <svg viewBox="0 0 100 100" class="w-full h-full text-white fill-current">
-            <path d="M20 20 H55 C70 20 80 28 80 40 C80 50 72 57 60 59 L82 85 H64 L46 60 H36 V85 H20 V20 Z M36 34 V48 H52 C60 48 64 45 64 41 C64 37 60 34 52 34 H36 Z" fill="#0052A5"/>
-            <path d="M45 20 H80 L72 32 H45 Z" fill="#FF7A00"/>
-            <circle cx="75" cy="75" r="8" fill="#FF7A00"/>
-          </svg>
-        </div>
+       <!-- Exact Rashani Engineering Gear SVG Logo (No Text) -->
+<div class="w-12 h-12 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+  <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <!-- Outer Gear Base Clip Definitions -->
+    <defs>
+      <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1D5BBF" />
+        <stop offset="100%" stop-color="#003E8A" />
+      </linearGradient>
+      <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FF8A00" />
+        <stop offset="100%" stop-color="#E66000" />
+      </linearGradient>
+    </defs>
+
+    <!-- Top Left Gear (Orange Half) -->
+    <g fill="url(#orangeGrad)">
+      <path d="M 100 20 
+               C 92 20, 92 30, 84 31 C 77 32, 73 24, 66 28 C 59 32, 62 41, 56 47 C 49 52, 41 46, 36 53 C 31 59, 39 65, 36 73 C 32 81, 22 81, 21 90 C 20 99, 30 102, 31 110 C 31 112, 31 114, 32 116
+               L 165 35
+               C 152 25, 126 20, 100 20 Z" />
+    </g>
+
+    <!-- Bottom Right Gear (Blue Half) -->
+    <g fill="url(#blueGrad)">
+      <path d="M 168 84
+               C 169 86, 169 88, 169 90 C 170 98, 180 101, 179 110 C 178 119, 168 119, 164 127 C 161 135, 169 141, 164 147 C 159 154, 151 148, 144 153 C 138 159, 141 168, 134 172 C 127 176, 123 168, 116 169 C 108 170, 108 180, 100 180 C 92 180, 92 170, 84 169 C 78 168, 74 174, 68 171 
+               L 178 61 
+               C 180 69, 172 76, 168 84 Z" />
+    </g>
+
+    <!-- Sharp Diagonal Lightning Slash Cuts -->
+    <polygon points="15,175 60,120 53,113 10,170" fill="url(#blueGrad)" />
+    <polygon points="185,25 140,80 147,87 190,30" fill="url(#orangeGrad)" />
+
+    <!-- Center White Circle Canvas -->
+    <circle cx="100" cy="100" r="52" fill="#FFFFFF" />
+
+    <!-- Inner Blue RE Emblem -->
+    <g fill="#1D5BBF">
+      <!-- 'R' Character Path -->
+      <path d="M 60 72 H 88 C 96 72, 101 76, 101 82 C 101 87, 96 90, 88 90 H 73 V 98 H 89 L 102 115 H 86 L 75 101 H 73 V 115 H 60 V 72 Z M 73 80 V 83 H 86 C 88 83, 89 82, 89 81.5 C 89 81, 88 80, 86 80 H 73 Z" />
+      <!-- 'E' Character Path -->
+      <path d="M 103 72 H 140 V 82 H 115 V 88 H 135 V 97 H 115 V 105 H 141 V 115 H 103 V 72 Z" />
+    </g>
+  </svg>
+</div>
         <div>
           <span class="text-lg font-extrabold tracking-wider text-slate-900 block leading-tight group-hover:text-brandBlue transition">RASHANI</span>
           <span class="text-[10px] text-brandOrange font-bold tracking-widest block uppercase">Electrical & Engineering</span>
