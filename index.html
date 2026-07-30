@@ -9,10 +9,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans for Technical Look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -21,6 +21,7 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace'],
           },
           colors: {
             brandBlue: {
@@ -36,18 +37,13 @@
               500: '#FF7A00',
               600: '#e06b00',
             },
-            darkBg: '#090d16',
-            cardBg: 'rgba(15, 23, 42, 0.65)',
+            darkBg: '#050811',
+            cardBg: 'rgba(10, 16, 31, 0.75)',
           },
           boxShadow: {
-            'glow-blue': '0 0 25px -5px rgba(0, 82, 165, 0.5)',
-            'glow-orange': '0 0 25px -5px rgba(255, 122, 0, 0.5)',
-            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-          },
-          animation: {
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float-slow': 'floatSlow 6s ease-in-out infinite',
-            'spin-slow': 'slowSpin 20s linear infinite',
+            'glow-blue': '0 0 30px -5px rgba(0, 82, 165, 0.6)',
+            'glow-orange': '0 0 30px -5px rgba(255, 122, 0, 0.6)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.45)',
           }
         }
       }
@@ -55,21 +51,23 @@
   </script>
   
   <style>
-    /* Premium Grid & Glow Backgrounds */
-    .bg-grid-pattern {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-      background-size: 24px 24px;
+    /* Technical Blueprint Grid Pattern */
+    .bg-grid-blueprint {
+      background-image: 
+        linear-gradient(to right, rgba(0, 82, 165, 0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 82, 165, 0.12) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
 
     /* Keyframe Animations */
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(1.5deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
     }
 
-    @keyframes floatReverse {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(12px) rotate(-1.5deg); }
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(1000%); }
     }
 
     @keyframes gradientShift {
@@ -83,23 +81,27 @@
       100% { transform: translateX(-50%); }
     }
 
-    @keyframes slowSpin {
+    @keyframes spinSlow {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
 
-    /* Custom Animation Helper Classes */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; filter: blur(40px); }
+      50% { opacity: 0.8; filter: blur(60px); }
+    }
+
     .animate-float { animation: floatSlow 6s ease-in-out infinite; }
-    .animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
-    .animate-spin-slow { animation: slowSpin 25s linear infinite; }
+    .animate-spin-slow { animation: spinSlow 20s linear infinite; }
+    .animate-pulse-glow { animation: pulseGlow 4s ease-in-out infinite; }
 
     /* Infinite Marquee Track */
     .marquee-container {
       display: flex;
       overflow: hidden;
       user-select: none;
-      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
 
     .marquee-content {
@@ -107,28 +109,24 @@
       display: flex;
       justify-content: space-around;
       min-width: 100%;
-      gap: 2rem;
-      animation: marquee 30s linear infinite;
+      gap: 1.5rem;
+      animation: marquee 25s linear infinite;
     }
 
-    .marquee-container:hover .marquee-content {
-      animation-play-state: paused;
-    }
-
-    /* Modern Gradient Text */
+    /* Gradient Text Animation */
     .animated-gradient-text {
       background: linear-gradient(135deg, #38bdf8 0%, #FF7A00 50%, #60a5fa 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientShift 5s ease infinite;
+      animation: gradientShift 4s ease infinite;
     }
 
-    /* High-Performance Scroll Reveal */
+    /* Mobile-Optimized Hardware Accelerated Animations */
     .reveal {
       opacity: 0;
-      transform: translateY(30px) scale(0.98);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(24px) scale(0.98);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform, opacity;
     }
 
@@ -137,45 +135,56 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Glass Cards with Hover Spotlight */
+    /* Futuristic Glass Cards */
     .glass-card {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(10, 16, 31, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.12);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .glass-card:hover {
-      border-color: rgba(255, 122, 0, 0.3);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 122, 0, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px -10px rgba(0, 82, 165, 0.3);
     }
 
     .service-card:hover .service-icon {
-      transform: scale(1.15) rotate(6deg);
+      transform: scale(1.12) rotate(8deg);
+      box-shadow: 0 0 20px rgba(255, 122, 0, 0.4);
+    }
+
+    /* Scanning Beam Line Effect */
+    .scan-line {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #38bdf8, #FF7A00, transparent);
+      animation: scanline 8s linear infinite;
+      opacity: 0.6;
     }
   </style>
 </head>
 <body class="bg-darkBg text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-brandOrange selection:text-white">
 
   <!-- MAIN NAVIGATION -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl bg-darkBg/80 border-b border-slate-800/80 transition-all duration-300">
+  <header class="sticky top-0 z-50 backdrop-blur-2xl bg-darkBg/85 border-b border-slate-800/80 transition-all duration-300">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
       
       <!-- Brand Logo -->
       <a href="#home" class="flex items-center space-x-3 group">
         <div class="relative">
-          <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandOrange rounded-full blur opacity-40 group-hover:opacity-100 transition duration-300"></div>
+          <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue to-brandOrange rounded-full blur-md opacity-60 group-hover:opacity-100 transition duration-300"></div>
           <img 
             src="images/logo-icon.jpg" 
             alt="Rashani Electrical & Engineering Logo" 
-            class="relative w-10 h-10 sm:w-11 sm:h-11 object-contain rounded-full bg-slate-900 p-0.5"
+            class="relative w-10 h-10 sm:w-11 sm:h-11 object-contain rounded-full bg-slate-900 p-0.5 border border-slate-700"
           />
         </div>
         <div>
           <span class="text-base sm:text-lg font-extrabold tracking-wider text-white block leading-tight group-hover:text-brandBlue transition">RASHANI</span>
-          <span class="text-[9px] sm:text-[10px] text-brandOrange font-bold tracking-widest block uppercase">Electrical & Engineering</span>
+          <span class="text-[9px] sm:text-[10px] text-brandOrange font-bold tracking-widest block uppercase font-mono">Electrical & Engineering</span>
         </div>
       </a>
 
@@ -195,14 +204,14 @@
       </a>
 
       <!-- Mobile Hamburger Button -->
-      <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2 rounded-lg bg-slate-800/50 border border-slate-700/50 transition">
+      <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2 rounded-xl bg-slate-800/80 border border-slate-700/60 transition">
         <i id="menuIcon" class="fa-solid fa-bars text-xl"></i>
       </button>
 
     </nav>
 
     <!-- Mobile Navigation Dropdown -->
-    <div id="mobileMenu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 backdrop-blur-2xl px-6 py-6 flex-col space-y-4 text-sm font-semibold text-slate-200 shadow-2xl transition-all">
+    <div id="mobileMenu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800/80 backdrop-blur-2xl px-6 py-6 flex-col space-y-4 text-sm font-semibold text-slate-200 shadow-2xl transition-all">
       <a href="#home" class="mobile-link hover:text-brandOrange transition py-1 flex items-center justify-between">Home <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
       <a href="#about" class="mobile-link hover:text-brandOrange transition py-1 flex items-center justify-between">About Us <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
       <a href="#services" class="mobile-link hover:text-brandOrange transition py-1 flex items-center justify-between">Services <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
@@ -216,17 +225,20 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section id="home" class="relative pt-20 pb-28 px-6 bg-darkBg text-white overflow-hidden bg-grid-pattern">
-    <!-- Glowing Orbs Background -->
-    <div class="absolute top-1/4 left-10 w-96 h-96 bg-brandBlue/20 rounded-full filter blur-[120px] animate-float pointer-events-none"></div>
-    <div class="absolute bottom-10 right-10 w-96 h-96 bg-brandOrange/15 rounded-full filter blur-[120px] animate-float-reverse pointer-events-none"></div>
-    <canvas id="heroCanvas" class="absolute inset-0 opacity-40 pointer-events-none"></canvas>
+  <section id="home" class="relative pt-20 pb-28 px-6 bg-darkBg text-white overflow-hidden bg-grid-blueprint">
+    <div class="scan-line pointer-events-none"></div>
+
+    <!-- Glowing Background Lights -->
+    <div class="absolute top-1/4 left-10 w-96 h-96 bg-brandBlue/20 rounded-full animate-pulse-glow pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-brandOrange/15 rounded-full animate-pulse-glow pointer-events-none" style="animation-delay: 2s;"></div>
+    
+    <canvas id="heroCanvas" class="absolute inset-0 opacity-50 pointer-events-none"></canvas>
 
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
       <div class="reveal">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-800/80 border border-brandBlue/30 text-brandBlue-400 text-xs font-semibold rounded-full mb-6 backdrop-blur-md shadow-inner">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-900/90 border border-brandBlue/40 text-brandBlue-400 text-xs font-mono font-semibold rounded-full mb-6 backdrop-blur-md shadow-inner">
           <span class="w-2 h-2 rounded-full bg-brandOrange animate-ping"></span>
-          <span>Serving Sri Lanka Since 2017</span>
+          <span>EST. 2017 | SRI LANKA</span>
         </div>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
           Comprehensive Technical & <span class="animated-gradient-text">Engineering Solutions</span>
@@ -239,23 +251,30 @@
             <span>Explore Services</span>
             <i class="fa-solid fa-arrow-right text-xs"></i>
           </a>
-          <a href="#contact" class="bg-slate-800/60 hover:bg-slate-800 text-slate-200 border border-slate-700/80 hover:border-slate-500 font-semibold px-7 py-3.5 rounded-xl transition duration-300 backdrop-blur-md">
+          <a href="#contact" class="bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700/80 hover:border-slate-500 font-semibold px-7 py-3.5 rounded-xl transition duration-300 backdrop-blur-md">
             Contact Us
           </a>
         </div>
       </div>
 
+      <!-- Hero Cyber Visual Card -->
       <div class="relative group reveal">
-        <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue via-brandOrange to-blue-600 rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition duration-1000"></div>
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 aspect-[4/3]">
+        <div class="absolute -inset-1 bg-gradient-to-r from-brandBlue via-brandOrange to-blue-600 rounded-3xl blur-xl opacity-40 group-hover:opacity-70 transition duration-700"></div>
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-slate-900 aspect-[4/3]">
+          
+          <!-- Engineering Crosshairs Overlay -->
+          <div class="absolute top-3 left-3 text-[10px] font-mono text-brandBlue-400/80 z-20">SYS.ON // 100% OPERATIONAL</div>
+          <div class="absolute bottom-3 right-3 text-[10px] font-mono text-brandOrange/80 z-20">LAT.SRI LANKA</div>
+
           <img src="images/hero-electrical-panel.jpg" alt="Rashani Engineering Operations" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
-          <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
-            <div class="bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-slate-700/50">
-              <p class="text-xs text-slate-400">Engineering Excellence</p>
+          <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-85"></div>
+          
+          <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-20">
+            <div class="bg-slate-950/85 backdrop-blur-md px-4 py-2.5 rounded-xl border border-slate-700/60 shadow-lg">
+              <p class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Engineering Excellence</p>
               <p class="text-sm font-bold text-white">Rashani Operations</p>
             </div>
-            <div class="text-brandOrange text-3xl animate-spin-slow bg-slate-900/80 p-3 rounded-full border border-slate-700/50">
+            <div class="text-brandOrange text-2xl animate-spin-slow bg-slate-950/85 p-3 rounded-xl border border-slate-700/60 shadow-lg">
               <i class="fa-solid fa-gear"></i>
             </div>
           </div>
@@ -268,7 +287,7 @@
   <section id="about" class="py-24 px-6 max-w-7xl mx-auto relative">
     <div class="grid md:grid-cols-2 gap-12 items-center mb-20 reveal">
       <div>
-        <div class="flex items-center gap-2 text-brandOrange font-semibold text-xs tracking-widest uppercase mb-2">
+        <div class="flex items-center gap-2 text-brandOrange font-semibold text-xs tracking-widest uppercase mb-2 font-mono">
           <span class="w-8 h-0.5 bg-brandOrange"></span>
           Who We Are
         </div>
@@ -277,15 +296,15 @@
           Since 2017, Rashani Electrical & Engineering has been delivering unique and efficient technical services across Sri Lanka. Our team of experienced professionals ensures seamless design, installation, commissioning, and maintenance tailored to elevate organizational efficiency.
         </p>
         <ul class="space-y-3.5 text-sm text-slate-300 font-medium">
-          <li class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
+          <li class="flex items-center gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800/80">
             <i class="fa-solid fa-circle-check text-brandOrange text-base"></i> 
-            <span>Registered Entity: <strong class="text-white">Reg No: 5/5/002919</strong></span>
+            <span>Registered Entity: <strong class="text-white font-mono">Reg No: 5/5/002919</strong></span>
           </li>
-          <li class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
+          <li class="flex items-center gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800/80">
             <i class="fa-solid fa-circle-check text-brandOrange text-base"></i> 
             <span>Banking Partner: <strong class="text-white">Sampath Bank</strong></span>
           </li>
-          <li class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
+          <li class="flex items-center gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800/80">
             <i class="fa-solid fa-circle-check text-brandOrange text-base"></i> 
             <span>Experienced and Technically Sound Team</span>
           </li>
@@ -293,11 +312,11 @@
       </div>
 
       <div class="grid grid-cols-2 gap-4 relative">
-        <div class="animate-float aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group">
+        <div class="animate-float aspect-[4/3] rounded-2xl overflow-hidden border border-slate-700/60 shadow-2xl relative group">
           <img src="images/about-work-1.jpg" alt="Technical Team" class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-darkBg/80 via-transparent to-transparent"></div>
         </div>
-        <div class="animate-float-reverse mt-8 aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group">
+        <div class="mt-8 aspect-[4/3] rounded-2xl overflow-hidden border border-slate-700/60 shadow-2xl relative group">
           <img src="images/about-work-2.jpg" alt="On-site Works" class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-darkBg/80 via-transparent to-transparent"></div>
         </div>
@@ -308,7 +327,7 @@
     <div class="grid md:grid-cols-2 gap-8 reveal">
       <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
         <div class="absolute top-0 right-0 w-32 h-32 bg-brandBlue/10 rounded-full blur-2xl group-hover:bg-brandBlue/20 transition"></div>
-        <div class="w-12 h-12 bg-brandBlue/20 text-brandBlue-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6 border border-brandBlue/30">
+        <div class="w-12 h-12 bg-brandBlue/20 text-brandBlue-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6 border border-brandBlue/30 shadow-inner">
           <i class="fa-solid fa-eye"></i>
         </div>
         <h3 class="text-2xl font-bold text-white mb-3">Our Vision</h3>
@@ -319,7 +338,7 @@
 
       <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
         <div class="absolute top-0 right-0 w-32 h-32 bg-brandOrange/10 rounded-full blur-2xl group-hover:bg-brandOrange/20 transition"></div>
-        <div class="w-12 h-12 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center text-xl font-bold mb-6 border border-brandOrange/30">
+        <div class="w-12 h-12 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center text-xl font-bold mb-6 border border-brandOrange/30 shadow-inner">
           <i class="fa-solid fa-bullseye"></i>
         </div>
         <h3 class="text-2xl font-bold text-white mb-3">Our Mission</h3>
@@ -331,10 +350,10 @@
   </section>
 
   <!-- SERVICES SECTION -->
-  <section id="services" class="py-24 px-6 bg-slate-900/50 border-y border-slate-800 relative">
+  <section id="services" class="py-24 px-6 bg-slate-950/60 border-y border-slate-800/80 relative">
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-        <span class="text-brandBlue-400 font-semibold text-xs tracking-widest uppercase block mb-2">Capabilities</span>
+        <span class="text-brandBlue-400 font-semibold text-xs tracking-widest uppercase block mb-2 font-mono">Capabilities</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Our Core Services</h2>
         <div class="w-16 h-1 bg-gradient-to-r from-brandBlue to-brandOrange mx-auto mb-6 rounded-full"></div>
         <p class="text-slate-400 text-sm sm:text-base">Integrated multi-disciplinary engineering solutions executed by well-known qualified technical staff using advanced equipment.</p>
@@ -415,7 +434,7 @@
   <!-- FEATURED PROJECTS SECTION -->
   <section id="projects" class="py-24 px-6 max-w-7xl mx-auto">
     <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-      <span class="text-brandOrange font-semibold text-xs tracking-widest uppercase block mb-2">Portfolio</span>
+      <span class="text-brandOrange font-semibold text-xs tracking-widest uppercase block mb-2 font-mono">Portfolio</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Key Projects Carried Out</h2>
       <div class="w-16 h-1 bg-brandOrange mx-auto mb-6 rounded-full"></div>
       <p class="text-slate-400 text-sm sm:text-base">A glimpse of successful engineering projects delivered across various industrial sectors in Sri Lanka.</p>
@@ -431,7 +450,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <span class="text-[10px] bg-brandOrange/20 border border-brandOrange/30 text-brandOrange font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider">Water Resource</span>
+            <span class="text-[10px] bg-brandOrange/20 border border-brandOrange/30 text-brandOrange font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono">Water Resource</span>
             <h4 class="text-lg font-bold text-white mt-3 mb-1 group-hover:text-brandOrange transition">Kalawewa Gate Controlling System</h4>
           </div>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">Electrical & Control Systems installation for gate controlling infrastructure.</p>
@@ -446,7 +465,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <span class="text-[10px] bg-brandOrange/20 border border-brandOrange/30 text-brandOrange font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider">Infrastructure</span>
+            <span class="text-[10px] bg-brandOrange/20 border border-brandOrange/30 text-brandOrange font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono">Infrastructure</span>
             <h4 class="text-lg font-bold text-white mt-3 mb-1 group-hover:text-brandOrange transition">Daduruoya Project</h4>
           </div>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">Heavy mechanical and civil construction & engineering works.</p>
@@ -461,7 +480,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider">Renewable Energy</span>
+            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono">Renewable Energy</span>
             <h4 class="text-lg font-bold text-white mt-3 mb-1 group-hover:text-brandBlue-400 transition">Siemens Gamesa Wind Power Plant</h4>
           </div>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">20MW, 8 Turbines Maintenance Work – Jaffna.</p>
@@ -476,7 +495,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider">Solar Power</span>
+            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono">Solar Power</span>
             <h4 class="text-lg font-bold text-white mt-3 mb-1 group-hover:text-brandBlue-400 transition">Ground Surface Solar Power Plant</h4>
           </div>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">Full ground surface maintenance & technical servicing – Hambantota.</p>
@@ -491,7 +510,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider">Electrical System</span>
+            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono">Electrical System</span>
             <h4 class="text-lg font-bold text-white mt-3 mb-1 group-hover:text-brandBlue-400 transition">Hotel Luck Rich - Imbulgasdeniya</h4>
           </div>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">Complete electrical wiring system design and maintenance work.</p>
@@ -506,7 +525,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider">Renewable Energy</span>
+            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono">Renewable Energy</span>
             <h4 class="text-lg font-bold text-white mt-3 mb-1 group-hover:text-brandBlue-400 transition">Wind Power Plant - Norochchole</h4>
           </div>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">High-voltage transmission line maintenance and servicing work.</p>
@@ -521,7 +540,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider">Wind Energy</span>
+            <span class="text-[10px] bg-brandBlue/20 border border-brandBlue/30 text-brandBlue-400 font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono">Wind Energy</span>
             <h4 class="text-lg font-bold text-white mt-3 mb-1 group-hover:text-brandBlue-400 transition">Naladanavi Wind Power Plant</h4>
           </div>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">Wind power plant technical & motor rewinding maintenance work – Puttalam.</p>
@@ -536,7 +555,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <span class="text-[10px] bg-brandOrange/20 border border-brandOrange/30 text-brandOrange font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider">Refinery</span>
+            <span class="text-[10px] bg-brandOrange/20 border border-brandOrange/30 text-brandOrange font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider font-mono">Refinery</span>
             <h4 class="text-lg font-bold text-white mt-3 mb-1 group-hover:text-brandOrange transition">NMK Oil Refinery Plant</h4>
           </div>
           <p class="text-slate-400 text-xs mt-3 leading-relaxed">Oil Refinery Plant mechanical and electrical servicing – Puttalam.</p>
@@ -547,7 +566,7 @@
   </section>
 
   <!-- CLIENT BASE SECTION -->
-  <section id="clients" class="py-20 bg-slate-900/60 border-t border-slate-800 overflow-hidden">
+  <section id="clients" class="py-20 bg-slate-950/70 border-t border-slate-800/80 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 mb-12 reveal">
       <div class="text-center max-w-3xl mx-auto">
         <h2 class="text-3xl font-extrabold text-white tracking-tight uppercase">Valued Clients</h2>
@@ -613,11 +632,11 @@
   </section>
 
   <!-- CONTACT & FOOTER SECTION -->
-  <footer id="contact" class="py-24 px-6 bg-darkBg text-white relative overflow-hidden border-t border-slate-800">
+  <footer id="contact" class="py-24 px-6 bg-darkBg text-white relative overflow-hidden border-t border-slate-800/80">
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 relative z-10 reveal">
       
       <div>
-        <span class="text-brandOrange font-semibold text-xs tracking-widest uppercase block mb-2">Get In Touch</span>
+        <span class="text-brandOrange font-semibold text-xs tracking-widest uppercase block mb-2 font-mono">Get In Touch</span>
         <h3 class="text-3xl font-extrabold text-white mb-4">Contact Us</h3>
         <p class="text-slate-400 text-sm mb-8 max-w-md">Reach out to our expert team for inquiries, project estimations, or technical support.</p>
         
@@ -638,7 +657,7 @@
             </div>
             <div>
               <strong class="block text-white mb-0.5">Hotlines:</strong>
-              <span class="text-slate-400 text-xs sm:text-sm">074-414058 / 074-414059 / 074-414060</span>
+              <span class="text-slate-400 text-xs sm:text-sm font-mono">074-414058 / 074-414059 / 074-414060</span>
             </div>
           </div>
 
@@ -659,13 +678,13 @@
         <h4 class="text-xl font-bold text-white mb-6">Send an Inquiry</h4>
         <form id="whatsappForm" class="space-y-4">
           <div>
-            <input id="userName" type="text" placeholder="Your Name" required class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brandOrange transition">
+            <input id="userName" type="text" placeholder="Your Name" required class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brandOrange transition">
           </div>
           <div>
-            <input id="userContact" type="text" placeholder="Your Email / Phone Number" required class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brandOrange transition">
+            <input id="userContact" type="text" placeholder="Your Email / Phone Number" required class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brandOrange transition">
           </div>
           <div>
-            <textarea id="userMsg" rows="4" placeholder="Your Requirement / Message" required class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brandOrange transition"></textarea>
+            <textarea id="userMsg" rows="4" placeholder="Your Requirement / Message" required class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brandOrange transition"></textarea>
           </div>
           <button type="submit" class="w-full bg-gradient-to-r from-brandOrange to-orange-600 hover:from-orange-500 hover:to-brandOrange text-white font-bold py-3.5 rounded-xl shadow-glow-orange hover:shadow-orange-500/50 transition duration-300 text-sm flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
             <i class="fa-brands fa-whatsapp text-lg"></i> 
@@ -676,7 +695,7 @@
 
     </div>
 
-    <div class="max-w-7xl mx-auto border-t border-slate-800/80 mt-20 pt-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto border-t border-slate-800/80 mt-20 pt-8 text-center text-xs text-slate-500 font-mono">
       <p>&copy; 2026 Rashani Electrical & Engineering (Reg No: 5/5/002919). All Rights Reserved.</p>
     </div>
   </footer>
@@ -703,7 +722,6 @@
         }
       });
 
-      // Hide menu when link clicked
       mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
@@ -734,7 +752,7 @@
       });
     }
 
-    // 3. Dynamic Scroll Reveal Observer Script
+    // 3. Dynamic Hardware-Accelerated Scroll Reveal Observer
     document.addEventListener("DOMContentLoaded", function () {
       const reveals = document.querySelectorAll(".reveal");
 
@@ -745,8 +763,8 @@
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -40px 0px"
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px"
       });
 
       reveals.forEach((reveal) => {
@@ -754,7 +772,7 @@
       });
     });
 
-    // 4. Hero Interactive Network Canvas
+    // 4. Mobile-Optimized Engineering Canvas Animation
     const canvas = document.getElementById('heroCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -764,13 +782,17 @@
         width = canvas.width = canvas.offsetWidth;
         height = canvas.height = canvas.offsetHeight;
         particles = [];
-        const count = Math.floor(width / 20);
+        
+        // Optimize particle count for mobile screens to avoid lag
+        const isMobile = window.innerWidth < 768;
+        const count = isMobile ? Math.floor(width / 35) : Math.floor(width / 18);
+
         for (let i = 0; i < count; i++) {
           particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 0.6,
-            vy: (Math.random() - 0.5) * 0.6,
+            vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.5),
+            vy: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.5),
             radius: Math.random() * 2 + 1
           });
         }
@@ -779,7 +801,7 @@
       function draw() {
         ctx.clearRect(0, 0, width, height);
         ctx.fillStyle = '#38bdf8';
-        ctx.strokeStyle = 'rgba(56, 189, 248, 0.12)';
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.15)';
 
         for (let i = 0; i < particles.length; i++) {
           let p = particles[i];
@@ -796,7 +818,8 @@
           for (let j = i + 1; j < particles.length; j++) {
             let p2 = particles[j];
             let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (dist < 130) {
+            const maxDist = window.innerWidth < 768 ? 90 : 130;
+            if (dist < maxDist) {
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(p2.x, p2.y);
@@ -807,7 +830,12 @@
         requestAnimationFrame(draw);
       }
 
-      window.addEventListener('resize', initCanvas);
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(initCanvas, 200);
+      });
+
       initCanvas();
       draw();
     }
