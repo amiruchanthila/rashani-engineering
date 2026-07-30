@@ -83,6 +83,11 @@
       100% { transform: translateX(-50%); }
     }
 
+    @keyframes marqueeReverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0%); }
+    }
+
     @keyframes slowSpin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
@@ -93,7 +98,7 @@
     .animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
     .animate-spin-slow { animation: slowSpin 25s linear infinite; }
 
-    /* Infinite Marquee Track */
+    /* Infinite Marquee Track (Faster Speed & Dual Directions) */
     .marquee-container {
       display: flex;
       overflow: hidden;
@@ -108,10 +113,20 @@
       justify-content: space-around;
       min-width: 100%;
       gap: 2rem;
-      animation: marquee 30s linear infinite;
+      animation: marquee 15s linear infinite;
     }
 
-    .marquee-container:hover .marquee-content {
+    .marquee-content-reverse {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-around;
+      min-width: 100%;
+      gap: 2rem;
+      animation: marqueeReverse 15s linear infinite;
+    }
+
+    .marquee-container:hover .marquee-content,
+    .marquee-container:hover .marquee-content-reverse {
       animation-play-state: paused;
     }
 
@@ -124,17 +139,17 @@
       animation: gradientShift 5s ease infinite;
     }
 
-    /* High-Performance Scroll Reveal */
+    /* Upgraded Dynamic Scroll Reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(40px) scale(0.96);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(50px) scale(0.95) rotateX(4deg);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform, opacity;
     }
 
     .reveal.active {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0) scale(1) rotateX(0deg);
     }
 
     /* Glass Cards with Hover Spotlight */
@@ -587,7 +602,7 @@
     </div>
   </section>
 
-  <!-- CLIENT BASE SECTION -->
+  <!-- CLIENT BASE SECTION (Fast Dual Line Marquee Tracks) -->
   <section id="clients" class="py-20 bg-slate-900/60 border-t border-slate-800 overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 mb-12 reveal">
       <div class="text-center max-w-3xl mx-auto">
@@ -596,7 +611,8 @@
       </div>
     </div>
 
-    <div class="marquee-container py-4">
+    <!-- Line 1: Moving Left -->
+    <div class="marquee-container py-3">
       <div class="marquee-content">
         <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
           <img src="logos/siemens.png" alt="Siemens Gamesa" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
@@ -625,6 +641,63 @@
       </div>
 
       <div class="marquee-content" aria-hidden="true">
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/siemens.png" alt="Siemens Gamesa" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Siemens Gamesa</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/adamjee.png" alt="Adamjee" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Adamjee & Lukmanjee</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/sirio.png" alt="Sirio" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Sirio Ltd</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/variosystems.png" alt="Vario Systems" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Vario Systems</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/nmk.png" alt="NMK" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">NMK Holdings</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/coats.png" alt="Coats" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Coats Thread</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Line 2: Moving Right -->
+    <div class="marquee-container py-3">
+      <div class="marquee-content-reverse">
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/ltl.png" alt="LTL" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">LTL Projects</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/naladanavi.png" alt="Naladanavi" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Naladanavi</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/orient.png" alt="Orient" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Orient Construction</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/mirachel.png" alt="Mirachel" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Mirachel Hospital</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/totaldental.png" alt="Total Dental" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Total Dental Care</span>
+        </div>
+        <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
+          <img src="logos/cocoland.png" alt="Coco Land" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
+          <span class="text-xs font-semibold text-slate-300">Coco Land</span>
+        </div>
+      </div>
+
+      <div class="marquee-content-reverse" aria-hidden="true">
         <div class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-4 w-64 shrink-0 hover:scale-105 transition duration-300">
           <img src="logos/ltl.png" alt="LTL" class="h-9 w-auto object-contain brightness-90 hover:brightness-100">
           <span class="text-xs font-semibold text-slate-300">LTL Projects</span>
@@ -844,7 +917,7 @@
       });
     }
 
-    // 4. Smooth Scroll Reveal Observer Script
+    // 4. Repeated Smooth Scroll Reveal Observer Script
     document.addEventListener("DOMContentLoaded", function () {
       const reveals = document.querySelectorAll(".reveal");
 
@@ -852,11 +925,13 @@
         entries.forEach((entry) => {
           if(entry.isIntersecting) {
             entry.target.classList.add("active");
+          } else {
+            entry.target.classList.remove("active"); // Trigger animation again when scrolling back
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px"
       });
 
       reveals.forEach((reveal) => {
