@@ -127,7 +127,7 @@
     /* High-Performance Scroll Reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(30px) scale(0.98);
+      transform: translateY(40px) scale(0.96);
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform, opacity;
     }
@@ -154,6 +154,19 @@
 
     .service-card:hover .service-icon {
       transform: scale(1.15) rotate(6deg);
+    }
+
+    /* Slideshow Custom CSS */
+    .slide-item {
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .slide-item.active-slide {
+      opacity: 1;
+      pointer-events: auto;
     }
   </style>
 </head>
@@ -273,57 +286,85 @@
           Who We Are
         </div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-6">About Our Company</h2>
-        <p class="text-slate-400 leading-relaxed mb-6 text-base">
+        <p class="text-slate-300 leading-relaxed mb-6 text-base font-normal">
           Since 2017, Rashani Electrical & Engineering has been delivering unique and efficient technical services across Sri Lanka. Our team of experienced professionals ensures seamless design, installation, commissioning, and maintenance tailored to elevate organizational efficiency.
         </p>
-        <ul class="space-y-3.5 text-sm text-slate-300 font-medium">
-          <li class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-            <i class="fa-solid fa-circle-check text-brandOrange text-base"></i> 
-            <span>Registered Entity: <strong class="text-white">Reg No: 5/5/002919</strong></span>
-          </li>
-          <li class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-            <i class="fa-solid fa-circle-check text-brandOrange text-base"></i> 
-            <span>Banking Partner: <strong class="text-white">Sampath Bank</strong></span>
-          </li>
-          <li class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-            <i class="fa-solid fa-circle-check text-brandOrange text-base"></i> 
-            <span>Experienced and Technically Sound Team</span>
-          </li>
-        </ul>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 relative">
-        <div class="animate-float aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group">
-          <img src="images/about-work-1.jpg" alt="Technical Team" class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-darkBg/80 via-transparent to-transparent"></div>
+      <!-- Projects Slideshow Carousel -->
+      <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden border border-slate-800 shadow-2xl group glass-card">
+        <div id="slideshow-container" class="relative w-full h-full">
+          <!-- Slide 1 -->
+          <div class="slide-item active-slide">
+            <img src="images/project-kalawewa.jpg" alt="Kalawewa Gate Controlling System" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-darkBg/20 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-[10px] bg-brandOrange text-white font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-1 inline-block">Water Resource</span>
+              <h4 class="text-lg font-bold text-white">Kalawewa Gate Controlling System</h4>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="slide-item">
+            <img src="images/project-daduruoya.jpg" alt="Daduruoya Project" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-darkBg/20 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-[10px] bg-brandOrange text-white font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-1 inline-block">Infrastructure</span>
+              <h4 class="text-lg font-bold text-white">Daduruoya Infrastructure Project</h4>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="slide-item">
+            <img src="images/project-wind.jpg" alt="Siemens Gamesa Wind Power Plant" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-darkBg/20 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-[10px] bg-brandBlue-400 text-slate-950 font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-1 inline-block">Renewable Energy</span>
+              <h4 class="text-lg font-bold text-white">Siemens Gamesa Wind Power Plant</h4>
+            </div>
+          </div>
+          <!-- Slide 4 -->
+          <div class="slide-item">
+            <img src="images/project-solar.jpg" alt="Ground Surface Solar Power Plant" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-darkBg/90 via-darkBg/20 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-[10px] bg-brandBlue-400 text-slate-950 font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-1 inline-block">Solar Power</span>
+              <h4 class="text-lg font-bold text-white">Ground Surface Solar Power Plant</h4>
+            </div>
+          </div>
         </div>
-        <div class="animate-float-reverse mt-8 aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl relative group">
-          <img src="images/about-work-2.jpg" alt="On-site Works" class="w-full h-full object-cover object-center group-hover:scale-110 transition duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-darkBg/80 via-transparent to-transparent"></div>
-        </div>
+
+        <!-- Navigation Buttons -->
+        <button id="prevSlide" aria-label="Previous Slide" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-brandOrange text-white flex items-center justify-center backdrop-blur-md border border-slate-700/50 transition opacity-0 group-hover:opacity-100">
+          <i class="fa-solid fa-chevron-left text-xs"></i>
+        </button>
+        <button id="nextSlide" aria-label="Next Slide" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-brandOrange text-white flex items-center justify-center backdrop-blur-md border border-slate-700/50 transition opacity-0 group-hover:opacity-100">
+          <i class="fa-solid fa-chevron-right text-xs"></i>
+        </button>
+
+        <!-- Dots Indicator -->
+        <div class="absolute top-4 right-4 flex space-x-1.5 z-20" id="slideDots"></div>
       </div>
     </div>
 
     <!-- Vision & Mission Cards -->
     <div class="grid md:grid-cols-2 gap-8 reveal">
-      <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+      <div class="glass-card p-8 rounded-2xl relative overflow-hidden group border border-slate-800">
         <div class="absolute top-0 right-0 w-32 h-32 bg-brandBlue/10 rounded-full blur-2xl group-hover:bg-brandBlue/20 transition"></div>
         <div class="w-12 h-12 bg-brandBlue/20 text-brandBlue-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6 border border-brandBlue/30">
           <i class="fa-solid fa-eye"></i>
         </div>
         <h3 class="text-2xl font-bold text-white mb-3">Our Vision</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">
+        <p class="text-slate-200 text-sm sm:text-base leading-relaxed font-bold tracking-wide">
           "To be the premier engineering service leader in client satisfaction, innovation, and professionalism through high-quality all kind of engineering solutions."
         </p>
       </div>
 
-      <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+      <div class="glass-card p-8 rounded-2xl relative overflow-hidden group border border-slate-800">
         <div class="absolute top-0 right-0 w-32 h-32 bg-brandOrange/10 rounded-full blur-2xl group-hover:bg-brandOrange/20 transition"></div>
         <div class="w-12 h-12 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center text-xl font-bold mb-6 border border-brandOrange/30">
           <i class="fa-solid fa-bullseye"></i>
         </div>
         <h3 class="text-2xl font-bold text-white mb-3">Our Mission</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">
+        <p class="text-slate-200 text-sm sm:text-base leading-relaxed font-bold tracking-wide">
           "To maintain long-term relationships of value with our clients and partners by offering exceptional outputs in Electrical and Mechanical engineering, integrated safely with Civil infrastructure support and Solar solutions."
         </p>
       </div>
@@ -343,7 +384,7 @@
       <div class="grid md:grid-cols-3 gap-8">
         
         <!-- Electrical Engineering -->
-        <div class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between group">
+        <div class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between group reveal">
           <div>
             <div class="service-icon w-14 h-14 bg-brandBlue/20 text-brandBlue-400 rounded-2xl flex items-center justify-center text-2xl mb-6 border border-brandBlue/30 transition-transform duration-500">
               <i class="fa-solid fa-bolt"></i>
@@ -365,7 +406,7 @@
         </div>
 
         <!-- Mechanical Engineering -->
-        <div class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between group">
+        <div class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between group reveal">
           <div>
             <div class="service-icon w-14 h-14 bg-brandOrange/20 text-brandOrange rounded-2xl flex items-center justify-center text-2xl mb-6 border border-brandOrange/30 transition-transform duration-500">
               <i class="fa-solid fa-gears"></i>
@@ -387,7 +428,7 @@
         </div>
 
         <!-- Civil Engineering -->
-        <div class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between group">
+        <div class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between group reveal">
           <div>
             <div class="service-icon w-14 h-14 bg-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-2xl mb-6 border border-sky-500/30 transition-transform duration-500">
               <i class="fa-solid fa-building"></i>
@@ -714,7 +755,76 @@
       });
     }
 
-    // 2. WhatsApp Direct Inquiry Submission
+    // 2. Slideshow / Carousel Functionality
+    const slides = document.querySelectorAll('.slide-item');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const slideDots = document.getElementById('slideDots');
+    let currentSlide = 0;
+    let slideInterval;
+
+    if (slides.length > 0) {
+      // Build Dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.ariaLabel = `Slide ${i+1}`;
+        dot.className = `w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-brandOrange w-6' : 'bg-slate-600/80'}`;
+        dot.addEventListener('click', () => goToSlide(i));
+        slideDots.appendChild(dot);
+      });
+
+      const dots = slideDots.querySelectorAll('button');
+
+      function updateSlideClasses() {
+        slides.forEach((slide, index) => {
+          if(index === currentSlide) {
+            slide.classList.add('active-slide');
+          } else {
+            slide.classList.remove('active-slide');
+          }
+        });
+
+        dots.forEach((dot, index) => {
+          if(index === currentSlide) {
+            dot.className = 'w-6 h-2 rounded-full bg-brandOrange transition-all';
+          } else {
+            dot.className = 'w-2 h-2 rounded-full bg-slate-600/80 transition-all';
+          }
+        });
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlideClasses();
+        resetTimer();
+      }
+
+      function nextSlideAction() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlideClasses();
+      }
+
+      function prevSlideAction() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateSlideClasses();
+      }
+
+      function startTimer() {
+        slideInterval = setInterval(nextSlideAction, 4000);
+      }
+
+      function resetTimer() {
+        clearInterval(slideInterval);
+        startTimer();
+      }
+
+      if (nextBtn) nextBtn.addEventListener('click', () => { nextSlideAction(); resetTimer(); });
+      if (prevBtn) prevBtn.addEventListener('click', () => { prevSlideAction(); resetTimer(); });
+
+      startTimer();
+    }
+
+    // 3. WhatsApp Direct Inquiry Submission
     const whatsappForm = document.getElementById('whatsappForm');
     if (whatsappForm) {
       whatsappForm.addEventListener('submit', function (e) {
@@ -734,7 +844,7 @@
       });
     }
 
-    // 3. Dynamic Scroll Reveal Observer Script
+    // 4. Smooth Scroll Reveal Observer Script
     document.addEventListener("DOMContentLoaded", function () {
       const reveals = document.querySelectorAll(".reveal");
 
@@ -746,7 +856,7 @@
         });
       }, {
         threshold: 0.1,
-        rootMargin: "0px 0px -40px 0px"
+        rootMargin: "0px 0px -50px 0px"
       });
 
       reveals.forEach((reveal) => {
@@ -754,7 +864,7 @@
       });
     });
 
-    // 4. Hero Interactive Network Canvas
+    // 5. Hero Interactive Network Canvas
     const canvas = document.getElementById('heroCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
